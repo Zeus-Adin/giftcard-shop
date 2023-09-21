@@ -22,20 +22,25 @@ import { alpha, styled } from '@mui/material/styles';
 const pages = ['Why Ridima?', 'Rates', 'About', 'FAQs', 'Contact'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
+function redirect(to) {
+    window.location.replace(`/${to}`);
+}
+
+
 const AppBarStyle = styled(AppBar)(({ theme }) => ({
     position: 'fixed',
     backgroundColor: 'rgb(41, 41, 41, 0.9)'
 }));
 
 const buttons = [
+    <Button key="login" variant="extended" onClick={() => redirect('login')}>
+        <LoginIcon sx={{ mr: 1 }} />
+        Login
+    </Button>,
     <Fab key="get_started" variant="extended" color='transparent'>
         <AppRegistrationIcon sx={{ mr: 1 }} />
         Get Started
-    </Fab>,
-    <Button key="login" variant="extended">
-        <LoginIcon sx={{ mr: 1 }} />
-        Login
-    </Button>
+    </Fab>
 ];
 
 

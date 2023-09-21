@@ -1,6 +1,13 @@
-import './Landing.css';
-
+import AppleIcon from '@mui/icons-material/Apple';
+import AdbIcon from '@mui/icons-material/Adb';
+import { Fab } from '@mui/material';
 const Landing = () => {
+
+    function redirect(to) {
+        window.location.replace(`/${to}`);
+    }
+
+
     return (
         <div className="Home">
             <section className="hero">
@@ -91,32 +98,14 @@ const Landing = () => {
                         <h2>Buy your Preferred Giftcards easily</h2>
                         <p>With access to multiple options, you can also buy your desired Giftcard brand. </p>
                         <div className="flex items-center gap-1 border border-white h-[5.125rem] rounded-[3.125rem] pl-9 pr-[1.25rem] w-[19.5rem]">
-                            <span className="whitespace-nowrap">Download the app</span>
+                            <span className="whitespace-nowrap">Coming soon on</span>
                             <span className="flex-grow"></span>
-                            <a target="_blank" className="m-0 p-0 h-[42px]" href="https://play.google.com/store/apps/details?id=com.app.ridima">
-                                <span className="span1">
-                                    <span className="span2">
-                                        <img className="img1" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2743%27%20height=%2742%27/%3e" />
-                                    </span>
-                                    <img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" data-nimg="intrinsic" className="img2" />
-                                    <noscript>
-                                        <img alt="" srcSet="vectors/andriod.svg 1x, vectors/andriod.svg 2x" src="vectors/andriod.svg" decoding="async" data-nimg="intrinsic" className="img2"
-                                            loading="lazy" />
-                                    </noscript>
-                                </span>
-                            </a>
-                            <a target="_blank" className="m-0 p-0 h-[42px]" href="https://apps.apple.com/us/app/ridima-sell-gift-cards/id6444587833">
-                                <span className="span1">
-                                    <span
-                                        className="span2">
-                                        <img className="img1" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2743%27%20height=%2742%27/%3e" />
-                                    </span>
-                                    <img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" data-nimg="intrinsic" className="img2" />
-                                    <noscript>
-                                        <img alt="" srcSet="vectors/apple.svg 1x, vectors/apple.svg 2x" src="vectors/apple.svg" decoding="async" data-nimg="intrinsic" className="img2" loading="lazy" />
-                                    </noscript>
-                                </span>
-                            </a>
+                            <Fab href='#'>
+                                <AdbIcon fontSize='small' />
+                            </Fab>
+                            <Fab href='#'>
+                                <AppleIcon fontSize='small' />
+                            </Fab>
                         </div>
                     </div>
                     <span className="span1">
@@ -132,33 +121,14 @@ const Landing = () => {
                             using Ridima. </p>
                         <div
                             className="flex items-center gap-1 border border-white h-[5.125rem] rounded-[3.125rem] pl-9 pr-[1.25rem] w-[19.5rem]">
-                            <span className="whitespace-nowrap">Download the app</span>
+                            <span className="whitespace-nowrap">Coming soon on</span>
                             <span className="flex-grow"></span>
-                            <a target="_blank" className="m-0 p-0 h-[42px]" href="https://play.google.com/store/apps/details?id=com.app.ridima">
-                                <span className="span1">
-                                    <span className="span2">
-                                        <img className="img1" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2743%27%20height=%2742%27/%3e" />
-                                    </span>
-                                    <img
-                                        alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                        decoding="async" data-nimg="intrinsic"
-                                        className="img2" />
-                                    <noscript>
-                                        <img alt="" srcSet="vectors/andriod.svg 1x, vectors/andriod.svg 2x" src="vectors/andriod.svg" decoding="async" data-nimg="intrinsic" className="img2" loading="lazy" />
-                                    </noscript>
-                                </span>
-                            </a>
-                            <a target="_blank" className="m-0 p-0 h-[42px]" href="https://apps.apple.com/us/app/ridima-sell-gift-cards/id6444587833">
-                                <span className="span1">
-                                    <span className="span2">
-                                        <img className="img1" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2743%27%20height=%2742%27/%3e" />
-                                    </span>
-                                    <img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" data-nimg="intrinsic" className="img2" />
-                                    <noscript>
-                                        <img alt="" srcSet="vectors/apple.svg 1x, vectors/apple.svg 2x" src="vectors/apple.svg" decoding="async" data-nimg="intrinsic" className="img2" loading="lazy" />
-                                    </noscript>
-                                </span>
-                            </a>
+                            <Fab href='#'>
+                                <AdbIcon fontSize='small' />
+                            </Fab>
+                            <Fab href='#'>
+                                <AppleIcon fontSize='small' />
+                            </Fab>
                         </div>
                     </div>
                     <div className="hidden lg:block">
@@ -180,31 +150,15 @@ const Landing = () => {
                             <h2>Sell your Giftcards for Cash Instantly</h2>
                             <p>Ridima is simply the best app to sell gift cards at high rates. We provide you with quick trade
                                 confirmations and payouts. </p>
-                            <div
-                                className="flex items-center gap-1 border border-white h-[5.125rem] rounded-[3.125rem] pl-9 pr-[1.25rem] w-[19.5rem]">
-                                <span className="whitespace-nowrap">Download the app</span>
+                            <div className="flex items-center gap-1 border border-white h-[5.125rem] rounded-[3.125rem] pl-9 pr-[1.25rem] w-[19.5rem]">
+                                <span className="whitespace-nowrap">Coming soon on</span>
                                 <span className="flex-grow"></span>
-                                <a target="_blank" className="m-0 p-0 h-[42px]" href="https://play.google.com/store/apps/details?id=com.app.ridima">
-                                    <span className="span1">
-                                        <span className="span2"><img className="img1" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2743%27%20height=%2742%27/%3e" />
-                                        </span>
-                                        <img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" data-nimg="intrinsic" className="img2" />
-                                        <noscript>
-                                            <img alt="" srcSet="vectors/andriod.svg 1x, vectors/andriod.svg 2x" src="vectors/andriod.svg" decoding="async" data-nimg="intrinsic" className="img2" loading="lazy" />
-                                        </noscript>
-                                    </span>
-                                </a>
-                                <a target="_blank" className="m-0 p-0 h-[42px]" href="https://apps.apple.com/us/app/ridima-sell-gift-cards/id6444587833">
-                                    <span className="span1">
-                                        <span className="span2">
-                                            <img className="img1" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2743%27%20height=%2742%27/%3e" />
-                                        </span>
-                                        <img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" data-nimg="intrinsic" className="img2" />
-                                        <noscript>
-                                            <img alt="" srcSet="vectors/apple.svg 1x, vectors/apple.svg 2x" src="vectors/apple.svg" decoding="async" data-nimg="intrinsic" className="img2" loading="lazy" />
-                                        </noscript>
-                                    </span>
-                                </a>
+                                <Fab href='#'>
+                                    <AdbIcon fontSize='small' />
+                                </Fab>
+                                <Fab href='#'>
+                                    <AppleIcon fontSize='small' />
+                                </Fab>
                             </div>
                         </div>
                         <div className="buy-phone">
@@ -222,29 +176,14 @@ const Landing = () => {
                                 seamlessly </p>
                             <div
                                 className="flex items-center gap-1 border border-white h-[5.125rem] rounded-[3.125rem] pl-9 pr-[1.25rem] w-[19.5rem]">
-                                <span className="whitespace-nowrap">Download the app</span>
+                                <span className="whitespace-nowrap">Coming soon on</span>
                                 <span className="flex-grow"></span>
-                                <a target="_blank" className="m-0 p-0 h-[42px]" href="https://play.google.com/store/apps/details?id=com.app.ridima">
-                                    <span className="span1">
-                                        <span className="span2">
-                                            <img className="img1" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2743%27%20height=%2742%27/%3e" />
-                                        </span>
-                                        <img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" data-nimg="intrinsic" className="img2" />
-                                        <noscript>
-                                            <img alt="" srcSet="vectors/andriod.svg 1x, vectors/andriod.svg 2x" src="vectors/andriod.svg" decoding="async" data-nimg="intrinsic" className="img2" loading="lazy" />
-                                        </noscript>
-                                    </span>
-                                </a><a target="_blank" className="m-0 p-0 h-[42px]" href="https://apps.apple.com/us/app/ridima-sell-gift-cards/id6444587833">
-                                    <span className="span1">
-                                        <span className="span2">
-                                            <img className="img1" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2743%27%20height=%2742%27/%3e" />
-                                        </span>
-                                        <img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" data-nimg="intrinsic" className="img2" />
-                                        <noscript>
-                                            <img alt="" srcSet="vectors/apple.svg 1x, vectors/apple.svg 2x" src="vectors/apple.svg" decoding="async" data-nimg="intrinsic" className="img2" loading="lazy" />
-                                        </noscript>
-                                    </span>
-                                </a>
+                                <Fab href='#'>
+                                    <AdbIcon fontSize='small' />
+                                </Fab>
+                                <Fab href='#'>
+                                    <AppleIcon fontSize='small' />
+                                </Fab>
                             </div>
                         </div>
                         <div className="buy-phone">
@@ -329,10 +268,10 @@ const Landing = () => {
             </section>
 
             <footer>
-                <div class="content">
-                    <div class="footer1">
-                        <div class="col-span-2 mb-10 md:mb-0">
-                            <a class="flex justify-center md:justify-start" href="index.htm">
+                <div className="content">
+                    <div className="footer1">
+                        <div className="col-span-2 mb-10 md:mb-0">
+                            <a className="flex justify-center md:justify-start" href="index.htm">
                                 <span className="span1">
                                     <span className="span2">
                                         <img className="img1" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27134%27%20height=%2731%27/%3e" />
@@ -343,9 +282,9 @@ const Landing = () => {
                                     </noscript>
                                 </span>
                             </a>
-                            <p class="mt-[2.9375rem] text-deepPurple text-lg text-center md:text-left max-w-xs mx-auto md:mx-0">
+                            <p className="mt-[2.9375rem] text-deepPurple text-lg text-center md:text-left max-w-xs mx-auto md:mx-0">
                                 Ridima is a giftcard trading platform available on Android, IOS, &amp; Web.</p>
-                            <div class="logos"><a class="" target="_blank" href="https://instagram.com/myridima">
+                            <div className="logos"><a className="" target="_blank" href="https://instagram.com/myridima">
                                 <span className="span1">
                                     <span className="span2">
                                         <img className="img1" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2748%27%20height=%2748%27/%3e" />
@@ -369,27 +308,27 @@ const Landing = () => {
                                 </a>
                             </div>
                         </div>
-                        <div class="bottom-navs">
+                        <div className="bottom-navs">
                             <h1>Company</h1><a href="about">About</a><a href="blogs">Blog</a>
                         </div>
-                        <div class="bottom-navs">
+                        <div className="bottom-navs">
                             <h1>Product</h1><a href="index.htm#whyRidima">Why Ridima</a><a href="download">Download</a><a
                                 href="faq">FAQs</a>
                         </div>
-                        <div class="bottom-navs">
+                        <div className="bottom-navs">
                             <h1>Legal</h1><a href="terms">Terms &amp; Conditions</a><a href="privacy">Privacy Policy</a><a
                                 href="aml">AML Policy</a>
                         </div>
-                        <div class="bottom-navs">
+                        <div className="bottom-navs">
                             <h1>Help</h1><a href="contact">Contact</a><a
                                 href="cdn-cgi/l/email-protection.html#1b737e776b5b766269727f72767a35787476" target="_blank"
-                                rel="noreferrer"><span class="__cf_email__"
+                                rel="noreferrer"><span className="__cf_email__"
                                     data-cfemail="f39b969f83b39e8a819a979a9e92dd909c9e">[email&#160;protected]</span></a>
-                            <p class="mt-8"></p>
+                            <p className="mt-8"></p>
                         </div>
                     </div>
-                    <div class="footer2">
-                        <div class="copy">
+                    <div className="footer2">
+                        <div className="copy">
                             <p></p><span>© 2022 Ridima. All Rights Reserved</span>
                         </div>
                     </div>

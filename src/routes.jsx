@@ -4,27 +4,16 @@ import Landing from "./page/landing/Landing";
 import { user } from "./services/user";
 
 import './routes.css'
+import Login from "./page/auth/Login";
 
-const Routes = ({ path }) => {
-    const [loaded, setLoaded] = useState(true);
-    const [isAuthed, setIsAuthed] = useState(false);
-
-    async function init() {
-        setIsAuthed(await user.isAuthenticated())
-    }
-
-    useEffect(() => {
-        if (loaded) {
-            init()
-            setLoaded(!loaded);
-        }
-    }, [loaded, isAuthed])
-
-    console.log(isAuthed)
-
+const Routes = ({ path, redirect, authed }) => {
     return (
         <div className="main">
-            {path === "/" && isAuthed ? <Home /> : <Landing />}
+            {path === "/" && <Home redirect={redirect} authed={authed} />}
+            {path === "/landing" && <Landing redirect={redirect} />}
+            {path === "/login" && <Login redirect={redirect} />}
+            {path === "/register" && <Login redirect={redirect} />}
+
         </div>
     )
 }
