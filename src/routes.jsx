@@ -4,7 +4,7 @@ import Landing from "./page/landing/Landing";
 import { user } from "./services/user";
 
 import './routes.css'
-import Login from "./page/auth/Login";
+import Login from "./page/auth/login/Index";
 
 const Routes = ({ path, redirect, authed }) => {
     return (
@@ -13,7 +13,6 @@ const Routes = ({ path, redirect, authed }) => {
             {path === "/landing" && <Landing redirect={redirect} />}
             {path === "/login" && <Login redirect={redirect} />}
             {path === "/register" && <Login redirect={redirect} />}
-
         </div>
     )
 }
