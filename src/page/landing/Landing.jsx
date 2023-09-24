@@ -3,7 +3,21 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { Fab } from '@mui/material';
 
 import "./Landing.css"
+import styled from 'styled-components';
+const CustomFab = styled(Fab)(({ }) => ({
+    backgroundColor: '#7464e3',
+    color: '#f4d434',
+    boxShadow: 'none',
+    '&:hover': {
+        backgroundColor: '#7464e3',
+    },
+}))
+const CustomAdbIcon = styled(AdbIcon)(({ }) => ({
 
+}))
+const CustomAppleIcon = styled(AppleIcon)(({ }) => ({
+
+}))
 const Landing = () => {
 
     function redirect(to) {
@@ -103,12 +117,12 @@ const Landing = () => {
                         <div className="flex items-center gap-1 border border-white h-[5.125rem] rounded-[3.125rem] pl-9 pr-[1.25rem] w-[19.5rem]">
                             <span className="whitespace-nowrap">Coming soon on</span>
                             <span className="flex-grow"></span>
-                            <Fab href='#'>
-                                <AdbIcon fontSize='small' />
-                            </Fab>
-                            <Fab href='#'>
-                                <AppleIcon fontSize='small' />
-                            </Fab>
+                            <CustomFab href='#'>
+                                <CustomAdbIcon fontSize='large' />
+                            </CustomFab>
+                            <CustomFab href="#" >
+                                <CustomAppleIcon fontSize='large' />
+                            </CustomFab>
                         </div>
                     </div>
                     <span className="span1">
@@ -126,12 +140,12 @@ const Landing = () => {
                             className="flex items-center gap-1 border border-white h-[5.125rem] rounded-[3.125rem] pl-9 pr-[1.25rem] w-[19.5rem]">
                             <span className="whitespace-nowrap">Coming soon on</span>
                             <span className="flex-grow"></span>
-                            <Fab href='#'>
-                                <AdbIcon fontSize='small' />
-                            </Fab>
-                            <Fab href='#'>
-                                <AppleIcon fontSize='small' />
-                            </Fab>
+                            <CustomFab href="#" >
+                                <CustomAdbIcon fontSize='large' />
+                            </CustomFab>
+                            <CustomFab href="#" >
+                                <CustomAppleIcon fontSize='large' />
+                            </CustomFab>
                         </div>
                     </div>
                     <div className="hidden lg:block">
@@ -156,12 +170,12 @@ const Landing = () => {
                             <div className="flex items-center gap-1 border border-white h-[5.125rem] rounded-[3.125rem] pl-9 pr-[1.25rem] w-[19.5rem]">
                                 <span className="whitespace-nowrap">Coming soon on</span>
                                 <span className="flex-grow"></span>
-                                <Fab href='#'>
-                                    <AdbIcon fontSize='small' />
-                                </Fab>
-                                <Fab href='#'>
-                                    <AppleIcon fontSize='small' />
-                                </Fab>
+                                <CustomFab href="#" >
+                                    <CustomAdbIcon fontSize='large' />
+                                </CustomFab>
+                                <CustomFab href="#" >
+                                    <CustomAppleIcon fontSize='large' />
+                                </CustomFab>
                             </div>
                         </div>
                         <div className="buy-phone">
@@ -181,12 +195,12 @@ const Landing = () => {
                                 className="flex items-center gap-1 border border-white h-[5.125rem] rounded-[3.125rem] pl-9 pr-[1.25rem] w-[19.5rem]">
                                 <span className="whitespace-nowrap">Coming soon on</span>
                                 <span className="flex-grow"></span>
-                                <Fab href='#'>
-                                    <AdbIcon fontSize='small' />
-                                </Fab>
-                                <Fab href='#'>
-                                    <AppleIcon fontSize='small' />
-                                </Fab>
+                                <CustomFab href="#" >
+                                    <CustomAdbIcon fontSize='large' />
+                                </CustomFab>
+                                <CustomFab href="#" >
+                                    <CustomAppleIcon fontSize='large' />
+                                </CustomFab>
                             </div>
                         </div>
                         <div className="buy-phone">

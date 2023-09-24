@@ -219,7 +219,7 @@ const MobileView = ({ redirect }) => {
                                     autoComplete="current-password"
                                 />
                             </FormControl>
-                            <VisibilityIcon color="primary"/>
+                            <VisibilityIcon color="primary" />
                         </MobileInputWrapper>
                         <MobileSubText>Password should be minimum of 8 Characters</MobileSubText>
 
