@@ -75,7 +75,7 @@ const InputsWrap = styled('div')(({ }) => ({
 const MobileInputWrapper = styled('div')(({ }) => ({
     backgroundColor: "#F2F2F2",
     height: "6rem",
-    width: "32rem",
+    width: "27rem",
     alignItems: "center",
     justifyItems: "center",
     justifyContent: "center",
@@ -197,7 +197,7 @@ const MobileView = ({ redirect }) => {
                     <InputsWrap>
                         <FormTittle>Login</FormTittle>
                         <MobileInputWrapper>
-                            <FormControl sx={{ width: '28rem' }}>
+                            <FormControl sx={{ width: '90%' }}>
                                 <FormLabel>Email address</FormLabel>
                                 <InputBase
                                     fullWidth
@@ -209,7 +209,7 @@ const MobileView = ({ redirect }) => {
                             </FormControl>
                         </MobileInputWrapper>
                         <MobileInputWrapper>
-                            <FormControl sx={{ width: '28rem' }}>
+                            <FormControl sx={{ width: '80%' }}>
                                 <FormLabel>Password</FormLabel>
                                 <InputBase
                                     required
