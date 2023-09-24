@@ -2,8 +2,7 @@ import { Button, CardMedia, Fab, FormControl, FormHelperText, FormLabel, Grid, I
 import styled from "styled-components";
 
 const DesktopAppBar = styled(Grid)(({ }) => ({
-    display: { xs: 'none', md: 'flex' },
-    height: "100vh"
+    height: "100vh",
     backgroundColor: '',
     position: "relative",
 }))
@@ -11,9 +10,9 @@ const DesktopAppBar = styled(Grid)(({ }) => ({
 
 const DesktopView = () => {
     return (
-        <AppGrid container xs={12} sx={{ height: '100vw', width: '100vw', backgroundColor: 'red', }}>
+        <DesktopAppBar container xs={12} sx={{ display: { xs: 'none', md: 'flex' } }}>
 
-        </AppGrid>
+        </DesktopAppBar>
     )
 }
 
