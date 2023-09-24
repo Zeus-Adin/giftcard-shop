@@ -9,8 +9,7 @@ const CustomFab = styled(Fab)(({ }) => ({
     color: '#f4d434',
     boxShadow: 'none',
     '&:hover': {
-        backgroundColor: '#7464e3',
-        color: 'white'
+        backgroundColor: '#7464e3'
     },
 }))
 const CustomAdbIcon = styled(AdbIcon)(({ }) => ({
