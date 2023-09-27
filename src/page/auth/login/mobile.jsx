@@ -1,4 +1,4 @@
-import { Button, CardMedia, Fab, FormControl, FormHelperText, FormLabel, Grid, InputBase, TextField, Typography } from "@mui/material";
+import { FormControl, FormLabel, Grid, InputBase } from "@mui/material";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import styled from "styled-components";
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
@@ -222,7 +222,6 @@ const MobileView = ({ redirect }) => {
                             <VisibilityIcon color="primary" />
                         </MobileInputWrapper>
                         <MobileSubText>Password should be minimum of 8 Characters</MobileSubText>
-
                     </InputsWrap>
 
                     <FooterWrapper>
@@ -236,7 +235,6 @@ const MobileView = ({ redirect }) => {
                         <FooterText color="black">Don't have an account? <FooterBtn>Create an account</FooterBtn></FooterText>
                     </FooterWrapper>
                 </Grid>
-
             </FormWraper>
 
         </MobileAppBar>
