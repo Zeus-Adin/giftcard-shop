@@ -12,7 +12,7 @@ const AppGrid = styled(Grid)(({ }) => ({
     height: "100vh"
 }))
 
-const Login = ({ redirect }) => {
+const Register = ({ redirect }) => {
 
     return (
         <AppGrid  >
@@ -26,4 +26,4 @@ const Login = ({ redirect }) => {
     )
 }
 
-export default Login;
+export default Register;

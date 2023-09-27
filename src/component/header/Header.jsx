@@ -37,7 +37,7 @@ const buttons = [
         <LoginIcon sx={{ mr: 1 }} />
         Login
     </Button>,
-    <Fab key="get_started" variant="extended" color='transparent'>
+    <Fab key="get_started" variant="extended" color='transparent' onClick={() => redirect('register')}>
         <AppRegistrationIcon sx={{ mr: 1 }} />
         Get Started
     </Fab>
