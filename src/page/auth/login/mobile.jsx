@@ -108,7 +108,7 @@ const FooterWrapper = styled('div')(({ }) => ({
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
-    marginTop: '5rem'
+    marginTop: '2.4rem'
 }))
 const ForgotButton = styled('button')(({ }) => ({
     cursor: 'pointer',

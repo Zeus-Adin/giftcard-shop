@@ -14,7 +14,7 @@ const DesktopAppBar = styled(Grid)(({ }) => ({
     justifyContent: 'center'
 }))
 const DesktopInnerBar = styled(Grid)(({ }) => ({
-    width: '85rem',
+    width: '60rem',
     height: '75vh',
     backgroundColor: 'transparent',
     borderRadius: '--radii-4',
@@ -23,20 +23,24 @@ const DesktopInnerBar = styled(Grid)(({ }) => ({
 }))
 
 const SlideImageShowBar = styled('img')(({ }) => ({
+    width: '100%',
+    height: '75vh',
+    objectFit: 'cover',
+    borderTopLeftRadius: '2.4rem',
+    borderBottomLeftRadius: '2.4rem'
+}))
+const SlideBar = styled('div')(({ }) => ({
     backgroundColor: 'grey',
     width: '40%',
-    height: '75vh',
+    height: '100%',
     borderTopLeftRadius: '2.4rem',
     borderBottomLeftRadius: '2.4rem',
-    objectFit: 'cover'
 }))
 
 const DesktopMainBar = styled('div')(({ }) => ({
-    backgroundColor: 'white',
+    backgroundColor: 'transparent',
     width: '60%',
     height: '100%',
-    borderTopRightRadius: '2.4rem',
-    borderBottomRightRadius: '2.4rem'
 }))
 
 const FormWraper = styled(Grid)(({ }) => ({
@@ -47,7 +51,8 @@ const FormWraper = styled(Grid)(({ }) => ({
     display: 'flex',
     // backgroundColor: 'red',
     alignItems: 'center',
-    height: '50vh'
+    width: '100%',
+    height: '100%'
 
 }))
 const FormTittle = styled('p')(({ }) => ({
@@ -65,12 +70,14 @@ const FormTittle = styled('p')(({ }) => ({
     marginBottom: '4rem',
 }))
 const InputsWrap = styled('div')(({ }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: '100%',
     height: '100%',
-    // backgroundColor: 'black'
+    display: 'flex',
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    borderTopRightRadius: '2.4rem',
+    borderBottomRightRadius: '2.4rem',
+    // padding: '3.2rem'
 }))
 const MobileInputWrapper = styled('div')(({ }) => ({
     backgroundColor: "#F2F2F2",
@@ -93,6 +100,9 @@ const MobileSubText = styled('span')(({ }) => ({
     marginTop: "0.2rem",
     fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
     fontSize: "1.2rem",
+    justifyContent:'center',
+    textJustify: 'center',
+    display:'flex',
     textAlign: "center",
     lineHeight: "2.4rem",
     color: "#7165E3",
@@ -108,7 +118,7 @@ const FooterWrapper = styled('div')(({ }) => ({
     justifyContent: 'center',
     alignItems: 'center',
     display: 'flex',
-    marginTop: '5rem'
+    marginTop: '1rem'
 }))
 const ForgotButton = styled('button')(({ }) => ({
     cursor: 'pointer',
@@ -145,31 +155,6 @@ const SubmitBtnText = styled('div')(({ }) => ({
     fontFamily: "--fonts-bold",
     fontSize: "medium"
 }))
-const FooterText = styled('p')(({ }) => ({
-    marginTop: '.4rem',
-    fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-    color: '#4F4F4F',
-    fontSize: '1.2rem',
-    textAlign: 'center',
-    lineHeight: '2.4rem',
-    letterSpacing: ' 0.2px',
-    textDecoration: 'none',
-    display: 'block',
-    marginBlockStart: '1em',
-    marginBlockEnd: '1em',
-    marginInlineStart: '0px',
-    marginInlineEnd: '0px'
-}))
-const FooterBtn = styled('button')(({ }) => ({
-    cursor: 'pointer',
-    fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-    textAlign: 'center',
-    lineHeight: '2.4rem',
-    color: '#7165E3',
-    letterSpacing: '0.2px',
-    textDecoration: 'none',
-    fontSize: '1.2rem'
-}))
 
 const DesktopView = () => {
     const [timerValue, setTimerValue] = useState(1);
@@ -188,44 +173,41 @@ const DesktopView = () => {
         <DesktopAppBar container xs={12} sx={{ display: { xs: 'none', md: 'flex' } }}>
             <DesktopInnerBar>
                 {/* Banner */}
-                <SlideImageShowBar src={`/svg/splash-${timerValue}.svg`} />
+                <SlideBar>
+                    <SlideImageShowBar src={`/svg/splash-${timerValue}.svg`} />
+                </SlideBar>
 
                 {/* Login */}
                 <DesktopMainBar>
-                    {/* Form */}
-                    <FormWraper container xs={12}>
-                        <Grid xs={12} height={'100%'}>
-                            <InputsWrap>
-                                <FormTittle>Login</FormTittle>
-                                <MobileInputWrapper>
-                                    <FormControl sx={{ width: '90%' }}>
-                                        <FormLabel>Email address</FormLabel>
-                                        <InputBase
-                                            fullWidth
-                                            required
-                                            id="email"
-                                            label="Email address"
-                                            placeholder="Email..."
-                                        />
-                                    </FormControl>
-                                </MobileInputWrapper>
-                                <MobileInputWrapper>
-                                    <FormControl sx={{ width: '80%' }}>
-                                        <FormLabel>Password</FormLabel>
-                                        <InputBase
-                                            required
-                                            id="password"
-                                            placeholder="Password"
-                                            type="password"
-                                            autoComplete="current-password"
-                                        />
-                                    </FormControl>
-                                    <VisibilityIcon color="primary" />
-                                </MobileInputWrapper>
-                                <MobileSubText>Password should be minimum of 8 Characters</MobileSubText>
-
-                            </InputsWrap>
-
+                    <InputsWrap>
+                        <Grid height={'100%'} sx={{ justifyContent: 'center' }}>
+                            <FormTittle>Login</FormTittle>
+                            <MobileInputWrapper>
+                                <FormControl sx={{ width: '90%' }}>
+                                    <FormLabel>Email address</FormLabel>
+                                    <InputBase
+                                        fullWidth
+                                        required
+                                        id="email"
+                                        label="Email address"
+                                        placeholder="Email..."
+                                    />
+                                </FormControl>
+                            </MobileInputWrapper>
+                            <MobileInputWrapper>
+                                <FormControl sx={{ width: '80%' }}>
+                                    <FormLabel>Password</FormLabel>
+                                    <InputBase
+                                        required
+                                        id="password"
+                                        placeholder="Password"
+                                        type="password"
+                                        autoComplete="current-password"
+                                    />
+                                </FormControl>
+                                <VisibilityIcon color="primary" />
+                            </MobileInputWrapper>
+                            <MobileSubText>Password should be minimum of 8 Characters</MobileSubText>
                             <FooterWrapper>
                                 <ForgotButton>Forgot Password</ForgotButton>
                                 <SubmitBtn>
@@ -233,11 +215,11 @@ const DesktopView = () => {
                                         <path d="M0 33.6444C0 15.0631 15.0631 0 33.6444 0H207.171C224.749 0 239 14.2505 239 31.8295V31.8295C239 49.1489 225.152 63.2897 207.836 63.652L34.3481 67.2814C15.4955 67.6758 0 52.5011 0 33.6444V33.6444Z" fill="#F5CF48"></path>
                                     </svg>
                                     <SubmitBtnText>Login</SubmitBtnText>
-                                </SubmitBtn>                                
+                                </SubmitBtn>
                             </FooterWrapper>
                         </Grid>
 
-                    </FormWraper>
+                    </InputsWrap>
                 </DesktopMainBar>
             </DesktopInnerBar>
         </DesktopAppBar>
