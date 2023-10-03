@@ -20,8 +20,7 @@ const Login = ({ redirect }) => {
             <MobileView redirect={redirect} />
 
             {/* Desktop View */}
-            <DesktopView />
-
+            <DesktopView redirect={redirect} />
         </AppGrid >
     )
 }

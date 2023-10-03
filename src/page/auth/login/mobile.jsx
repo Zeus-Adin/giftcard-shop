@@ -225,7 +225,7 @@ const MobileView = ({ redirect }) => {
                     </InputsWrap>
 
                     <FooterWrapper>
-                        <ForgotButton>Forgot Password</ForgotButton>
+                        <ForgotButton onClick={()=>redirect('/forgotpassword')}>Forgot Password</ForgotButton>
                         <SubmitBtn>
                             <svg width="239" height="68" viewBox="0 0 239 68" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 33.6444C0 15.0631 15.0631 0 33.6444 0H207.171C224.749 0 239 14.2505 239 31.8295V31.8295C239 49.1489 225.152 63.2897 207.836 63.652L34.3481 67.2814C15.4955 67.6758 0 52.5011 0 33.6444V33.6444Z" fill="#F5CF48"></path>
