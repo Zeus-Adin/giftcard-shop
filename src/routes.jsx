@@ -1,9 +1,9 @@
-import Home from "./page/home/Home";
 import Landing from "./page/landing/Landing";
 import './routes.css'
 import Login from "./page/auth/login/Index";
 import Register from "./page/auth/register/Index";
 import ForgotPassword from "./page/auth/resetpassword/index";
+import Home from "./page/home/Index";
 
 const Routes = ({ path, redirect, authed }) => {
     return (
