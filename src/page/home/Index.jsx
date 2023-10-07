@@ -165,7 +165,7 @@ const Home = ({ authed, redirect }) => {
     return (
         <AppBar>
             {/* Left Side Bar */}
-            <LeftSideBar sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <LeftSideBar sx={{ display: { lg: 'flex', xl: 'flex', sm: 'none', xs: 'none' } }}>
                 <LeftSideInnerBar>
                     <LeftSideInnerBarItems>
                         {/* Logo Menue Button */}

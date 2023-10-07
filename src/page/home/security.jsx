@@ -98,7 +98,7 @@ const MobileClickText = styled('p')(({ }) => ({
     fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
     textAlign: 'left',
     color: '#4F4F4',
-    fontSize: '1.2rem',
+    fontSize: '1rem',
     lineHeight: '0.5rem',
     letterSpacing: '0.2px',
     textDecoration: 'none',
@@ -107,17 +107,19 @@ const MobileClickText = styled('p')(({ }) => ({
 
 // Desktop Components
 const DesktopViewWrapper = styled(Grid)(({ }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor:'red'
+    width: 'calc(100vw - 250px)',
+    overflowY: 'scroll',
+    backgroundColor: '',
+    overflow: 'auto',
+    height: '100vh',
+    transition: 'width 0.3s ease-in-out 0s',
+    padding: '2rem 2rem',
 
 }))
 const DesktopHeader = styled('div')(({ }) => ({
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    flexWrap: 'nowrap',
-    flexDirection: 'row',
     display: 'flex',
+    flexDirection: 'column',
+    width: '100%'
 }))
 const DesktopHeaderTitle = styled('div')(({ }) => ({
     justifyContent: 'flex-start',
@@ -125,6 +127,7 @@ const DesktopHeaderTitle = styled('div')(({ }) => ({
     alignItems: 'center',
     flexDirection: 'row',
     display: 'flex',
+    height: '4rem'
 }))
 const DesktopHeaderTitleText = styled('p')(({ }) => ({
     transition: 'all 0.3s ease 0s',
@@ -132,12 +135,58 @@ const DesktopHeaderTitleText = styled('p')(({ }) => ({
     color: '#BDBDBD',
     textAlign: 'left',
     fontFamily: "CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
-    lineHeight: '1.6rem',
+    fontSize: '1.2rem',
+    fontWeight: '500',
+    lineHeight: '1rem',
     letterSpacing: '0.2px',
     textDecoration: 'none',
 }))
-const DesktopSubHeader = styled('div')(({ }) => ({
-
+const DesktopHeaderSubTitleText = styled('p')(({ }) => ({
+    transition: 'all 0.3s ease 0s',
+    cursor: 'pointer',
+    color: '#7165E3',
+    textAlign: 'left',
+    fontFamily: "CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    lineHeight: '1rem',
+    fontSize: '1rem',
+    fontWeight: '700',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+const DesktopHeaderLiner = styled('div')(({ }) => ({
+    marginTop: '2.4rem',
+    marginBottom: '1rem',
+    gap: '1.6rem',
+    justifyContent: ' space-between',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    flexDirection: 'row',
+    display: 'flex',
+    height: '2rem',
+    width: '100%'
+}))
+const DesktopHeaderLine = styled('div')(({ }) => ({
+    width: '100%',
+    height: '1px',
+    backgroundColor: '#EBE9FB',
+}))
+const DesktopHeaderSubTitleTexts = styled('p')(({ }) => ({
+    whiteSpace: 'nowrap',
+    fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    textAlign: 'left',
+    fontSize: '1rem',
+    fontWeight: '400',
+    lineHeight: '5',
+    color: '#7165E3',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+const DSecurityBtnWrapper = styled('div')(({ }) => ({
+    marginTop: '1rem',
+    width: '30rem',
+    height: '15rem',
+    display: 'flex',
+    justifyContent: 'center',
 }))
 
 const Security = () => {
@@ -194,11 +243,13 @@ const Security = () => {
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 8 16" color="#BDBDBD" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M7.5 8l-5 5L1 11.5 4.75 8 1 4.5 2.5 3l5 5z"></path>
                         </svg>
+                        <DesktopHeaderSubTitleText>Security</DesktopHeaderSubTitleText>
                     </DesktopHeaderTitle>
-
-                </DesktopHeader>
-                <SecurityBtnBody>
-                    <SecurityBtnWrapper>
+                    <DesktopHeaderLiner>
+                        <DesktopHeaderSubTitleTexts>Security Settings</DesktopHeaderSubTitleTexts>
+                        <DesktopHeaderLine />
+                    </DesktopHeaderLiner>
+                    <DSecurityBtnWrapper>
                         <MobileInputArea>
                             <MobileInputBoxOne>
                                 <MobileImage src="/svg/pin.svg" />
@@ -219,8 +270,8 @@ const Security = () => {
                                 </MobileClickTextArea>
                             </MobileInputBoxOne>
                         </MobileInputArea>
-                    </SecurityBtnWrapper>
-                </SecurityBtnBody>
+                    </DSecurityBtnWrapper>
+                </DesktopHeader>
             </DesktopViewWrapper>
         </>
     )
