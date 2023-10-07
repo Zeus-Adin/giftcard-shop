@@ -189,6 +189,14 @@ const DSecurityBtnWrapper = styled('div')(({ }) => ({
     justifyContent: 'center',
     backgroundColor: 'red'
 }))
+const DDDSecurityBtnWrapper = styled('div')(({ }) => ({
+    alignItems: 'flex-end',
+    gap: '2.4rem',
+    justifyContent: 'space-between',
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
+    display: 'flex',
+}))
 
 const BackgroundImage = styled('img')(({ }) => ({
     width: '100%',
@@ -391,12 +399,39 @@ const WalletExchangeAction = styled('div')(() => ({
 const WalletExchangeActionImage = styled('img')(() => ({
     width: '100%',
     height: '100%',
+    overflowClipMargin: 'content-box',
+    cursor: 'pointer',
+    overflow: 'clip',
 }))
 const WalletExchangeActionTextWrapper = styled('div')(() => ({
-
+    position: 'absolute',
+    top: '60%',
+    left: '70%',
+    transform: 'translate(-50%, -50%)',
+    gap: 'var(--space-1)',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    display: 'flex',
 }))
-const WalletExchangeActionText = styled('p')(() => ({
-
+const WalletExchangeActionTextOne = styled('p')(() => ({
+    fontSize: 'var(--fontSizes-4)',
+    color: 'var(--colors-purple)',
+    textAlign: 'left',
+    fontFamily: 'var(--fonts-bold)',
+    lineHeight: 'var(--lineHeights-normal)',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+const WalletExchangeActionTextTwo = styled('p')(() => ({
+    fontSize: 'var(--fontSizes-4)',
+    color: 'var(--colors-purple)',
+    textAlign: 'left',
+    fontFamily: 'var(--fonts-bold)',
+    lineHeight: 'var(--lineHeights-normal)',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
 }))
 
 const DashBoard = () => {
@@ -493,15 +528,19 @@ const DashBoard = () => {
                         <DesktopHeaderSubTitleTexts>Quick Actions</DesktopHeaderSubTitleTexts>
                         <DesktopHeaderLine />
                     </DesktopHeaderLiner>
-                    <DSecurityBtnWrapper>
+                    <DDDSecurityBtnWrapper>
                         <WalletTradeAction>
                             <WalletTradeActionImage src="/svg/dashboard-trade.svg" />
                             <WalletTradeActionText>Trade<br />Gift Cards</WalletTradeActionText>
                         </WalletTradeAction>
                         <WalletExchangeAction>
-                            <WalletTradeActionImage src="/svg/dashboard-pay.svg" />
+                            <WalletExchangeActionImage src="/svg/dashboard-pay.svg" />
+                            <WalletExchangeActionTextWrapper>
+                                <WalletExchangeActionTextOne>Exchange</WalletExchangeActionTextOne>
+                                <WalletExchangeActionTextTwo>2.0% Off</WalletExchangeActionTextTwo>
+                            </WalletExchangeActionTextWrapper>
                         </WalletExchangeAction>
-                    </DSecurityBtnWrapper>
+                    </DDDSecurityBtnWrapper>
                 </DesktopHeader>
             </DesktopViewWrapper>
         </>
