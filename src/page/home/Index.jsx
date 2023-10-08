@@ -28,7 +28,7 @@ const Home = ({ authed, redirect }) => {
         backgroundColor: 'white'
     }))
 
-    // Side Bar Component
+    // Desktop Side Bar Component
     const LeftSideBar = styled(Grid)(({ }) => ({
         width: '250px',
         overflow: 'auto',
@@ -56,6 +56,54 @@ const Home = ({ authed, redirect }) => {
 
     }))
 
+    // Mobile Side Bar
+    const MobileLeftSideBar = styled('div')(({ }) => ({
+        width: '100%',
+        position: 'fixed',
+        left: '0px',
+        bottom: '0px',
+        padding: '1rem',
+        backgroundColor: 'white',
+        borderTop: '1px solid rgba(64, 0, 255, 0.2)',
+        zIndex: '1'
+    }))
+    const MobileLeftSideInnerBar = styled('div')(({ }) => ({
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row',
+        display: 'flex',
+    }))
+    const MobileLeftSideInnerBarItems = styled('div')(({ }) => ({
+        justifyContent: 'flex-start',
+        alignItems: 'stretch',
+        flexWrap: 'nowrap',
+        flexDirection: 'row',
+        display: 'flex',
+    }))
+    const MobileLeftSideInnerBarItemsContent = styled('div')(({ }) => ({
+        gap: '.4rem',
+        justifyContent: 'flex-start',
+        flexWrap: 'nowrap',
+        alignItems: 'center',
+        flexDirection: 'row',
+        display: 'flex',
+    }))
+    const MobileLeftSideInnerBarItemsContentText = styled('p')(({ }) => ({
+        fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+        textAlign: 'left',
+        fontSize: '1.4rem',
+        lineHeight: '1.6rem',
+        color: '#7165E3',
+        letterSpacing: '0.2px',
+        textDecoration: 'none',
+    }))
+    const MobileLeftSideInnerBarItemsContentImage = styled('img')(({ }) => ({
+        height: '2.2rem',
+        width: '2.2rem',
+        opacity: '0.5',
+    }))
+
     // Left Side Menue Text
     const ActiveMenueText = styled('p')(({ }) => ({
         width: '100%',
@@ -69,7 +117,6 @@ const Home = ({ authed, redirect }) => {
         fontWeight: '400',
         fontSize: '1.3rem'
     }))
-
     const InActiveMenueText = styled('p')(({ }) => ({
         width: '100%',
         whiteSpace: 'nowrap',
@@ -147,24 +194,12 @@ const Home = ({ authed, redirect }) => {
         transform: 'unset',
     }))
 
-    // Main Bar Component
-    const MainBar = styled('div')(({ }) => ({
-        width: 'calc(100vw - 250px)',
-        overflowY: 'scroll',
-        backgroundColor: '',
-        overflow: 'auto',
-        height: '100vh',
-        backgroundColor: 'rgb(248, 247, 254)',
-        transition: 'width 0.3s ease-in-out 0s',
-    }))
-
     useEffect(() => {
-
     }, [selectedMenueTab])
 
     return (
         <AppBar>
-            {/* Left Side Bar */}
+            {/* Desktop Left Side Bar */}
             <LeftSideBar sx={{ display: { lg: 'flex', xl: 'flex', sm: 'none', xs: 'none' } }}>
                 <LeftSideInnerBar>
                     <LeftSideInnerBarItems>
@@ -192,7 +227,7 @@ const Home = ({ authed, redirect }) => {
                             }
                         </HomeButtonWrapper>
 
-                        {/* Home Button */}
+                        {/* Activities Button */}
                         <HomeButtonWrapper>
                             {selectedMenueTab === 2
                                 ? <ActiveButtonInnerWrapper>
@@ -210,7 +245,7 @@ const Home = ({ authed, redirect }) => {
                             }
                         </HomeButtonWrapper>
 
-                        {/* Home Button */}
+                        {/* Wallet Button */}
                         <HomeButtonWrapper>
                             {selectedMenueTab === 3
                                 ? <ActiveButtonInnerWrapper>
@@ -228,7 +263,7 @@ const Home = ({ authed, redirect }) => {
                             }
                         </HomeButtonWrapper>
 
-                        {/* Home Button */}
+                        {/* Support Button */}
                         <HomeButtonWrapper>
                             {selectedMenueTab === 4
                                 ? <ActiveButtonInnerWrapper>
@@ -246,7 +281,7 @@ const Home = ({ authed, redirect }) => {
                             }
                         </HomeButtonWrapper>
 
-                        {/* Home Button */}
+                        {/* Profile Button */}
                         <HomeButtonWrapper>
                             {selectedMenueTab === 5
                                 ? <ActiveButtonInnerWrapper>
@@ -264,7 +299,7 @@ const Home = ({ authed, redirect }) => {
                             }
                         </HomeButtonWrapper>
 
-                        {/* Home Button */}
+                        {/* Security Button */}
                         <HomeButtonWrapper>
                             {selectedMenueTab === 6
                                 ? <ActiveButtonInnerWrapper>
@@ -282,7 +317,7 @@ const Home = ({ authed, redirect }) => {
                             }
                         </HomeButtonWrapper>
 
-                        {/* Home Button */}
+                        {/* Logout Button */}
                         <HomeButtonWrapper>
                             <InActiveButtonInnerWrapper>
                                 <HomeButtonContentWrapper>
@@ -295,6 +330,75 @@ const Home = ({ authed, redirect }) => {
                     </LeftSideInnerBarItems>
                 </LeftSideInnerBar>
             </LeftSideBar>
+            {/* Mobile Left Side Bar */}
+            <Grid sx={{ display: { lg: 'none', xl: 'none', sm: 'flex', xs: 'flex' } }}>
+                <MobileLeftSideBar>
+                    <MobileLeftSideInnerBar>
+
+                        <MobileLeftSideInnerBarItems>
+                            <MobileLeftSideInnerBarItemsContent>
+                                {selectedMenueTab === 1
+                                    ? <>
+                                        <svg width="5" height="6" viewBox="0 0 5 6" fill="none"><circle cx="2.5" cy="3" r="2.5" fill="#7165E3"></circle></svg>
+                                        <MobileLeftSideInnerBarItemsContentText onClick={() => setSelectedMenueTab(1)}>Home</MobileLeftSideInnerBarItemsContentText>
+                                    </>
+                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/home.svg" onClick={() => setSelectedMenueTab(1)} />
+                                }
+                            </MobileLeftSideInnerBarItemsContent>
+                        </MobileLeftSideInnerBarItems>
+
+                        <MobileLeftSideInnerBarItems>
+                            <MobileLeftSideInnerBarItemsContent>
+                                {selectedMenueTab === 2
+                                    ? <>
+                                        <svg width="5" height="6" viewBox="0 0 5 6" fill="none"><circle cx="2.5" cy="3" r="2.5" fill="#7165E3"></circle></svg>
+                                        <MobileLeftSideInnerBarItemsContentText onClick={() => setSelectedMenueTab(2)}>Activities</MobileLeftSideInnerBarItemsContentText>
+                                    </>
+                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/activities.svg" onClick={() => setSelectedMenueTab(2)} />
+                                }
+                            </MobileLeftSideInnerBarItemsContent>
+                        </MobileLeftSideInnerBarItems>
+
+                        <MobileLeftSideInnerBarItems>
+                            <MobileLeftSideInnerBarItemsContent>
+                                {selectedMenueTab === 3
+                                    ? <>
+                                        <svg width="5" height="6" viewBox="0 0 5 6" fill="none"><circle cx="2.5" cy="3" r="2.5" fill="#7165E3"></circle></svg>
+                                        <MobileLeftSideInnerBarItemsContentText onClick={() => setSelectedMenueTab(3)}>Wallet</MobileLeftSideInnerBarItemsContentText>
+                                    </>
+                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/wallet.svg" onClick={() => setSelectedMenueTab(3)} />
+                                }
+
+                            </MobileLeftSideInnerBarItemsContent>
+                        </MobileLeftSideInnerBarItems>
+
+                        <MobileLeftSideInnerBarItems>
+                            <MobileLeftSideInnerBarItemsContent>
+                                {selectedMenueTab === 4
+                                    ? <>
+                                        <svg width="5" height="6" viewBox="0 0 5 6" fill="none"><circle cx="2.5" cy="3" r="2.5" fill="#7165E3"></circle></svg>
+                                        <MobileLeftSideInnerBarItemsContentText onClick={() => setSelectedMenueTab(4)}>Support</MobileLeftSideInnerBarItemsContentText>
+                                    </>
+                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/support.svg" onClick={() => setSelectedMenueTab(4)} />
+                                }
+                            </MobileLeftSideInnerBarItemsContent>
+                        </MobileLeftSideInnerBarItems>
+
+                        <MobileLeftSideInnerBarItems>
+                            <MobileLeftSideInnerBarItemsContent>
+                                {selectedMenueTab === 5
+                                    ? <>
+                                        <svg width="5" height="6" viewBox="0 0 5 6" fill="none"><circle cx="2.5" cy="3" r="2.5" fill="#7165E3"></circle></svg>
+                                        <MobileLeftSideInnerBarItemsContentText onClick={() => setSelectedMenueTab(5)}>Profile</MobileLeftSideInnerBarItemsContentText>
+                                    </>
+                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/profile.svg" onClick={() => setSelectedMenueTab(5)} />
+                                }
+                            </MobileLeftSideInnerBarItemsContent>
+                        </MobileLeftSideInnerBarItems>
+
+                    </MobileLeftSideInnerBar>
+                </MobileLeftSideBar>
+            </Grid>
 
             {/* Main Side Bar */}
             {selectedMenueTab === 1 && <DashBoard />}
