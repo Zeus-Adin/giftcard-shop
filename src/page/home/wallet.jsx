@@ -1,6 +1,54 @@
 import { Button, Grid, Typography } from "@mui/material";
 import styled from "styled-components";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { DataGrid } from "@mui/x-data-grid";
+
+
+
+const columns = [
+    { field: 'id', headerName: 'ID', width: 90 },
+    {
+        field: 'firstName',
+        headerName: 'First name',
+        width: 150,
+        editable: true,
+    },
+    {
+        field: 'lastName',
+        headerName: 'Last name',
+        width: 150,
+        editable: true,
+    },
+    {
+        field: 'age',
+        headerName: 'Age',
+        type: 'number',
+        width: 110,
+        editable: true,
+    },
+    {
+        field: 'fullName',
+        headerName: 'Full name',
+        description: 'This column has a value getter and is not sortable.',
+        sortable: false,
+        width: 160,
+        valueGetter: (params) =>
+            `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    },
+];
+
+const rows = [
+    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
+    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+];
+
 // Mobile Componets
 // Mobile Header Components
 const MobileAppBar = styled(Grid)(({ }) => ({
@@ -208,6 +256,10 @@ const MobileBannerBalanceButtonWithdrawText = styled('p')(({ }) => ({
     textDecoration: 'none',
 }))
 
+const DataGridContainer = styled(DataGrid)(({ }) => ({
+    marginTop: '1.5rem'
+}))
+
 // Wallet History Components
 const MobileHistoryWrapper = styled('div')(({ }) => ({
     marginTop: '2rem'
@@ -262,6 +314,16 @@ const DesktopHeader = styled('div')(({ }) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%'
+}))
+const DesktopBannerWrapper = styled('div')(({ }) => ({
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
+    position: 'relative',
+    width: '100%',
+    marginTop: '3.2rem',
+    display: 'flex',
 }))
 
 const Wallet = () => {
@@ -325,6 +387,20 @@ const Wallet = () => {
                                         </MobileHistoryHeaderTextDateFilterButtonWrap>
                                     </MobileHistoryHeaderTextItermsWrapper>
                                 </MobileHistoryHeaderWrapper>
+                                <DataGridContainer
+                                    rows={rows}
+                                    columns={columns}
+                                    columnHeaderHeight={0}
+                                    initialState={{
+                                        pagination: {
+                                            paginationModel: {
+                                                pageSize: 7,
+                                            },
+                                        },
+                                    }}
+                                    pageSizeOptions={[5]}
+                                    disableRowSelectionOnClick
+                                />
                             </MobileHistoryInnerWrapper>
                         </MobileHistoryWrapper>
                     </MobileContentBar>
@@ -336,9 +412,77 @@ const Wallet = () => {
                 {/* Main Box */}
                 <DesktopHeader>
 
-                    <MobileBannerWrapper>
-                        <MobileBannerImage src="/svg/wallet-mobile-bg.svg" />
-                    </MobileBannerWrapper>
+                    <MobileContentBar>
+                        {/* Header */}
+                        <MobileHeaderBar>
+                            <MobileHeaderTextWrapper>
+                                <MobileHeaderSalutationText>Wallet</MobileHeaderSalutationText>
+                            </MobileHeaderTextWrapper>
+                            <MobileHeaderUserNotificationIconWrapper>
+                                <MobileHeaderUserNotificationIcon>
+                                    <MobileHeaderUserNotificationIconImage src="/svg/edit-wallet.svg" />
+                                </MobileHeaderUserNotificationIcon>
+                            </MobileHeaderUserNotificationIconWrapper>
+                        </MobileHeaderBar>
+
+                        <DesktopBannerWrapper>
+                            <MobileBannerImage src="/svg/wallet-mobile-bg.svg" />
+                            <MobileBannerTextWrapper>
+                                <MobileBannerTextInnerWrapper>
+                                    <MobileBannerTextInnerWrap>
+                                        <MobileBannerText>Naira Wallet</MobileBannerText>
+                                        <MobileBannerTextHideIconWrapper>
+                                            <MobileBannerTextHideIconImage src="/svg/eye-slash.svg" />
+                                        </MobileBannerTextHideIconWrapper>
+                                    </MobileBannerTextInnerWrap>
+                                    <MobileBannerBalanceText>0.00<MobileBannerBalanceTextCurrency>NGN</MobileBannerBalanceTextCurrency></MobileBannerBalanceText>
+                                </MobileBannerTextInnerWrapper>
+                                <MobileBannerBalanceButtonWrapper>
+                                    <MobileBannerBalanceButtonAddWrapper>
+                                        <MobileBannerBalanceButtonAddImage src="/svg/fund-icon.svg" />
+                                        <MobileBannerBalanceButtonAddText>Fund Account</MobileBannerBalanceButtonAddText>
+                                    </MobileBannerBalanceButtonAddWrapper>
+                                    <MobileBannerBalanceButtonWithdrawWrapper>
+                                        <MobileBannerBalanceButtonWithdrawImage src="/svg/withdraw-icon.svg" />
+                                        <MobileBannerBalanceButtonWithdrawText>Withdraw</MobileBannerBalanceButtonWithdrawText>
+                                    </MobileBannerBalanceButtonWithdrawWrapper>
+                                </MobileBannerBalanceButtonWrapper>
+                            </MobileBannerTextWrapper>
+                        </DesktopBannerWrapper>
+                        <MobileHistoryWrapper>
+                            <MobileHistoryInnerWrapper>
+                                <MobileHistoryHeaderWrapper>
+                                    <MobileHistoryHeaderText>Wallet History</MobileHistoryHeaderText>
+                                    <MobileHistoryHeaderTextItermsWrapper>
+                                        {/* Date Filter */}
+                                        <MobileHistoryHeaderTextDateFilterButtonWrap variant="outlined" size="medium">
+                                            Date
+                                            <KeyboardArrowDownIcon sx={{ mr: 1, marginLeft: 2 }} />
+                                        </MobileHistoryHeaderTextDateFilterButtonWrap>
+                                        {/* Filter */}
+                                        <MobileHistoryHeaderTextDateFilterButtonWrap variant="outlined" size="medium">
+                                            Filter
+                                            <KeyboardArrowDownIcon sx={{ mr: 1, marginLeft: 2 }} />
+                                        </MobileHistoryHeaderTextDateFilterButtonWrap>
+                                    </MobileHistoryHeaderTextItermsWrapper>
+                                </MobileHistoryHeaderWrapper>
+                                <DataGridContainer
+                                    rows={rows}
+                                    columns={columns}
+                                    columnHeaderHeight={0}
+                                    initialState={{
+                                        pagination: {
+                                            paginationModel: {
+                                                pageSize: 7,
+                                            },
+                                        },
+                                    }}
+                                    pageSizeOptions={[5]}
+                                    disableRowSelectionOnClick
+                                />
+                            </MobileHistoryInnerWrapper>
+                        </MobileHistoryWrapper>
+                    </MobileContentBar>
 
                 </DesktopHeader>
             </DesktopViewWrapper>

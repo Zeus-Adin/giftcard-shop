@@ -669,7 +669,7 @@ const WalletExchangeActionTextTwo = styled('p')(() => ({
     textDecoration: 'none',
 }))
 
-const DashBoard = () => {
+const DashBoard = ({navTradeCard}) => {
 
     return (
         <>
@@ -751,7 +751,7 @@ const DashBoard = () => {
                         </DesktopHeaderLiner>
                         <MobileProfileBalanceWrap>
                             <MobileActionButtonWrapper>
-                                <MobileActionButtonContainer>
+                                <MobileActionButtonContainer onClick={()=>navTradeCard()}>
                                     <MobileActionButtonImage src="/svg/dashboard-trade.svg" />
                                     <MobileActionButtonText>Trade <br /> Gift Cards</MobileActionButtonText>
                                 </MobileActionButtonContainer>

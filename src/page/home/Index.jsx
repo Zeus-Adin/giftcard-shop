@@ -3,15 +3,21 @@ import styled from "styled-components";
 
 import './style.css';
 import Security from "./security";
-import DashBoard from "./dashboard";
+import DashBoard from "./dashboard/dashboard";
 import Activities from "./activities";
 import Wallet from "./wallet";
 import Support from "./support";
 import Profile from "./profile";
 import { Grid } from "@mui/material";
+import TradeCard from "./dashboard/trade-card";
 
 const Home = ({ authed, redirect }) => {
     const [selectedMenueTab, setSelectedMenueTab] = useState(1);
+    const [tradeCard, setTradeCard] = useState(false);
+    function navTradeCard() {
+        console.log('fired trade-card');
+        setTradeCard(!tradeCard);
+    }
 
     if (!authed) {
         redirect('/');
@@ -401,7 +407,10 @@ const Home = ({ authed, redirect }) => {
             </Grid>
 
             {/* Main Side Bar */}
-            {selectedMenueTab === 1 && <DashBoard />}
+            {selectedMenueTab === 1 && tradeCard === false && <DashBoard navTradeCard={navTradeCard}/>}
+            {selectedMenueTab === 1 && tradeCard === true && <TradeCard navTradeCard={navTradeCard} />}
+
+
             {selectedMenueTab === 2 && <Activities />}
             {selectedMenueTab === 3 && <Wallet />}
             {selectedMenueTab === 4 && <Support />}
