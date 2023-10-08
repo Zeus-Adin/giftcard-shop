@@ -1,6 +1,6 @@
-import { Grid } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import styled from "styled-components";
-
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 // Mobile Componets
 // Mobile Header Components
 const MobileAppBar = styled(Grid)(({ }) => ({
@@ -208,7 +208,42 @@ const MobileBannerBalanceButtonWithdrawText = styled('p')(({ }) => ({
     textDecoration: 'none',
 }))
 
+// Wallet History Components
+const MobileHistoryWrapper = styled('div')(({ }) => ({
+    marginTop: '2rem'
+}))
+const MobileHistoryInnerWrapper = styled('div')(({ }) => ({
+    width: '100%'
+}))
+const MobileHistoryHeaderWrapper = styled('div')(({ }) => ({
+    columnGap: '.8rem',
+    justifyContent: 'space-between',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    flexDirection: 'row',
+    display: 'flex',
 
+}))
+const MobileHistoryHeaderText = styled('p')(({ }) => ({
+    fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    textAlign: 'left',
+    lineHeight: '1.6rem',
+    color: '#7165E3',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+const MobileHistoryHeaderTextItermsWrapper = styled(Typography)(({ }) => ({
+    marginLeft: 'auto',
+    gap: '1.6rem',
+    justifyContent: 'flex-start',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+const MobileHistoryHeaderTextDateFilterButtonWrap = styled(Button)(({ }) => ({
+    color: '#7165e3'
+}))
 
 
 
@@ -273,7 +308,25 @@ const Wallet = () => {
                                 </MobileBannerBalanceButtonWrapper>
                             </MobileBannerTextWrapper>
                         </MobileBannerWrapper>
-
+                        <MobileHistoryWrapper>
+                            <MobileHistoryInnerWrapper>
+                                <MobileHistoryHeaderWrapper>
+                                    <MobileHistoryHeaderText>Wallet History</MobileHistoryHeaderText>
+                                    <MobileHistoryHeaderTextItermsWrapper>
+                                        {/* Date Filter */}
+                                        <MobileHistoryHeaderTextDateFilterButtonWrap variant="outlined" size="medium">
+                                            Date
+                                            <KeyboardArrowDownIcon sx={{ mr: 1, marginLeft: 2 }} />
+                                        </MobileHistoryHeaderTextDateFilterButtonWrap>
+                                        {/* Filter */}
+                                        <MobileHistoryHeaderTextDateFilterButtonWrap variant="outlined" size="medium">
+                                            Filter
+                                            <KeyboardArrowDownIcon sx={{ mr: 1, marginLeft: 2 }} />
+                                        </MobileHistoryHeaderTextDateFilterButtonWrap>
+                                    </MobileHistoryHeaderTextItermsWrapper>
+                                </MobileHistoryHeaderWrapper>
+                            </MobileHistoryInnerWrapper>
+                        </MobileHistoryWrapper>
                     </MobileContentBar>
                 </MobileGridBar>
             </MobileAppBar>
