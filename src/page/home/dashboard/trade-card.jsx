@@ -8,7 +8,6 @@ const MobileAppBar = styled(Grid)(({ }) => ({
     display: 'flex',
     position: "relative",
     height: "100vh",
-    zIndex: 9999
 }))
 const MobileLogoGrid = styled(Grid)(({ }) => ({
     // padding: ".8rem",
@@ -125,7 +124,7 @@ const MobileActionButtonWrapper = styled('div')(({ }) => ({
     display: 'flex',
 }))
 const MobileActionButtonContainer = styled('div')(({ }) => ({
-    marginTop:'4rem',
+    marginTop: '4rem',
     position: 'relative',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
@@ -186,7 +185,6 @@ const DesktopViewWrapper = styled(Grid)(({ }) => ({
     height: '100vh',
     transition: 'width 0.3s ease-in-out 0s',
     padding: '2rem 2rem',
-
 }))
 const DesktopHeader = styled('div')(({ }) => ({
     display: 'flex',
@@ -267,9 +265,9 @@ const TradeCard = ({ navTradeCard }) => {
     return (
         <>
             {/* Mobile Nav Bar */}
-            <MobileAppBar container sx={{ display: { xs: 'flex', md: 'none' } }}>
+            <MobileAppBar container sx={{ display: { xs: 'flex', sm: 'flex', lg: 'none', xl: 'none' } }}>
                 {/* Logo Box */}
-                <MobileLogoGrid item xs={12} position={'fixed'} sx={{ display: { xs: 'flex', md: 'none' } }}>
+                <MobileLogoGrid item>
                     <MobileLogoGrid item xs={4}>
                         <MobileBackButton onClick={() => navTradeCard()}>
                             <NavigateBeforeIcon />
@@ -306,42 +304,38 @@ const TradeCard = ({ navTradeCard }) => {
             </MobileAppBar>
 
             {/* Desktop Nav Bar */}
-            <DesktopViewWrapper sx={{ display: { xs: 'none', md: 'flex' } }}>
+            <DesktopViewWrapper sx={{ display: { xs: 'none', sm: 'none', lg: 'flex', xl: 'flex' } }}>
                 {/* Main Box */}
                 <DesktopHeader>
                     <DesktopHeaderTitle>
-                        <DesktopHeaderTitleText>Profile</DesktopHeaderTitleText>
+                        <DesktopHeaderTitleText onClick={() => navTradeCard()}>Profile</DesktopHeaderTitleText>
                         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 8 16" color="#BDBDBD" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M7.5 8l-5 5L1 11.5 4.75 8 1 4.5 2.5 3l5 5z"></path>
                         </svg>
-                        <DesktopHeaderSubTitleText>Security</DesktopHeaderSubTitleText>
+                        <DesktopHeaderSubTitleText>Trade Card</DesktopHeaderSubTitleText>
                     </DesktopHeaderTitle>
-                    <DesktopHeaderLiner>
-                        <DesktopHeaderSubTitleTexts>Security Settings</DesktopHeaderSubTitleTexts>
-                        <DesktopHeaderLine />
-                    </DesktopHeaderLiner>
-                    <DSecurityBtnWrapper>
-                        <MobileInputArea>
-                            <MobileInputBoxOne>
-                                <MobileImage src="/svg/pin.svg" />
-                                <MobileClickTextArea>
-                                    <MobileClickText>
-                                        Change Pin
-                                    </MobileClickText>
-                                    <MobileImage src="/svg/chevron-right.svg" />
-                                </MobileClickTextArea>
-                            </MobileInputBoxOne>
-                            <MobileInputBoxOne>
-                                <MobileImage src="/svg/password.svg" />
-                                <MobileClickTextArea>
-                                    <MobileClickText>
-                                        Change Password
-                                    </MobileClickText>
-                                    <MobileImage src="/svg/chevron-right.svg" />
-                                </MobileClickTextArea>
-                            </MobileInputBoxOne>
-                        </MobileInputArea>
-                    </DSecurityBtnWrapper>
+                    <SecurityBtnBody>
+                        <MobileProfileBalanceWrap>
+                            <MobileActionButtonWrapper>
+                                <MobileActionButtonContainer>
+                                    <MobileActionButtonImage src="/svg/hot-card.svg" />
+                                    <MobileActionButtonText>Sell <br /> Gift Cards</MobileActionButtonText>
+                                </MobileActionButtonContainer>
+                                <MobileActionButtonContainer>
+                                    <MobileActionButtonImage src="/svg/buy-card.svg" />
+                                    <MobileActionButtonText>Buy <br /> Gift Cards</MobileActionButtonText>
+                                </MobileActionButtonContainer>
+                                <MobileActionButtonContainer>
+                                    <MobileActionButtonImage src="/svg/check-card.svg" />
+                                    <MobileActionButtonText>Check <br /> Gift Cards</MobileActionButtonText>
+                                </MobileActionButtonContainer>
+                                {/* <MobileActionButtonContainer>
+                                <MobileActionButtonImage src="/svg/buy-card.svg" />
+                                <MobileActionButtonText>Buy <br /> Gift Cards</MobileActionButtonText>
+                            </MobileActionButtonContainer> */}
+                            </MobileActionButtonWrapper>
+                        </MobileProfileBalanceWrap>
+                    </SecurityBtnBody>
                 </DesktopHeader>
             </DesktopViewWrapper>
         </>
