@@ -2,3 +2,7 @@ img {
     overflow-clip-margin: content-box;
     overflow: clip;
 }
+
+.mobilebalancesvg{
+    transform: rotateY(180deg);
+}

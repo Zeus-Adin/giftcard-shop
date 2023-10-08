@@ -5,104 +5,352 @@ import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 // Mobile Componets
 // Mobile Header Components
 const MobileAppBar = styled(Grid)(({ }) => ({
+    position: 'relative',
+    height: '100vh',
+}))
+const MobileGridBar = styled(Grid)(({ }) => ({
+    width: '100%',
+    height: '100vh',
+    padding: '.8rem',
+    display: 'grid',
+    gridTemplateColumns: '1fr repeat(2, minmax(min-content, 20rem)) 1fr',
+    position: 'relative',
+}))
+const MobileContentBar = styled(Grid)(({ }) => ({
+    marginTop: '.8rem',
+    gridColumn: '2 / 4',
+    height: 'calc(100% + 15rem)',
+}))
+
+// Mobile Header Bar
+const MobileHeaderBar = styled(Grid)(({ }) => ({
+    marginBottom: '1.6rem',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
     display: 'flex',
-    position: "relative",
-    height: "100vh",
-    zIndex: 9999
 }))
-const MobileLogoGrid = styled(Grid)(({ }) => ({
-    // padding: ".8rem",
-    alignItems: "center",
-    width: "100%",
-    top: "0px",
-    zIndex: 1,
-    backgroundColor: "#FFFFFF",
-    display: 'flex'
+const MobileHeaderTextWrapper = styled('div')(({ }) => ({
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    display: 'flex',
 }))
-const MobileBackButton = styled('div')(({ }) => ({
-    margin: '0.5rem',
-    height: "3.5rem",
-    width: "3.5rem",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F2F2F2",
-    borderRadius: "0.5rem",
-    cursor: "pointer",
-}))
-const MobileBackBtnText = styled('p')(({ }) => ({
-    textAlign: 'center',
-    fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+const MobileHeaderSalutationText = styled('p')(({ }) => ({
+    color: '#BDBDBD',
+    fontSize: '2.4rem',
     textAlign: 'left',
+    fontFamily: "CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    lineHeight: '1.6rem',
     letterSpacing: '0.2px',
     textDecoration: 'none',
-    fontWeight: '500',
-    fontSize: '1.2rem',
-    margin: '1rem 10%'
 }))
-
-const SecurityBtnBody = styled('div')(({ }) => ({
-    width: '100%',
+const MobileHeaderUserText = styled('p')(({ }) => ({
+    fontSize: '2.4rem',
+    textAlign: 'left',
+    fontFamily: "CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    lineHeight: '1.6rem',
+    color: '#7165E3',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+const MobileHeaderUserNotificationIconWrapper = styled('div')(({ }) => ({
+    gap: '1.6rem',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+const MobileHeaderUserNotificationIcon = styled('div')(({ }) => ({
+    height: '48px',
+    width: '48px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F2F2F2',
+    borderRadius: '1.8rem',
+    cursor: 'pointer',
+    padding: '1.2rem',
+    position: 'relative',
+}))
+const MobileHeaderUserNotificationIconImage = styled('img')(({ }) => ({
     height: '100%',
-    display: 'flex',
-    justifyContent: 'center'
+    width: '100%',
 }))
 
-const SecurityBtnWrapper = styled('div')(({ }) => ({
-    marginTop: '8rem',
-    width: '40rem',
-    height: '30rem',
+// Mobile Profile Balance Components
+const MobileProfileBalanceWrap = styled('div')(({ }) => ({
+    gap: '1.6rem',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
     display: 'flex',
-    justifyContent: 'center'
+    // backgroundColor:'red'
+}))
+const MobileProfileBalanceWrapper = styled('div')(({ }) => ({
+    width: '50%',
+    position: 'relative',
+}))
+const MobileProfileBalanceTextWrapper = styled('div')(({ }) => ({
+    position: 'absolute',
+    top: '0px',
+    left: '0px',
+    height: '100%',
+    width: '100%',
+    padding: '2.5rem 2rem',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    display: 'flex',
+}))
+const MobileProfileBalanceText = styled('p')(({ }) => ({
+    marginBottom: '6.4rem',
+    color: 'white',
+    fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    textAlign: 'left',
+    fontSize: '1.4rem',
+    lineHeight: '1.6rem',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+const MobileProfileBalance = styled('div')(({ }) => ({
+    gap: '.4rem',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    display: 'flex',
+}))
+const MobileProfileBalanceTextSubtext = styled('p')(({ }) => ({
+    color: '#F3F2FD',
+    fontSize: '1.2rem',
+    fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    textAlign: 'left',
+    lineHeight: '1.6rem',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+const MobileProfileBalanceTextValueWrapper = styled('div')(({ }) => ({
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+const MobileProfileBalanceTextValue = styled('p')(({ }) => ({
+    color: 'white',
+    fontSize: '2.4rem',
+    textAlign: 'left',
+    fontFamily: "CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    lineHeight: '1.6rem',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+const MobileProfileBalanceTextValueCurrency = styled('p')(({ }) => ({
+    fontSize: '1.2rem',
+    color: 'white',
+    fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    textAlign: 'left',
+    lineHeight: '1.6rem',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+const MobileProfileBalanceButtonWrapper = styled('div')(({ }) => ({
+    marginTop: '2rem',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+const MobileProfileBalanceButton = styled('button')(({ }) => ({
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
+    width: '100%',
+    height: '4rem',
+    position: 'relative',
+    cursor: 'pointer',
+    display: 'flex',
+}))
+const MobileProfileBalanceButtonTextWrapper = styled('div')(({ }) => ({
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    flexWrap: 'nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+const MobileProfileBalanceButtonText = styled('p')(({ }) => ({
+    marginTop: '.4rem',
+    color: 'black',
+    fontSize: '1.2rem',
+    fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    textAlign: 'left',
+    lineHeight: '1.6rem',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+
+// Mobile Profile
+const MobileProfileContentWrapper = styled('div')(({ }) => ({
+    position: 'absolute',
+    top: '0px',
+    left: '0px',
+    height: '100%',
+    width: '100%',
+    padding: '2.5rem 2rem',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    display: 'flex',
+}))
+const MobileProfileContentTextWrapper = styled('div')(({ }) => ({
+    marginTop: '.4rem',
+    marginBottom: '.4rem',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    gap: '.8rem',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    display: 'flex',
+
+}))
+const MobileProfileContentTextImage = styled('img')(({ }) => ({
+    height: '4rem'
+}))
+const MobileProfileContentText = styled('p')(({ }) => ({
+    textAlign: 'left',
+    fontFamily: "CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    lineHeight: '1.6rem',
+    fontSize: '2.8rem',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+const MobileProfileContentSubText = styled('p')(({ }) => ({
+    marginBottom: '2rem',
+    fontSize: '1.2rem',
+    fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    textAlign: 'left',
+    color: '#4F4F4F',
+    lineHeight: '1.6rem',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+const MobileProfileContentButtonWrapper = styled('div')(({ }) => ({
+    marginTop: '2rem',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+const MobileProfileContentButton = styled('button')(({ }) => ({
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexWrap: 'nowrap',
+    flexDirection: 'row',
+    width: '100%',
+    height: '4rem',
+    position: 'relative',
+    cursor: 'pointer',
+    display: 'flex',
+}))
+const MobileProfileButtonContent = styled('div')(({ }) => ({
+    position: 'absolute',
+    height: '100%',
+    width: '100%',
+    flexWrap: 'nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+const MobileProfileButtonContentText = styled('p')(({ }) => ({
+    marginTop: '.4rem',
+    color: 'black',
+    fontSize: '1.2rem',
+    fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    textAlign: 'left',
+    lineHeight: '1.6rem',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
 }))
 
 
-const MobileInputArea = styled('div')(({ }) => ({
+// Actions Button components
+const MobileActionButtonWrapper = styled('div')(({ }) => ({
+    marginTop: '1.6rem',
+    marginBottom: '1.6rem',
     gap: '1.6rem',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     flexDirection: 'column',
     flexWrap: 'nowrap',
     display: 'flex',
-    width: '35rem',
 }))
-const MobileInputBoxOne = styled('div')(({ }) => ({
-    maxWidth: '50rem',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease-in-out 0s',
-    gap: '1.6rem',
+const MobileActionButtonContainer = styled('div')(({ }) => ({
+    position: 'relative',
     justifyContent: 'flex-start',
+    alignItems: 'stretch',
     flexWrap: 'nowrap',
-    alignItems: 'center',
     flexDirection: 'row',
     display: 'flex',
 }))
-const MobileImage = styled('img')(({ }) => ({
-    maxWidth: '50rem',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease-in-out 0s'
+const MobileActionButtonImage = styled('img')(({ }) => ({
+    width: '100%'
 }))
-const MobileClickTextArea = styled('div')(({ }) => ({
-    borderBottom: "1px solid #F2F2F2",
-    paddingTop: '2rem',
-    paddingBottom: '2rem',
-    gap: '.4rem',
-    width: '100%',
-    justifyContent: ' space-between',
+const MobileActionButtonText = styled('p')(({ }) => ({
+    position: 'absolute',
+    right: '10%',
+    top: '30%',
+    fontSize: '1.5rem',
+    textAlign: 'left',
+    fontFamily: "CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    lineHeight: '1.6rem',
+    color: '#7165E3',
+    letterSpacing: '5px',
+    textDecoration: 'none',
+}))
+const MobileActionButtonTextContainer = styled('div')(({ }) => ({
+    position: 'absolute',
+    right: '10%',
+    top: '30%',
+    justifyContent: 'flex-start',
+    alignItems: 'stretch',
+    flexDirection: 'column',
     flexWrap: 'nowrap',
-    alignItems: 'center',
-    flexDirection: 'row',
     display: 'flex',
 }))
-const MobileClickText = styled('p')(({ }) => ({
+const MobileActionButtonTextContainerOne = styled('p')(({ }) => ({
+    fontSize: '2.4rem',
+    textAlign: 'left',
+    fontFamily: "CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    lineHeight: '1.6rem',
+    letterSpacing: '5px',
+    textDecoration: 'none',
+}))
+const MobileActionButtonTextContainerTwo = styled('p')(({ }) => ({
+    marginTop: '.4rem',
     fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
     textAlign: 'left',
-    color: '#4F4F4',
-    fontSize: '1rem',
-    lineHeight: '0.5rem',
+    color: '#4F4F4F',
+    fontSize: '1.4rem',
+    lineHeight: '1.6rem',
     letterSpacing: '0.2px',
     textDecoration: 'none',
 }))
+
+
 
 
 // Desktop Components
@@ -181,14 +429,6 @@ const DesktopHeaderSubTitleTexts = styled('p')(({ }) => ({
     letterSpacing: '0.2px',
     textDecoration: 'none',
 }))
-const DSecurityBtnWrapper = styled('div')(({ }) => ({
-    marginTop: '1rem',
-    width: '100%',
-    height: '15rem',
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'red'
-}))
 const DDDSecurityBtnWrapper = styled('div')(({ }) => ({
     alignItems: 'flex-end',
     gap: '2.4rem',
@@ -197,7 +437,6 @@ const DDDSecurityBtnWrapper = styled('div')(({ }) => ({
     flexDirection: 'row',
     display: 'flex',
 }))
-
 const BackgroundImage = styled('img')(({ }) => ({
     width: '100%',
     height: '100%',
@@ -238,7 +477,6 @@ const WalletBalanceSubText = styled('p')(({ }) => ({
     letterSpacing: '0.2px',
     textDecoration: 'none',
 }))
-
 const DDSecurityBtnWrapper = styled('div')(({ }) => ({
     gap: '4.8rem',
     justifyContent: 'space-between',
@@ -282,7 +520,6 @@ const WalletBalanceButtonText = styled('button')(({ }) => ({
     alignItems: 'center',
     gap: '1.6rem',
 }))
-
 const ProfileAvatar = styled('img')(({ }) => ({
     width: '4rem'
 }))
@@ -353,7 +590,6 @@ const ProfileBtnSubText = styled('div')(() => ({
     alignItems: 'center',
     gap: '1.6rem',
 }))
-
 const WalletTradeAction = styled('div')(() => ({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
@@ -384,7 +620,6 @@ const WalletTradeActionText = styled('p')(() => ({
     letterSpacing: '0.2px',
     textDecoration: 'none',
 }))
-
 const WalletExchangeAction = styled('div')(() => ({
     justifyContent: 'flex-start',
     alignItems: 'stretch',
@@ -440,43 +675,97 @@ const DashBoard = () => {
         <>
             {/* Mobile Nav Bar */}
             <MobileAppBar container sx={{ display: { lg: 'none', xl: 'none', sm: 'flex', xs: 'flex' } }}>
-                {/* Logo Box */}
-                <MobileLogoGrid item xs={12} position={'fixed'}>
-                    <MobileLogoGrid item xs={4}>
-                        <MobileBackButton>
-                            <NavigateBeforeIcon />
-                        </MobileBackButton>
-                    </MobileLogoGrid>
-                    <MobileLogoGrid item xs={7}>
-                        <MobileBackBtnText>Security</MobileBackBtnText>
-                    </MobileLogoGrid>
-                </MobileLogoGrid>
+                <MobileGridBar>
+                    <MobileContentBar>
+                        {/* Header */}
+                        <MobileHeaderBar>
+                            <MobileHeaderTextWrapper>
+                                <MobileHeaderSalutationText>Hello,</MobileHeaderSalutationText>
+                                <MobileHeaderUserText>axus</MobileHeaderUserText>
+                            </MobileHeaderTextWrapper>
+                            <MobileHeaderUserNotificationIconWrapper>
+                                <MobileHeaderUserNotificationIcon>
+                                    <MobileHeaderUserNotificationIconImage src="/svg/notification.svg" />
+                                </MobileHeaderUserNotificationIcon>
+                            </MobileHeaderUserNotificationIconWrapper>
+                        </MobileHeaderBar>
 
-                {/* Main Box */}
-                <SecurityBtnBody>
-                    <SecurityBtnWrapper>
-                        <MobileInputArea>
-                            <MobileInputBoxOne>
-                                <MobileImage src="/svg/pin.svg" />
-                                <MobileClickTextArea>
-                                    <MobileClickText>
-                                        Change Pin
-                                    </MobileClickText>
-                                    <MobileImage src="/svg/chevron-right.svg" />
-                                </MobileClickTextArea>
-                            </MobileInputBoxOne>
-                            <MobileInputBoxOne>
-                                <MobileImage src="/svg/password.svg" />
-                                <MobileClickTextArea>
-                                    <MobileClickText>
-                                        Change Password
-                                    </MobileClickText>
-                                    <MobileImage src="/svg/chevron-right.svg" />
-                                </MobileClickTextArea>
-                            </MobileInputBoxOne>
-                        </MobileInputArea>
-                    </SecurityBtnWrapper>
-                </SecurityBtnBody>
+                        {/* Profile Wrapper */}
+                        <MobileProfileBalanceWrap>
+
+                            {/* Balance Wrapper */}
+                            <MobileProfileBalanceWrapper>
+                                <svg width="100%" height="100%" viewBox="0 0 175 239" fill="none" xmlns="http://www.w3.org/2000/svg" className="mobilebalancesvg">
+                                    <path d="M175 24C175 10.7452 164.255 0 151 0H24C10.7452 0 0 10.7452 0 24V207.332C0 220.055 9.92858 230.567 22.6308 231.293L149.631 238.55C163.401 239.337 175 228.382 175 214.589V24Z" fill="#7165E3">
+                                    </path>
+                                </svg>
+                                <MobileProfileBalanceTextWrapper>
+                                    <MobileProfileBalanceText>Naira Wallet</MobileProfileBalanceText>
+                                    <MobileProfileBalance>
+                                        <MobileProfileBalanceTextSubtext>Balance</MobileProfileBalanceTextSubtext>
+                                        <MobileProfileBalanceTextValueWrapper>
+                                            <MobileProfileBalanceTextValue>0.00</MobileProfileBalanceTextValue>
+                                            <MobileProfileBalanceTextValueCurrency>NGN</MobileProfileBalanceTextValueCurrency>
+                                        </MobileProfileBalanceTextValueWrapper>
+                                    </MobileProfileBalance>
+                                    <MobileProfileBalanceButtonWrapper>
+                                        <MobileProfileBalanceButton>
+                                            <svg width="100%" height="47" viewBox="0 0 127 47" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1.60451e-06 23.2329C7.18362e-07 10.4017 10.4017 0 23.2329 0H106.426C117.789 0 127 9.21126 127 20.5739C127 31.4265 118.57 40.4128 107.74 41.1058L24.7165 46.4184C11.329 47.2751 2.53096e-06 36.6478 1.60451e-06 23.2329Z" fill="#F5CF48"></path>
+                                            </svg>
+                                            <MobileProfileBalanceButtonTextWrapper>
+                                                <MobileProfileBalanceButtonText>Withdraw</MobileProfileBalanceButtonText>
+                                            </MobileProfileBalanceButtonTextWrapper>
+                                        </MobileProfileBalanceButton>
+                                    </MobileProfileBalanceButtonWrapper>
+                                </MobileProfileBalanceTextWrapper>
+                            </MobileProfileBalanceWrapper>
+
+                            {/* Profile Wrapper */}
+                            <MobileProfileBalanceWrapper>
+                                <svg width="100%" height="100%" viewBox="0 0 175 239" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M175 24C175 10.7452 164.255 0 151 0H24C10.7452 0 0 10.7452 0 24V207.332C0 220.055 9.92858 230.567 22.6308 231.293L149.631 238.55C163.401 239.337 175 228.382 175 214.589V24Z" fill="#F5CF48"></path>
+                                </svg>
+                                <MobileProfileContentWrapper>
+                                    <MobileProfileContentTextWrapper>
+                                        <MobileProfileContentTextImage src="/svg/dashboard-avatar.svg" />
+                                        <MobileProfileContentText>70%</MobileProfileContentText>
+                                        <MobileProfileContentSubText>Profile complete</MobileProfileContentSubText>
+                                    </MobileProfileContentTextWrapper>
+                                    <MobileProfileContentButtonWrapper>
+                                        <MobileProfileContentButton>
+                                            <svg width="100%" height="47" viewBox="0 0 127 47" fill="none" xmlns="http://www.w3.org/2000/svg" className="mobilebalancesvg">
+                                                <path d="M1.60451e-06 23.2329C7.18362e-07 10.4017 10.4017 0 23.2329 0H106.426C117.789 0 127 9.21126 127 20.5739C127 31.4265 118.57 40.4128 107.74 41.1058L24.7165 46.4184C11.329 47.2751 2.53096e-06 36.6478 1.60451e-06 23.2329Z" fill="rgba(63, 30, 75, 0.1)"></path>
+                                            </svg>
+                                            <MobileProfileButtonContent>
+                                                <MobileProfileButtonContentText>Complete Profle</MobileProfileButtonContentText>
+                                            </MobileProfileButtonContent>
+                                        </MobileProfileContentButton>
+                                    </MobileProfileContentButtonWrapper>
+                                </MobileProfileContentWrapper>
+                            </MobileProfileBalanceWrapper>
+                        </MobileProfileBalanceWrap>
+                        <DesktopHeaderLiner>
+                            <DesktopHeaderSubTitleTexts>Quick Actions</DesktopHeaderSubTitleTexts>
+                            <DesktopHeaderLine />
+                        </DesktopHeaderLiner>
+                        <MobileProfileBalanceWrap>
+                            <MobileActionButtonWrapper>
+                                <MobileActionButtonContainer>
+                                    <MobileActionButtonImage src="/svg/dashboard-trade.svg" />
+                                    <MobileActionButtonText>Trade <br /> Gift Cards</MobileActionButtonText>
+                                </MobileActionButtonContainer>
+                                <MobileActionButtonContainer>
+                                    <MobileActionButtonImage src="/svg/dashboard-pay.svg" />
+                                    <MobileActionButtonTextContainer>
+                                        <MobileActionButtonTextContainerOne>Exchange</MobileActionButtonTextContainerOne>
+                                        <MobileActionButtonTextContainerTwo>2.0% Off</MobileActionButtonTextContainerTwo>
+                                    </MobileActionButtonTextContainer>
+                                </MobileActionButtonContainer>
+                            </MobileActionButtonWrapper>
+                        </MobileProfileBalanceWrap>
+                    </MobileContentBar>
+                </MobileGridBar>
             </MobileAppBar>
 
             {/* Desktop Nav Bar */}

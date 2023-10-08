@@ -196,13 +196,13 @@ const Home = ({ authed, redirect }) => {
                         <HomeButtonWrapper>
                             {selectedMenueTab === 2
                                 ? <ActiveButtonInnerWrapper>
-                                    <HomeButtonContentWrapper onClick={() => setSelectedMenueTab(2)}>
+                                    <HomeButtonContentWrapper>
                                         <HomeButtonContents src="../svg/activities-active.svg" />
                                         <ActiveMenueText>Activities</ActiveMenueText>
                                     </HomeButtonContentWrapper>
                                 </ActiveButtonInnerWrapper>
                                 : <InActiveButtonInnerWrapper>
-                                    <HomeButtonContentWrapper onClick={() => setSelectedMenueTab(2)}>
+                                    <HomeButtonContentWrapper>
                                         <HomeButtonContents src="../svg/activities.svg" />
                                         <InActiveMenueText>Activities</InActiveMenueText>
                                     </HomeButtonContentWrapper>
@@ -214,13 +214,13 @@ const Home = ({ authed, redirect }) => {
                         <HomeButtonWrapper>
                             {selectedMenueTab === 3
                                 ? <ActiveButtonInnerWrapper>
-                                    <HomeButtonContentWrapper onClick={() => setSelectedMenueTab(3)}>
+                                    <HomeButtonContentWrapper>
                                         <HomeButtonContents src="../svg/wallet-active.svg" />
                                         <ActiveMenueText>Wallet</ActiveMenueText>
                                     </HomeButtonContentWrapper>
                                 </ActiveButtonInnerWrapper>
                                 : <InActiveButtonInnerWrapper>
-                                    <HomeButtonContentWrapper onClick={() => setSelectedMenueTab(3)}>
+                                    <HomeButtonContentWrapper>
                                         <HomeButtonContents src="../svg/wallet.svg" />
                                         <InActiveMenueText>Wallet</InActiveMenueText>
                                     </HomeButtonContentWrapper>
@@ -232,13 +232,13 @@ const Home = ({ authed, redirect }) => {
                         <HomeButtonWrapper>
                             {selectedMenueTab === 4
                                 ? <ActiveButtonInnerWrapper>
-                                    <HomeButtonContentWrapper onClick={() => setSelectedMenueTab(4)}>
+                                    <HomeButtonContentWrapper>
                                         <HomeButtonContents src="../svg/support-active.svg" />
                                         <ActiveMenueText>Support</ActiveMenueText>
                                     </HomeButtonContentWrapper>
                                 </ActiveButtonInnerWrapper>
                                 : <InActiveButtonInnerWrapper>
-                                    <HomeButtonContentWrapper onClick={() => setSelectedMenueTab(4)}>
+                                    <HomeButtonContentWrapper>
                                         <HomeButtonContents src="../svg/support.svg" />
                                         <InActiveMenueText>Support</InActiveMenueText>
                                     </HomeButtonContentWrapper>
@@ -250,13 +250,13 @@ const Home = ({ authed, redirect }) => {
                         <HomeButtonWrapper>
                             {selectedMenueTab === 5
                                 ? <ActiveButtonInnerWrapper>
-                                    <HomeButtonContentWrapper onClick={() => setSelectedMenueTab(5)}>
+                                    <HomeButtonContentWrapper>
                                         <HomeButtonContents src="../svg/profile-active.svg" />
                                         <ActiveMenueText>Profile</ActiveMenueText>
                                     </HomeButtonContentWrapper>
                                 </ActiveButtonInnerWrapper>
                                 : <InActiveButtonInnerWrapper>
-                                    <HomeButtonContentWrapper onClick={() => setSelectedMenueTab(5)}>
+                                    <HomeButtonContentWrapper>
                                         <HomeButtonContents src="../svg/profile.svg" />
                                         <InActiveMenueText>Profile</InActiveMenueText>
                                     </HomeButtonContentWrapper>
