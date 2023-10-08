@@ -14,6 +14,7 @@ import TradeCard from "./dashboard/trade-card";
 const Home = ({ authed, redirect }) => {
     const [selectedMenueTab, setSelectedMenueTab] = useState(1);
     const [tradeCard, setTradeCard] = useState(false);
+    const [selectedCard, setSelectedCard] = useState(false);
     function navTradeCard() {
         console.log('fired trade-card');
         setTradeCard(!tradeCard);
