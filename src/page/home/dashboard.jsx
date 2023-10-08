@@ -19,7 +19,7 @@ const MobileGridBar = styled(Grid)(({ }) => ({
 const MobileContentBar = styled(Grid)(({ }) => ({
     marginTop: '.8rem',
     gridColumn: '2 / 4',
-    height: 'calc(100% + 15rem)',
+    height: 'calc(100% + 10rem)',
 }))
 
 // Mobile Header Bar
