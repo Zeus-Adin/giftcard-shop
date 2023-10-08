@@ -10,14 +10,21 @@ import Support from "./support";
 import Profile from "./profile";
 import { Grid } from "@mui/material";
 import TradeCard from "./dashboard/trade-card";
+import SelectCard from "./dashboard/selectcard";
 
 const Home = ({ authed, redirect }) => {
     const [selectedMenueTab, setSelectedMenueTab] = useState(1);
     const [tradeCard, setTradeCard] = useState(false);
     const [selectedCard, setSelectedCard] = useState(false);
+
     function navTradeCard() {
         console.log('fired trade-card');
         setTradeCard(!tradeCard);
+    }
+
+    function navSellCard() {
+        console.log('fired select-card');
+        setSelectedCard(!selectedCard);
     }
 
     if (!authed) {
@@ -408,8 +415,9 @@ const Home = ({ authed, redirect }) => {
             </Grid>
 
             {/* Main Side Bar */}
-            {selectedMenueTab === 1 && tradeCard === false && <DashBoard navTradeCard={navTradeCard}/>}
-            {selectedMenueTab === 1 && tradeCard === true && <TradeCard navTradeCard={navTradeCard} />}
+            {selectedMenueTab === 1 && tradeCard === false && selectedCard === false && <DashBoard navTradeCard={navTradeCard} />}
+            {selectedMenueTab === 1 && tradeCard === true && selectedCard === false && <TradeCard navTradeCard={navTradeCard} navSellCard={navSellCard} />}
+            {selectedMenueTab === 1 && tradeCard === true && selectedCard === true && <SelectCard navSellCard={navSellCard} />}
 
 
             {selectedMenueTab === 2 && <Activities />}

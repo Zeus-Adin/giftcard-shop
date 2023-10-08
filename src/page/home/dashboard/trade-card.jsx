@@ -260,7 +260,7 @@ const DSecurityBtnWrapper = styled('div')(({ }) => ({
 }))
 
 
-const TradeCard = ({ navTradeCard }) => {
+const TradeCard = ({ navTradeCard, navSellCard }) => {
 
     return (
         <>
@@ -282,7 +282,7 @@ const TradeCard = ({ navTradeCard }) => {
                 <SecurityBtnBody>
                     <MobileProfileBalanceWrap>
                         <MobileActionButtonWrapper>
-                            <MobileActionButtonContainer>
+                            <MobileActionButtonContainer onClick={() => navSellCard()}>
                                 <MobileActionButtonImage src="/svg/hot-card.svg" />
                                 <MobileActionButtonText>Sell <br /> Gift Cards</MobileActionButtonText>
                             </MobileActionButtonContainer>
