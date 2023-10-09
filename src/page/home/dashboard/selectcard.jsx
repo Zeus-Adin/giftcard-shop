@@ -98,8 +98,7 @@ const CardsWrapper = styled('div')(({ }) => ({
     flexDirection: 'column',
     flexWrap: 'nowrap',
     display: 'flex',
-    height: '150vh'
-    // backgroundColor: 'red'
+    height:'100%',
 }))
 const CardsInnerWrapper = styled('div')(({ }) => ({
     flexWrap: 'wrap',
@@ -225,8 +224,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>American Express</CardItermContentText>
+                                        <CardItermContentImage src="/icon/american-express.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -238,8 +237,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>American Express Serve</CardItermContentText>
+                                        <CardItermContentImage src="/icon/american-express-server.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -251,8 +250,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Apple iTunes</CardItermContentText>
+                                        <CardItermContentImage src="/icon/apple-itunes.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -264,8 +263,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Ebay</CardItermContentText>
+                                        <CardItermContentImage src="/icon/ebay.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -277,8 +276,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Footlocker</CardItermContentText>
+                                        <CardItermContentImage src="/icon/footlocker.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -290,8 +289,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Google Play</CardItermContentText>
+                                        <CardItermContentImage src="/icon/google-play.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -303,7 +302,7 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
+                                        <CardItermContentText>JCPenney</CardItermContentText>
                                         <CardItermContentImage src="/icon/amazon.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
@@ -316,8 +315,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Macy's</CardItermContentText>
+                                        <CardItermContentImage src="/icon/macys.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -329,8 +328,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Netspend</CardItermContentText>
+                                        <CardItermContentImage src="/icon/netspend.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -342,8 +341,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Nike</CardItermContentText>
+                                        <CardItermContentImage src="/icon/nike.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -355,8 +354,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Nordstrom</CardItermContentText>
+                                        <CardItermContentImage src="/icon/nordstrom.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -368,8 +367,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Razer Gold</CardItermContentText>
+                                        <CardItermContentImage src="/icon/razer-gold.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -381,8 +380,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Roblox</CardItermContentText>
+                                        <CardItermContentImage src="/icon/roblox.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -394,8 +393,8 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Sephora</CardItermContentText>
+                                        <CardItermContentImage src="/icon/sephora.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
@@ -407,48 +406,73 @@ const SelectCard = ({ navSellCard }) => {
                                         </path>
                                     </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Steam</CardItermContentText>
+                                        <CardItermContentImage src="/icon/steam.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
 
                             <CardItermWrapper>
                                 <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2"><path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#211d22"></path></svg>
+                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
+                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#f57736">
+                                        </path>
+                                    </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Vanilla / OneVanilla</CardItermContentText>
+                                        <CardItermContentImage src="/icon/vanilla-onevanilla.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
 
                             <CardItermWrapper>
                                 <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2"><path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#211d22"></path></svg>
+                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
+                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#6856e2">
+                                        </path>
+                                    </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Visa</CardItermContentText>
+                                        <CardItermContentImage src="/icon/visa.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
 
                             <CardItermWrapper>
                                 <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2"><path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#211d22"></path></svg>
+                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
+                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#6856e2">
+                                        </path>
+                                    </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Walmart</CardItermContentText>
+                                        <CardItermContentImage src="/icon/walmart.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
 
                             <CardItermWrapper>
                                 <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2"><path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#211d22"></path></svg>
+                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
+                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#6856e2">
+                                        </path>
+                                    </svg>
                                     <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
+                                        <CardItermContentText>Walmart Visa</CardItermContentText>
+                                        <CardItermContentImage src="/icon/walmart-visa.png" />
+                                    </CardItermContentWrapper>
+                                </CardItermInnerWrapper>
+                            </CardItermWrapper>
+
+                            <CardItermWrapper>
+                                <CardItermInnerWrapper>
+                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
+                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#2e3b05">
+                                        </path>
+                                    </svg>
+                                    <CardItermContentWrapper>
+                                        <CardItermContentText>Xbox</CardItermContentText>
+                                        <CardItermContentImage src="/icon/xbox.png" />
                                     </CardItermContentWrapper>
                                 </CardItermInnerWrapper>
                             </CardItermWrapper>
