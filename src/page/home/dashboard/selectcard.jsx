@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import styled from "styled-components";
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import { cards } from "./svg";
+import { useEffect, useState } from "react";
 
 // Mobile Componets
 // Mobile Header Components
@@ -98,7 +99,7 @@ const CardsWrapper = styled('div')(({ }) => ({
     flexDirection: 'column',
     flexWrap: 'nowrap',
     display: 'flex',
-    height:'100%',
+    height: '100%',
 }))
 const CardsInnerWrapper = styled('div')(({ }) => ({
     flexWrap: 'wrap',
@@ -173,6 +174,16 @@ const DesktopViewWrapper = styled(Grid)(({ }) => ({
 }))
 
 const SelectCard = ({ navSellCard }) => {
+    const [searchString, setSearchString] = useState('');
+
+    function handleTextChange(e) {
+        console.log(e.target.value);
+        setSearchString(e.target.value);
+    }
+
+    useEffect(() => {
+
+    }, [searchString])
 
     return (
         <>
@@ -194,7 +205,7 @@ const SelectCard = ({ navSellCard }) => {
                         </MobileHeaderTextInnerWrapper>
                         <MobileHeaderInputWrapper>
                             <MobileHeaderInputImage src="/svg/search-icon.svg" />
-                            <MobileHeaderInput placeholder="Search gift card category" />
+                            <MobileHeaderInput placeholder="Search gift card category" onChange={handleTextChange} />
                         </MobileHeaderInputWrapper>
                     </MobileHeaderTextWrapper>
                 </MobileHeader>
@@ -203,280 +214,21 @@ const SelectCard = ({ navSellCard }) => {
                 <SecurityBtnBody>
                     <CardsWrapper>
                         <CardsInnerWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#f2ac43">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Amazon</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#9082f5">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>American Express</CardItermContentText>
-                                        <CardItermContentImage src="/icon/american-express.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#5b750e">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>American Express Serve</CardItermContentText>
-                                        <CardItermContentImage src="/icon/american-express-server.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#d64b29">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Apple iTunes</CardItermContentText>
-                                        <CardItermContentImage src="/icon/apple-itunes.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#b97530">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Ebay</CardItermContentText>
-                                        <CardItermContentImage src="/icon/ebay.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#392042">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Footlocker</CardItermContentText>
-                                        <CardItermContentImage src="/icon/footlocker.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#05b4b7">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Google Play</CardItermContentText>
-                                        <CardItermContentImage src="/icon/google-play.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#762b4c">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>JCPenney</CardItermContentText>
-                                        <CardItermContentImage src="/icon/amazon.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#7d2649">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Macy's</CardItermContentText>
-                                        <CardItermContentImage src="/icon/macys.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#fa4b04">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Netspend</CardItermContentText>
-                                        <CardItermContentImage src="/icon/netspend.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#1e1e1e">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Nike</CardItermContentText>
-                                        <CardItermContentImage src="/icon/nike.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#bbbbbb">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Nordstrom</CardItermContentText>
-                                        <CardItermContentImage src="/icon/nordstrom.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#ddb056">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Razer Gold</CardItermContentText>
-                                        <CardItermContentImage src="/icon/razer-gold.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#16181b">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Roblox</CardItermContentText>
-                                        <CardItermContentImage src="/icon/roblox.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#211d22">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Sephora</CardItermContentText>
-                                        <CardItermContentImage src="/icon/sephora.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#1c3b54">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Steam</CardItermContentText>
-                                        <CardItermContentImage src="/icon/steam.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#f57736">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Vanilla / OneVanilla</CardItermContentText>
-                                        <CardItermContentImage src="/icon/vanilla-onevanilla.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#6856e2">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Visa</CardItermContentText>
-                                        <CardItermContentImage src="/icon/visa.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#6856e2">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Walmart</CardItermContentText>
-                                        <CardItermContentImage src="/icon/walmart.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#6856e2">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Walmart Visa</CardItermContentText>
-                                        <CardItermContentImage src="/icon/walmart-visa.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
-                            <CardItermWrapper>
-                                <CardItermInnerWrapper>
-                                    <svg width="300" height="90" viewBox="0 0 300 90" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0.2">
-                                        <path d="M0 30C0 13.4315 13.4315 0 30 0H270C286.569 0 300 13.4315 300 30V59.3156C300 76.5275 285.549 90.2102 268.363 89.2709L28.3628 76.1538C12.4542 75.2843 0 62.1309 0 46.1985V30Z" fill="#2e3b05">
-                                        </path>
-                                    </svg>
-                                    <CardItermContentWrapper>
-                                        <CardItermContentText>Xbox</CardItermContentText>
-                                        <CardItermContentImage src="/icon/xbox.png" />
-                                    </CardItermContentWrapper>
-                                </CardItermInnerWrapper>
-                            </CardItermWrapper>
-
+                            {
+                                cards
+                                    .filter(({ name }) => name.includes(searchString))
+                                    .map(({ label, icon, svg }) => (
+                                        <CardItermWrapper>
+                                            <CardItermInnerWrapper>
+                                                {svg}
+                                                <CardItermContentWrapper>
+                                                    <CardItermContentText>{label}</CardItermContentText>
+                                                    <CardItermContentImage src={`/icon/${icon}`} />
+                                                </CardItermContentWrapper>
+                                            </CardItermInnerWrapper>
+                                        </CardItermWrapper>
+                                    ))
+                            }
                         </CardsInnerWrapper>
                     </CardsWrapper>
                 </SecurityBtnBody>
