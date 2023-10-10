@@ -317,7 +317,7 @@ const TradeCard = ({ navTradeCard, navSellCard }) => {
                     <SecurityBtnBody>
                         <MobileProfileBalanceWrap>
                             <MobileActionButtonWrapper>
-                                <MobileActionButtonContainer>
+                                <MobileActionButtonContainer onClick={() => navSellCard()}>
                                     <MobileActionButtonImage src="/svg/hot-card.svg" />
                                     <MobileActionButtonText>Sell <br /> Gift Cards</MobileActionButtonText>
                                 </MobileActionButtonContainer>

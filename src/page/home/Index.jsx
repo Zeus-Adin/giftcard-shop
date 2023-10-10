@@ -366,9 +366,13 @@ const Home = ({ authed, redirect }) => {
                                 {selectedMenueTab === 2
                                     ? <>
                                         <svg width="5" height="6" viewBox="0 0 5 6" fill="none"><circle cx="2.5" cy="3" r="2.5" fill="#7165E3"></circle></svg>
-                                        <MobileLeftSideInnerBarItemsContentText onClick={() => setSelectedMenueTab(2)}>Activities</MobileLeftSideInnerBarItemsContentText>
+                                        <MobileLeftSideInnerBarItemsContentText
+                                        // onClick={() => setSelectedMenueTab(2)}
+                                        >Activities</MobileLeftSideInnerBarItemsContentText>
                                     </>
-                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/activities.svg" onClick={() => setSelectedMenueTab(2)} />
+                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/activities.svg"
+                                    //  onClick={() => setSelectedMenueTab(2)} 
+                                    />
                                 }
                             </MobileLeftSideInnerBarItemsContent>
                         </MobileLeftSideInnerBarItems>
@@ -378,9 +382,13 @@ const Home = ({ authed, redirect }) => {
                                 {selectedMenueTab === 3
                                     ? <>
                                         <svg width="5" height="6" viewBox="0 0 5 6" fill="none"><circle cx="2.5" cy="3" r="2.5" fill="#7165E3"></circle></svg>
-                                        <MobileLeftSideInnerBarItemsContentText onClick={() => setSelectedMenueTab(3)}>Wallet</MobileLeftSideInnerBarItemsContentText>
+                                        <MobileLeftSideInnerBarItemsContentText
+                                        // onClick={() => setSelectedMenueTab(3)}
+                                        >Wallet</MobileLeftSideInnerBarItemsContentText>
                                     </>
-                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/wallet.svg" onClick={() => setSelectedMenueTab(3)} />
+                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/wallet.svg"
+                                    // onClick={() => setSelectedMenueTab(3)} 
+                                    />
                                 }
 
                             </MobileLeftSideInnerBarItemsContent>
@@ -391,9 +399,13 @@ const Home = ({ authed, redirect }) => {
                                 {selectedMenueTab === 4
                                     ? <>
                                         <svg width="5" height="6" viewBox="0 0 5 6" fill="none"><circle cx="2.5" cy="3" r="2.5" fill="#7165E3"></circle></svg>
-                                        <MobileLeftSideInnerBarItemsContentText onClick={() => setSelectedMenueTab(4)}>Support</MobileLeftSideInnerBarItemsContentText>
+                                        <MobileLeftSideInnerBarItemsContentText
+                                        // onClick={() => setSelectedMenueTab(4)}
+                                        >Support</MobileLeftSideInnerBarItemsContentText>
                                     </>
-                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/support.svg" onClick={() => setSelectedMenueTab(4)} />
+                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/support.svg"
+                                    // onClick={() => setSelectedMenueTab(4)}
+                                    />
                                 }
                             </MobileLeftSideInnerBarItemsContent>
                         </MobileLeftSideInnerBarItems>
@@ -403,9 +415,13 @@ const Home = ({ authed, redirect }) => {
                                 {selectedMenueTab === 5
                                     ? <>
                                         <svg width="5" height="6" viewBox="0 0 5 6" fill="none"><circle cx="2.5" cy="3" r="2.5" fill="#7165E3"></circle></svg>
-                                        <MobileLeftSideInnerBarItemsContentText onClick={() => setSelectedMenueTab(5)}>Profile</MobileLeftSideInnerBarItemsContentText>
+                                        <MobileLeftSideInnerBarItemsContentText
+                                        // onClick={() => setSelectedMenueTab(5)}
+                                        >Profile</MobileLeftSideInnerBarItemsContentText>
                                     </>
-                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/profile.svg" onClick={() => setSelectedMenueTab(5)} />
+                                    : <MobileLeftSideInnerBarItemsContentImage src="/svg/profile.svg"
+                                    // onClick={() => setSelectedMenueTab(5)} 
+                                    />
                                 }
                             </MobileLeftSideInnerBarItemsContent>
                         </MobileLeftSideInnerBarItems>
