@@ -21,7 +21,7 @@ const Routes = ({ path, redirect, authed }) => {
             {path === "/login" && <Login redirect={redirect} />}
             {path === "/register" && <Register redirect={redirect} />}
             {path === "/forgotpassword" && <ForgotPassword redirect={redirect} />}
-            {path === "/steam" && <Steam />}
+            {path === "/steam" && <Steam redirect={redirect} />}
             {!allowedPath.includes(path) && <PageNotFound404 />}
         </div>
     )
