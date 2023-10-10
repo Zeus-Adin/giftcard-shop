@@ -433,7 +433,7 @@ const Home = ({ authed, redirect }) => {
             {/* Main Side Bar */}
             {selectedMenueTab === 1 && tradeCard === false && selectedCard === false && <DashBoard navTradeCard={navTradeCard} />}
             {selectedMenueTab === 1 && tradeCard === true && selectedCard === false && <TradeCard navTradeCard={navTradeCard} navSellCard={navSellCard} />}
-            {selectedMenueTab === 1 && tradeCard === true && selectedCard === true && <SelectCard navSellCard={navSellCard} />}
+            {selectedMenueTab === 1 && tradeCard === true && selectedCard === true && <SelectCard navSellCard={navSellCard} redirect={redirect} />}
 
 
             {selectedMenueTab === 2 && <Activities />}

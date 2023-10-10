@@ -173,7 +173,7 @@ const DesktopViewWrapper = styled(Grid)(({ }) => ({
     padding: '2rem 2rem',
 }))
 
-const SelectCard = ({ navSellCard }) => {
+const SelectCard = ({ navSellCard, redirect }) => {
     const [searchString, setSearchString] = useState('');
 
     function handleTextChange(e) {
@@ -217,11 +217,11 @@ const SelectCard = ({ navSellCard }) => {
                             {
                                 cards
                                     .filter(({ name }) => name.includes(searchString))
-                                    .map(({ label, icon, svg }) => (
+                                    .map(({ label, icon, svg, path }) => (
                                         <CardItermWrapper>
                                             <CardItermInnerWrapper>
                                                 {svg}
-                                                <CardItermContentWrapper>
+                                                <CardItermContentWrapper onClick={()=>redirect(`/${path}`)}>
                                                     <CardItermContentText>{label}</CardItermContentText>
                                                     <CardItermContentImage src={`/icon/${icon}`} />
                                                 </CardItermContentWrapper>

@@ -5,6 +5,7 @@ import Register from "./page/auth/register/Index";
 import ForgotPassword from "./page/auth/resetpassword/index";
 import Home from "./page/home/Index";
 import PageNotFound404 from "./page/home/404";
+import Steam from "./page/home/cards/steam";
 
 const allowedPath = [
     '/', '/dashboard', '/login', '/register', '/forgotpassword',
@@ -20,7 +21,8 @@ const Routes = ({ path, redirect, authed }) => {
             {path === "/login" && <Login redirect={redirect} />}
             {path === "/register" && <Register redirect={redirect} />}
             {path === "/forgotpassword" && <ForgotPassword redirect={redirect} />}
-            {allowedPath[path] === undefined && <PageNotFound404 />}
+            {path === "/steam" && <Steam />}
+            {!allowedPath.includes(path) && <PageNotFound404 />}
         </div>
     )
 }
