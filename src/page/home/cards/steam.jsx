@@ -1,6 +1,5 @@
 import { Button, Fab, Grid } from "@mui/material";
 import styled from "styled-components";
-import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
 import { useEffect, useState } from "react";
 
 // Mobile Componets
@@ -190,6 +189,93 @@ const CardText = styled('p')(({ }) => ({
     letterSpacing: '0.2px',
     textDecoration: 'none',
 }))
+
+const CardAmount = styled('div')(({ }) => ({
+    gap: '1.6rem',
+    justifyContent: 'space-between',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+const CardAmountWrapper = styled('div')(({ }) => ({
+    justifyContent: 'flex-start',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    display: 'flex',
+}))
+const CardAmountInnerWrapper = styled('div')(({ }) => ({
+    backgroundColor: '#F2F2F2',
+    width: '100%',
+    borderRadius: '5rem',
+    padding: '1.5rem 2rem',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    border: '1px solid transparent',
+    transition: 'all 0.2s ease-in-out 0s',
+}))
+const CardAmountContent = styled('div')(({ }) => ({
+    width: '100%'
+}))
+const CardAmountLabel = styled('label')(({ }) => ({
+    display: 'block',
+    color: '#4F4F4F',
+    fontFamily: "CeraPro-Medium,-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    fontSize: '1.2rem',
+    letterSpacing: '0.8',
+    willChange: 'color',
+    transition: 'color 0.2s ease-in-out 0s',
+}))
+const CardAmountInput = styled('input')(({ }) => ({
+    transition: 'all 0.3s ease-in 0s',
+    all: 'unset',
+    fontFamily: 'var(--fonts-medium)',
+    color: 'var(--colors-gray400)',
+    fontSize: '1.6rem',
+    letterSpacing: '0.4rem',
+    width: '100%',
+    marginTop: '0.8rem',
+}))
+
+const ReturnCalculator = styled('div')(({ }) => ({
+    marginTop: '2.4rem',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+}))
+const ReturnCalculatorHeaderText = styled('p')(({ }) => ({
+    fontFamily: "CeraPro-Medium,-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    textAlign: 'left',
+    fontSize: '1.5rem',
+    lineHeight: '1.6rem',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+    marginTop:'1rem',
+    marginBottom:'1rem',
+    fontWeight:'500'
+}))
+const ReturnCalculatorValueWrapper = styled('div')(({ }) => ({
+    gap: '0.8rem',
+    flexWrap: 'nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+const ReturnCalculatorValueText = styled('p')(({ }) => ({
+    color: '#EBE9FB',
+    textAlign: 'left',
+    fontFamily: "CeraPro-Bold,-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    lineHeight: '1.6rem',
+    fontSize: '2.8rem',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+    fontWeight:'700'
+}))
 // MovileView Components
 // const
 
@@ -211,7 +297,7 @@ const Steam = ({ redirect }) => {
             <Grid xs={{ sm: 'flex', xs: 'flex', lg: 'none', xl: 'none' }}>
                 <AppHeader>
                     <AppHeaderButtonWrapper>
-                        <AppHeaderButton>
+                        <AppHeaderButton onClick={()=>redirect('/dashboard')}>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14.9993 20.67C14.8093 20.67 14.6193 20.6 14.4693 20.45L7.9493 13.93C6.8893 12.87 6.8893 11.13 7.9493 10.07L14.4693 3.55002C14.7593 3.26002 15.2393 3.26002 15.5293 3.55002C15.8193 3.84002 15.8193 4.32002 15.5293 4.61002L9.0093 11.13C8.5293 11.61 8.5293 12.39 9.0093 12.87L15.5293 19.39C15.8193 19.68 15.8193 20.16 15.5293 20.45C15.3793 20.59 15.1893 20.67 14.9993 20.67Z" color="#292D32" fill="black">
                                 </path>
@@ -273,12 +359,43 @@ const Steam = ({ redirect }) => {
                                     }
                                 </CardType>
 
+                                {/* ----------------------- */}
+
                                 <CurrencySelectInnerWrap>
                                     <CurrencySelectButton>
                                         <CurrencySelectButtonText>Select sub-category</CurrencySelectButtonText>
                                         <span aria-hidden="true"><CurrencySelectButtonIconImage src="/svg/chevron-down.svg" alt="" /></span>
                                     </CurrencySelectButton>
                                 </CurrencySelectInnerWrap>
+
+                                <CardAmount>
+
+                                    <CardAmountWrapper>
+                                        <CardAmountInnerWrapper>
+                                            <CardAmountContent>
+                                                <CardAmountLabel>Enter Card Amount</CardAmountLabel>
+                                                <CardAmountInput placeholder="e.g $100" />
+                                            </CardAmountContent>
+                                        </CardAmountInnerWrapper>
+                                    </CardAmountWrapper>
+
+                                    <CardAmountWrapper>
+                                        <CardAmountInnerWrapper>
+                                            <CardAmountContent>
+                                                <CardAmountLabel>How Many</CardAmountLabel>
+                                                <CardAmountInput placeholder="x1" />
+                                            </CardAmountContent>
+                                        </CardAmountInnerWrapper>
+                                    </CardAmountWrapper>
+                                </CardAmount>
+
+                                <ReturnCalculator>
+                                    <ReturnCalculatorHeaderText>You would get:</ReturnCalculatorHeaderText>
+                                    <ReturnCalculatorValueWrapper>
+                                        <ReturnCalculatorValueText>NGN 0.00</ReturnCalculatorValueText>
+                                    </ReturnCalculatorValueWrapper>
+                                    <ReturnCalculatorHeaderText>Rate:0</ReturnCalculatorHeaderText>
+                                </ReturnCalculator>
 
                             </AppBodyContentsWrapper>
                         </AppBodyContents>
