@@ -6,24 +6,48 @@ import ForgotPassword from "./page/auth/resetpassword/index";
 import Home from "./page/home/Index";
 import PageNotFound404 from "./page/home/404";
 import Steam from "./page/home/cards/steam";
+import Email_Verification from "./page/auth/email-verification/Email-Verification";
+import AlertBox from "./component/errorbox/AlertBox";
+import { useEffect, useState } from "react";
 
 const allowedPath = [
-    '/', '/dashboard', '/login', '/register', '/forgotpassword',
+    '/', '/dashboard', '/login', '/register', '/forgotpassword', '/email-verification',
     '/steam'
 ]
 
 const Routes = ({ path, redirect, authed }) => {
-    console.log('Current path', path, allowedPath[path], allowedPath)
+    const [alertBox, setAlertBox] = useState(false);
+    const [alertText, setAlertText] = useState({ title: '', paragraph: '', reason: '' });
+
+    const handleOpenAlertBox = (title, paragraph, reason) => {
+        setAlertBox({ title: title, paragraph: paragraph, reason: reason })
+        setAlertBox(true)
+    }
+
+    const handleCloseAlertBox = () => {
+        setAlertBox({ title: '', paragraph: '', reason: '' })
+        setAlertBox(false)
+    }
+
+    useEffect(() => {
+
+    }, [alertBox, alertText])
+
     return (
-        <div className="main">
-            {path === "/" && <Landing redirect={redirect} />}
-            {path === "/dashboard" && <Home redirect={redirect} authed={authed} />}
-            {path === "/login" && <Login redirect={redirect} />}
-            {path === "/register" && <Register redirect={redirect} />}
-            {path === "/forgotpassword" && <ForgotPassword redirect={redirect} />}
-            {path === "/steam" && <Steam redirect={redirect} />}
-            {!allowedPath.includes(path) && <PageNotFound404 />}
-        </div>
+        <>
+            <div className="main">
+                {path === "/" && <Landing redirect={redirect} />}
+                {path === "/dashboard" && <Home redirect={redirect} authed={authed} />}
+                {path === "/login" && <Login redirect={redirect} />}
+                {path === "/register" && <Register redirect={redirect} />}
+                {path === "/forgotpassword" && <ForgotPassword redirect={redirect} />}
+                {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} />}
+                {path === "/steam" && <Steam redirect={redirect} />}
+                {!allowedPath.includes(path) && <PageNotFound404 />}
+            </div>
+            <AlertBox open={alertBox} title={alertText.title} paragraph={alertText.paragraph} handleClose={handleCloseAlertBox} />
+        </>
+
     )
 }
 
