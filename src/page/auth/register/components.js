@@ -185,6 +185,17 @@ export const FormLoginSubTextButton = styled('button')(() => ({
     textDecoration: 'none',
 }))
 
+export const DesktopHeaderText = styled('p')(()=>({    
+    marginBottom: '2rem',
+    textAlign: 'center',
+    color: '#7165E3',
+    fontSize: '2.8rem',
+    fontFamily: " CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    lineHeight: '1.6rem',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+    fontWeight: '700'
+}))
 export const DesktopWrapper = styled('div')(() => ({
     backgroundImage: 'url(/svg/auth-bg-purple.svg)',
     backgroundSize: 'cover',

@@ -25,6 +25,7 @@ import {
     // Desktop Components
     DesktopWrapper,
     DesktopWrap,
+    DesktopHeaderText,
     DesktopContentWrapper,
     DesktopContentWrap,
     DesktopContent,
@@ -32,6 +33,7 @@ import {
     DesktopSlideImage,
     DesktopFloatImage,
 } from "./components"
+import { useEffect, useState } from "react";
 
 const AppGrid = styled('div')(({ }) => ({
     position: 'relative',
@@ -39,6 +41,15 @@ const AppGrid = styled('div')(({ }) => ({
 }))
 
 const Register = ({ redirect }) => {
+    const [timerValue, setTimerValue] = useState(1);
+
+    useEffect(() => {
+        const updateTimer = () => {
+            setTimerValue((prevValue) => (prevValue % 5) + 1);
+        };
+        const intervalId = setInterval(updateTimer, 5000);
+        return () => clearInterval(intervalId);
+    }, [])
 
     return (
         <AppGrid  >
@@ -138,10 +149,10 @@ const Register = ({ redirect }) => {
 
                                 {/* Contents */}
                                 <DesktopContent>
-                                    <DesktopSlideImage src="/svg/splash-1.svg" />
+                                    <DesktopSlideImage src={`/svg/splash-${timerValue}.svg`} />
                                 </DesktopContent>
                                 <DesktopContentInputArea>
-                                    <FormHeader>Create account</FormHeader>
+                                    <DesktopHeaderText>Create account</DesktopHeaderText>
 
                                     <FormContentWrapper>
 
