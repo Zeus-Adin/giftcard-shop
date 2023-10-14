@@ -41,7 +41,7 @@ const AppGrid = styled('div')(({ }) => ({
     height: '100vh',
 }))
 
-const Register = ({ redirect, handleOpenAlertBox, setAlertText }) => {
+const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey }) => {
     const [timerValue, setTimerValue] = useState(1);
 
     const [username, setUsername] = useState(1);
@@ -57,6 +57,7 @@ const Register = ({ redirect, handleOpenAlertBox, setAlertText }) => {
         if (reg_payload.contact) setPhone('')
         if (reg_payload.email) setEmail('')
         if (reg_stat) {
+            setActivationKey(act_key)
             setAlertText({ title: 'Success', paragraph: message, reason: 'success' })
             handleOpenAlertBox()
         } else {

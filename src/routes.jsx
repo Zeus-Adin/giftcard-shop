@@ -17,6 +17,7 @@ const allowedPath = [
 const Routes = ({ path, redirect, authed }) => {
     const [alertBox, setAlertBox] = useState(false);
     const [alertText, setAlertText] = useState({ title: '', paragraph: '', reason: '' });
+    const [activationKey, setActivationKey] = useState('');
 
     const handleOpenAlertBox = (title, paragraph, reason) => {
         setAlertBox({ title: title, paragraph: paragraph, reason: reason })
@@ -26,6 +27,9 @@ const Routes = ({ path, redirect, authed }) => {
     const handleCloseAlertBox = () => {
         setAlertBox({ title: '', paragraph: '', reason: '' })
         setAlertBox(false)
+        if (alertText.reason === 'success') {
+            redirect(`/email-verification?actKey=${activationKey}`)
+        }
     }
 
     useEffect(() => {
@@ -38,7 +42,7 @@ const Routes = ({ path, redirect, authed }) => {
                 {path === "/" && <Landing redirect={redirect} />}
                 {path === "/dashboard" && <Home redirect={redirect} authed={authed} />}
                 {path === "/login" && <Login redirect={redirect} />}
-                {path === "/register" && <Register redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
+                {path === "/register" && <Register redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setActivationKey={setActivationKey} />}
                 {path === "/forgotpassword" && <ForgotPassword redirect={redirect} />}
                 {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
                 {path === "/steam" && <Steam redirect={redirect} />}

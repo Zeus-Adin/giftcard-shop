@@ -213,7 +213,7 @@ const ResendVerificationTokenButton = styled('span')(() => ({
 const Email_Verification = ({ redirect, openAlert }) => {
     const currentUrl = window.location.href;
     const url = new URL(currentUrl);
-    const activationKey = url.searchParams.get('activationKey');
+    const activationKey = url.searchParams.get('actKey');
     console.log(activationKey)
 
     async function verifyEmail() {
