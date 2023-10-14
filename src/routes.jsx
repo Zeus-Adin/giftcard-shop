@@ -1,5 +1,4 @@
 import Landing from "./page/landing/Landing";
-import './routes.css'
 import Login from "./page/auth/login/Index";
 import Register from "./page/auth/register/Index";
 import ForgotPassword from "./page/auth/resetpassword/index";
@@ -39,13 +38,13 @@ const Routes = ({ path, redirect, authed }) => {
                 {path === "/" && <Landing redirect={redirect} />}
                 {path === "/dashboard" && <Home redirect={redirect} authed={authed} />}
                 {path === "/login" && <Login redirect={redirect} />}
-                {path === "/register" && <Register redirect={redirect} />}
+                {path === "/register" && <Register redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
                 {path === "/forgotpassword" && <ForgotPassword redirect={redirect} />}
-                {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} />}
+                {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
                 {path === "/steam" && <Steam redirect={redirect} />}
                 {!allowedPath.includes(path) && <PageNotFound404 />}
             </div>
-            <AlertBox open={alertBox} title={alertText.title} paragraph={alertText.paragraph} handleClose={handleCloseAlertBox} />
+            <AlertBox open={alertBox} title={alertText.title} paragraph={alertText.paragraph} reason={alertText.reason} handleClose={handleCloseAlertBox} />
         </>
 
     )

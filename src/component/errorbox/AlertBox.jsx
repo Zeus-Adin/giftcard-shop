@@ -4,7 +4,7 @@ const AlertBox = ({ open, handleClose, title, paragraph, reason }) => {
 
     return (
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alert severity={reason}>
+            <Alert severity={reason} >
                 <AlertTitle>{title}</AlertTitle>
                 {paragraph}
             </Alert>

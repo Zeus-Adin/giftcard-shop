@@ -34,14 +34,62 @@ import {
     DesktopFloatImage,
 } from "./components"
 import { useEffect, useState } from "react";
+import { registerUser } from './functions'
 
 const AppGrid = styled('div')(({ }) => ({
     position: 'relative',
     height: '100vh',
 }))
 
-const Register = ({ redirect }) => {
+const Register = ({ redirect, handleOpenAlertBox, setAlertText }) => {
     const [timerValue, setTimerValue] = useState(1);
+
+    const [username, setUsername] = useState(1);
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [pwd, setPwd] = useState('');
+
+    const [submitBtnDisable, setSubmitBtnDisable] = useState(true);
+
+    const handleCreatAccount = async () => {
+        const { act_key, reg_hash, reg_stat, reg_payload, message } = await registerUser(username, phone, email, pwd);
+        if (reg_payload.username) setUsername('')
+        if (reg_payload.contact) setPhone('')
+        if (reg_payload.email) setEmail('')
+        if (reg_stat) {
+            setAlertText({ title: 'Success', paragraph: message, reason: 'success' })
+            handleOpenAlertBox()
+        } else {
+            setAlertText({ title: 'Error', paragraph: message, reason: 'error' })
+            handleOpenAlertBox()
+        }
+    }
+
+    const handleTextChanges = (e) => {
+        const { name, value } = e.target;
+        switch (name) {
+            case 'username':
+                setUsername(value)
+                break;
+            case 'phone':
+                setPhone(value)
+                break;
+            case 'email':
+                setEmail(value)
+                break;
+            case 'pwd':
+                setPwd(value)
+                break;
+        }
+    }
+
+    useEffect(() => {
+        if (username && phone && email && pwd.length >= 8) {
+            setSubmitBtnDisable(false)
+        } else {
+            setSubmitBtnDisable(true)
+        }
+    }, [username, phone, email, pwd])
 
     useEffect(() => {
         const updateTimer = () => {
@@ -81,7 +129,7 @@ const Register = ({ redirect }) => {
                                     <FormInputWrap>
                                         <FormInputContent>
                                             <FormInputLabel>Username</FormInputLabel>
-                                            <FormInputBox placeholder="e.g johndoe" />
+                                            <FormInputBox placeholder="e.g johndoe" name="username" required onBlur={handleTextChanges} />
                                         </FormInputContent>
                                     </FormInputWrap>
                                 </FormInputWrapper>
@@ -90,7 +138,7 @@ const Register = ({ redirect }) => {
                                     <FormInputWrap>
                                         <FormInputContent>
                                             <FormInputLabel>Phone number</FormInputLabel>
-                                            <FormInputBox placeholder="e.g 080 0000 0000" />
+                                            <FormInputBox placeholder="e.g 080 0000 0000" name="phone" required onBlur={handleTextChanges} />
                                         </FormInputContent>
                                     </FormInputWrap>
                                 </FormInputWrapper>
@@ -99,7 +147,7 @@ const Register = ({ redirect }) => {
                                     <FormInputWrap>
                                         <FormInputContent>
                                             <FormInputLabel>Email address</FormInputLabel>
-                                            <FormInputBox placeholder="e.g you@email.com" required />
+                                            <FormInputBox placeholder="e.g you@email.com" name="email" required onBlur={handleTextChanges} />
                                         </FormInputContent>
                                     </FormInputWrap>
                                 </FormInputWrapper>
@@ -108,7 +156,7 @@ const Register = ({ redirect }) => {
                                     <FormInputWrap>
                                         <FormInputContent>
                                             <FormInputLabel>Password</FormInputLabel>
-                                            <FormInputBox placeholder="e.g johndoe" />
+                                            <FormInputBox placeholder="e.g johndoe" name="pwd" type="password" required onBlur={handleTextChanges} />
                                         </FormInputContent>
                                         <FormToggleButton>
                                             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" color="#7165E3" height="22" width="22" xmlns="http://www.w3.org/2000/svg" >
@@ -123,14 +171,14 @@ const Register = ({ redirect }) => {
 
                             </FormContentWrapper>
 
-                            <FormButtonWrapper>
+                            <FormButtonWrapper >
 
-                                <FormButton>
+                                <FormButton disabled={submitBtnDisable} onClick={handleCreatAccount}>
                                     <svg width="239" height="68" viewBox="0 0 239 68" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0 33.6444C0 15.0631 15.0631 0 33.6444 0H207.171C224.749 0 239 14.2505 239 31.8295V31.8295C239 49.1489 225.152 63.2897 207.836 63.652L34.3481 67.2814C15.4955 67.6758 0 52.5011 0 33.6444V33.6444Z" fill="#F5CF48">
                                         </path>
                                     </svg>
-                                    <FormButtonText>Create account</FormButtonText>
+                                    <FormButtonText >Create account</FormButtonText>
                                 </FormButton>
 
                                 <FormButtonSubText>Already have an account? <FormLoginSubTextButton>Login</FormLoginSubTextButton></FormButtonSubText>
@@ -161,7 +209,7 @@ const Register = ({ redirect }) => {
                                             <FormInputWrap>
                                                 <FormInputContent>
                                                     <FormInputLabel>Username</FormInputLabel>
-                                                    <FormInputBox placeholder="e.g johndoe" />
+                                                    <FormInputBox placeholder="e.g johndoe" name="username" required onBlur={handleTextChanges} />
                                                 </FormInputContent>
                                             </FormInputWrap>
                                         </FormInputWrapper>
@@ -170,7 +218,7 @@ const Register = ({ redirect }) => {
                                             <FormInputWrap>
                                                 <FormInputContent>
                                                     <FormInputLabel>Phone number</FormInputLabel>
-                                                    <FormInputBox placeholder="e.g 080 0000 0000" />
+                                                    <FormInputBox placeholder="e.g 080 0000 0000" name="phone" required onBlur={handleTextChanges} />
                                                 </FormInputContent>
                                             </FormInputWrap>
                                         </FormInputWrapper>
@@ -179,7 +227,7 @@ const Register = ({ redirect }) => {
                                             <FormInputWrap>
                                                 <FormInputContent>
                                                     <FormInputLabel>Email address</FormInputLabel>
-                                                    <FormInputBox placeholder="e.g you@email.com" required />
+                                                    <FormInputBox placeholder="e.g you@email.com" name="email" required onBlur={handleTextChanges} />
                                                 </FormInputContent>
                                             </FormInputWrap>
                                         </FormInputWrapper>
@@ -188,7 +236,7 @@ const Register = ({ redirect }) => {
                                             <FormInputWrap>
                                                 <FormInputContent>
                                                     <FormInputLabel>Password</FormInputLabel>
-                                                    <FormInputBox placeholder="e.g johndoe" />
+                                                    <FormInputBox placeholder="e.g johndoe" type="password" name="pwd" required onBlur={handleTextChanges} />
                                                 </FormInputContent>
                                                 <FormToggleButton>
                                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" color="#7165E3" height="22" width="22" xmlns="http://www.w3.org/2000/svg" >
@@ -205,7 +253,7 @@ const Register = ({ redirect }) => {
 
                                     <FormButtonWrapper>
 
-                                        <FormButton>
+                                        <FormButton disabled={submitBtnDisable} onClick={handleCreatAccount}>
                                             <svg width="239" height="68" viewBox="0 0 239 68" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M0 33.6444C0 15.0631 15.0631 0 33.6444 0H207.171C224.749 0 239 14.2505 239 31.8295V31.8295C239 49.1489 225.152 63.2897 207.836 63.652L34.3481 67.2814C15.4955 67.6758 0 52.5011 0 33.6444V33.6444Z" fill="#F5CF48">
                                                 </path>

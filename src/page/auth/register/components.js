@@ -242,7 +242,7 @@ export const DesktopSlideImage = styled('img')(({ }) => ({
     borderBottomLeftRadius: '2.4rem'
 }))
 
-export const DesktopFloatImage = styled('image')(() => ({
+export const DesktopFloatImage = styled('img')(() => ({
     position: 'absolute',
     left: '-10%',
     bottom: '-10%',
