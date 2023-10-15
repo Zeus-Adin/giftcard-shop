@@ -22,6 +22,5 @@ export async function registerUser(username, contact, email, pwd) {
                 result = data
             }
         })
-    console.log(result)
     return result;
 }

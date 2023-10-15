@@ -58,10 +58,10 @@ const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey
         if (reg_payload.email) setEmail('')
         if (reg_stat) {
             setActivationKey(act_key)
-            setAlertText({ title: 'Success', paragraph: message, reason: 'success' })
+            setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender:'reg' })
             handleOpenAlertBox()
         } else {
-            setAlertText({ title: 'Error', paragraph: message, reason: 'error' })
+            setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender:'reg' })
             handleOpenAlertBox()
         }
     }

@@ -16,7 +16,7 @@ const allowedPath = [
 
 const Routes = ({ path, redirect, authed }) => {
     const [alertBox, setAlertBox] = useState(false);
-    const [alertText, setAlertText] = useState({ title: '', paragraph: '', reason: '' });
+    const [alertText, setAlertText] = useState({ title: '', paragraph: '', reason: '', sender: '' });
     const [activationKey, setActivationKey] = useState('');
 
     const handleOpenAlertBox = (title, paragraph, reason) => {
@@ -27,9 +27,8 @@ const Routes = ({ path, redirect, authed }) => {
     const handleCloseAlertBox = () => {
         setAlertBox({ title: '', paragraph: '', reason: '' })
         setAlertBox(false)
-        if (alertText.reason === 'success') {
-            redirect(`/email-verification?actKey=${activationKey}`)
-        }
+        if (alertText.reason === 'success' && alertText.sender === 'reg') redirect(`/email-verification?actKey=${activationKey}`)
+        if (alertText.reason === 'success' && alertText.sender === 'verif') redirect(`/login`)
     }
 
     useEffect(() => {
