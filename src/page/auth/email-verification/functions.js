@@ -2,9 +2,9 @@ import axios from "axios";
 
 export async function verifyToken(tokenKey, token) {
     let result;
-    const url = 'https://test-mlf1.onrender.com/api/activate/user/'
-    const regOptions = { 'tokenKey': tokenKey, 'token': token };
-    await axios.post(url, regOptions)
+    const url = `https://test-mlf1.onrender.com/api/activate/user/${tokenKey}`
+    const regOptions = { 'token': token };
+    await axios.patch(url, regOptions)
         .then(res => {
             console.log(res)
             if (res.data) {
