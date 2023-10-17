@@ -52,16 +52,18 @@ const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey
     const [submitBtnDisable, setSubmitBtnDisable] = useState(true);
 
     const handleCreatAccount = async () => {
+        setSubmitBtnDisable(true)
         const { act_key, reg_hash, reg_stat, reg_payload, message } = await registerUser(username, phone, email, pwd);
         if (reg_payload.username) setUsername('')
         if (reg_payload.contact) setPhone('')
         if (reg_payload.email) setEmail('')
         if (reg_stat) {
             setActivationKey(act_key)
-            setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender:'reg' })
+            setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'reg' })
             handleOpenAlertBox()
         } else {
-            setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender:'reg' })
+            setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender: 'reg' })
+            setSubmitBtnDisable(false)
             handleOpenAlertBox()
         }
     }
