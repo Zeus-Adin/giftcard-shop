@@ -184,7 +184,7 @@ const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey
                                     <FormButtonText >Create account</FormButtonText>
                                 </FormButton>
 
-                                <FormButtonSubText>Already have an account? <FormLoginSubTextButton>Login</FormLoginSubTextButton></FormButtonSubText>
+                                <FormButtonSubText>Already have an account? <FormLoginSubTextButton onClick={() => redirect('/login')}>Login</FormLoginSubTextButton></FormButtonSubText>
                             </FormButtonWrapper>
                         </FormWrap>
                     </ContentWrap>
@@ -264,7 +264,7 @@ const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey
                                             <FormButtonText>Create account</FormButtonText>
                                         </FormButton>
 
-                                        <FormButtonSubText>Already have an account? <FormLoginSubTextButton>Login</FormLoginSubTextButton></FormButtonSubText>
+                                        <FormButtonSubText>Already have an account? <FormLoginSubTextButton onClick={() => redirect('/login')}>Login</FormLoginSubTextButton></FormButtonSubText>
                                     </FormButtonWrapper>
                                 </DesktopContentInputArea>
 

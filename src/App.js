@@ -11,7 +11,7 @@ const App = () => {
   const originPath = window.location.pathname;
 
   function redirect(path) {
-    window.location.replace(`${window.location.origin}${path}`);
+    window.location.href = `${window.location.origin}${path}`;
   }
 
   async function init() {
@@ -25,7 +25,7 @@ const App = () => {
       setLanding(false);
     }
   }, [landing])
-  console.log(headerComponents[originPath])
+  
   return (
     <>
       {headerComponents[originPath] && <Header />}
