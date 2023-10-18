@@ -27,7 +27,8 @@ import {
     FormSubmitButtonSubText,
     FormLoginButton
 } from "./components"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { login } from "./functions";
 
 
 const AppGrid = styled('div')(({ }) => ({
@@ -35,10 +36,11 @@ const AppGrid = styled('div')(({ }) => ({
     height: '100vh',
 }))
 
-const Login = ({ redirect }) => {
+const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
     const [passwordType, setPasswordType] = useState('password');
     const [emailValue, setEmailValue] = useState('');
     const [passwordValue, setPasswordValue] = useState('');
+    const [submitBtn, setSubmitBtn] = useState(true);
 
     function handleTextChange(e) {
         const { name, value } = e.target;
@@ -56,6 +58,26 @@ const Login = ({ redirect }) => {
     function handleShowPassword() {
         setPasswordType(passwordType === 'password' ? 'text' : 'password')
     }
+
+    async function authenticate() {
+        const { authstate, result, message } = await login(emailValue, passwordValue)
+        if(authstate){
+            setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'auth' })
+            handleOpenAlertBox()
+        }
+        if(!authstate){
+            setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender: 'auth' })
+            handleOpenAlertBox()
+        }
+    }
+
+    useEffect(() => {
+        if (emailValue && emailValue.includes('@') && passwordValue.length >= 6) {
+            setSubmitBtn(false)
+        } else {
+            setSubmitBtn(true)
+        }
+    }, [emailValue, passwordValue])
 
     return (
         <AppGrid  >
@@ -82,7 +104,7 @@ const Login = ({ redirect }) => {
                         <ContentWrap>
                             {/* Form Inputs Area */}
                             <FormWrapper>
-                                <FormHeaderText>Login</FormHeaderText>
+                                <FormHeaderText>Welcome back!</FormHeaderText>
                                 <FormInputWrapper>
                                     <FormInputBoxWrapper>
                                         <FormInputBoxWrap>
@@ -113,7 +135,7 @@ const Login = ({ redirect }) => {
                             {/* Form Button Area */}
                             <FormSubmitButtonWrapper>
                                 <FormForgotButton onClick={() => redirect('/forgot-password')}>Forgot Password</FormForgotButton>
-                                <FormSubmitButton>
+                                <FormSubmitButton disabled={submitBtn} onClick={authenticate}>
                                     <svg width="239" height="68" viewBox="0 0 239 68" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M0 33.6444C0 15.0631 15.0631 0 33.6444 0H207.171C224.749 0 239 14.2505 239 31.8295V31.8295C239 49.1489 225.152 63.2897 207.836 63.652L34.3481 67.2814C15.4955 67.6758 0 52.5011 0 33.6444V33.6444Z" fill="#F5CF48">
                                         </path>

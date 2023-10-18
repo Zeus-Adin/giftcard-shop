@@ -19,6 +19,10 @@ const Routes = ({ path, redirect, authed }) => {
     const [alertText, setAlertText] = useState({ title: '', paragraph: '', reason: '', sender: '' });
     const [activationKey, setActivationKey] = useState('');
 
+    const [userDetails, setUserDetails] = useState({
+
+    })
+
     const handleOpenAlertBox = (title, paragraph, reason) => {
         setAlertBox({ title: title, paragraph: paragraph, reason: reason })
         setAlertBox(true)
@@ -40,7 +44,7 @@ const Routes = ({ path, redirect, authed }) => {
             <div className="main">
                 {path === "/" && <Landing redirect={redirect} />}
                 {path === "/dashboard" && <Home redirect={redirect} authed={authed} />}
-                {path === "/login" && <Login redirect={redirect} />}
+                {path === "/login" && <Login redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setUserDetails={setUserDetails} />}
                 {path === "/register" && <Register redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setActivationKey={setActivationKey} />}
                 {path === "/forgotpassword" && <ForgotPassword redirect={redirect} />}
                 {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
