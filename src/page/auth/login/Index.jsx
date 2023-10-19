@@ -29,6 +29,8 @@ import {
 } from "./components"
 import { useEffect, useState } from "react";
 import { login } from "./functions";
+import Cookies from "js-cookie";
+import { logUserOut } from "../register/functions";
 
 
 const AppGrid = styled('div')(({ }) => ({
@@ -36,6 +38,7 @@ const AppGrid = styled('div')(({ }) => ({
     height: '100vh',
 }))
 
+const appOrigin = window.location.origin;
 const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
     const [passwordType, setPasswordType] = useState('password');
     const [emailValue, setEmailValue] = useState('');
@@ -61,23 +64,31 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
 
     async function authenticate() {
         const { authstate, result, message } = await login(emailValue, passwordValue)
-        if(authstate){
+        if (authstate) {
+            setSubmitBtn(true);
+            Cookies.set(appOrigin, JSON.stringify(result[0]), { expires: 0.5 / 48 });
             setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'auth' })
             handleOpenAlertBox()
         }
-        if(!authstate){
+        if (!authstate) {
+            setSubmitBtn(false)
             setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender: 'auth' })
             handleOpenAlertBox()
         }
     }
 
     useEffect(() => {
-        if (emailValue && emailValue.includes('@') && passwordValue.length >= 6) {
+        if (emailValue && emailValue.includes('@') && passwordValue.length >= 8) {
             setSubmitBtn(false)
         } else {
             setSubmitBtn(true)
         }
     }, [emailValue, passwordValue])
+
+    useEffect(() => {
+        const session = Cookies.get(appOrigin);
+        if (session) redirect('/dashboard');
+    }, [])
 
     return (
         <AppGrid  >
@@ -110,7 +121,7 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
                                         <FormInputBoxWrap>
                                             <FormInputBox>
                                                 <FormInputLabel>Email address</FormInputLabel>
-                                                <FormInput name="email" type="email" placeHolder="e.g you@email.com" />
+                                                <FormInput name="email" type="email" onChange={handleTextChange} placeholder="e.g you@email.com" />
                                             </FormInputBox>
                                         </FormInputBoxWrap>
                                     </FormInputBoxWrapper>
@@ -119,10 +130,10 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
                                         <FormInputBoxWrap>
                                             <FormInputBox>
                                                 <FormInputLabel>Password</FormInputLabel>
-                                                <FormInput name="pwd" type={passwordType} onChange={handleTextChange} placeHolder="******" />
+                                                <FormInput name="pwd" type={passwordType} onChange={handleTextChange} placeholder="******" />
                                             </FormInputBox>
                                             <FormInputButton onClick={handleShowPassword}>
-                                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#7165E3" height="22" width="22" xmlns="http://www.w3.org/2000/svg">
+                                                <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" color="#7165E3" height="22" width="22" xmlns="http://www.w3.org/2000/svg">
                                                     <path d="M396 512a112 112 0 1 0 224 0 112 112 0 1 0-224 0zm546.2-25.8C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 0 0 0 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM508 688c-97.2 0-176-78.8-176-176s78.8-176 176-176 176 78.8 176 176-78.8 176-176 176z">
                                                     </path>
                                                 </svg>

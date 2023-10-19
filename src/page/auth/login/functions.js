@@ -1,6 +1,9 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const url = "https://test-mlf1.onrender.com/api/user/login"
+const appOrigin = window.location.origin;
+
 export async function login(email, pwd) {
     let result;
     const authOptions = {
@@ -23,4 +26,10 @@ export async function login(email, pwd) {
             }
         })
     return result;
+}
+
+export async function logUserOut(redirect) {
+    const currentValue = Cookies.get(appOrigin);
+    if (currentValue) Cookies.remove(appOrigin);
+    redirect('/login')
 }
