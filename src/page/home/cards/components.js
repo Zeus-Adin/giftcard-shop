@@ -319,3 +319,94 @@ export const CardSalesCalculatorBalanceButtonText = styled('div')(() => ({
     letterSpacing:'.1rem',
     fontSize:'1.4rem'
 }))
+
+
+export const UploadFileBtnWrapper = styled('div')(() => ({
+    flexWrap: 'wrap',
+    gap: '1.6rem',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+export const UploadFileBtnContent = styled('label')(() => ({
+    color: '#4F4F4F',
+    fontSize:'1.3rem',
+    fontFamily: "CeraPro-Medium,-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    letterSpacing: "1.6rem",
+    gap: '2rem',
+    position: 'relative',
+}))
+export const UploadFileBtn = styled('input')(() => ({
+    opacity: '0',
+    pointerEvents: 'none',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+}))
+export const UploadFileBtnText = styled('p')(() => ({
+    fontSize: '0.9rem',
+    fontFamily: "var(--fonts-medium)",
+    textAlign: 'center',
+    lineHeight: '1.6rem',
+    color: 'var(--colors-blue)',
+    letterSpacing: '0.2px',
+    textDecoration: 'none',
+}))
+export const UploadFileBtnTextWrap = styled('div')(() => ({
+    width: '9rem',
+    height: '9rem',
+    borderRadius: '1.6rem',
+    border: '1px dashed #7165E3',
+    backgroundColor: '#EBE9FB',
+    cursor: 'pointer',
+    gap: '1.6rem',
+    flexDirection: 'column',
+    flexWrap: 'nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+}))
+export const UploadFileBtnWrap = styled('div')(() => ({
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+export const UploadFileBtnWraps = styled('div')(() => ({
+    flexWrap: 'wrap',
+    gap: '1.6rem',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+
+export const ProceedButtonWrapper = styled('div')(() => ({
+    justifyContent: 'flex-start',
+    flexWrap: 'nowrap',
+    alignItems: 'center',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+export const ProceedButtonWrap = styled('div')(() => ({
+    marginRight: '2.4rem',
+    width: '5rem',
+    height: '5rem',
+    cursor: 'pointer',
+    gap: '.8rem',
+    flexWrap: 'nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+export const ProceedButtonWrapText = styled('p')(() => ({
+    fontFamily: "CeraPro-Medium,-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    textAlign: 'left',
+    fontSize: ".8rem",
+    lineHeight: '1.6rem',
+    letterSpacing: '0.2px',
+    textSecoration: 'none',
+}))
