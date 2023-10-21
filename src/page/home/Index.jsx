@@ -32,14 +32,8 @@ const Home = ({ authed, redirect }) => {
     }
 
     const AppBar = styled('div')(({ }) => ({
-        justifyContent: 'flex-start',
-        alignItems: 'stretch',
-        flexWrap: 'nowrap',
-        flexDirection: 'row',
-        width: '100%',
+        position: 'relative',
         height: '100vh',
-        display: 'flex',
-        backgroundColor: 'white'
     }))
 
     // Desktop Side Bar Component
@@ -431,7 +425,7 @@ const Home = ({ authed, redirect }) => {
             </Grid>
 
             {/* Main Side Bar */}
-            {selectedMenueTab === 1 && tradeCard === false && selectedCard === false && <DashBoard navTradeCard={navTradeCard} />}
+            {selectedMenueTab === 1 && tradeCard === false && selectedCard === false && <DashBoard navTradeCard={navTradeCard} redirect={redirect} />}
             {selectedMenueTab === 1 && tradeCard === true && selectedCard === false && <TradeCard navTradeCard={navTradeCard} navSellCard={navSellCard} />}
             {selectedMenueTab === 1 && tradeCard === true && selectedCard === true && <SelectCard navSellCard={navSellCard} redirect={redirect} />}
 
