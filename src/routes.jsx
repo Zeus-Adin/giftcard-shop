@@ -4,7 +4,7 @@ import Register from "./page/auth/register/Index";
 import ForgotPassword from "./page/auth/resetpassword/index";
 import Home from "./page/home/Index";
 import PageNotFound404 from "./page/home/404";
-import Steam from "./page/home/cards/steam";
+import Sell from "./page/home/cards/sell";
 import Email_Verification from "./page/auth/email-verification/Email-Verification";
 import AlertBox from "./component/errorbox/AlertBox";
 import { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 
 const allowedPath = [
     '/', '/dashboard', '/login', '/register', '/forgotpassword', '/email-verification',
-    '/steam'
+    '/sell'
 ]
 
 const appOrigin = window.location.origin;
@@ -69,7 +69,7 @@ const Routes = ({ path, redirect, authed }) => {
                 {path === "/register" && <Register redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setActivationKey={setActivationKey} />}
                 {path === "/forgotpassword" && <ForgotPassword redirect={redirect} />}
                 {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
-                {path === "/steam" && <Steam redirect={redirect} />}
+                {path === "/sell" && <Sell redirect={redirect} />}
                 {!allowedPath.includes(path) && <PageNotFound404 />}
             </div>
             <AlertBox open={alertBox} title={alertText.title} paragraph={alertText.paragraph} reason={alertText.reason} handleClose={handleCloseAlertBox} />

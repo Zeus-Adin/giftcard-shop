@@ -221,7 +221,7 @@ const SelectCard = ({ navSellCard, redirect }) => {
                                         <CardItermWrapper>
                                             <CardItermInnerWrapper>
                                                 {svg}
-                                                <CardItermContentWrapper onClick={()=>redirect(`/${path}`)}>
+                                                <CardItermContentWrapper onClick={()=>redirect(`/sell?card=${path}&label=${label}`)}>
                                                     <CardItermContentText>{label}</CardItermContentText>
                                                     <CardItermContentImage src={`/icon/${icon}`} />
                                                 </CardItermContentWrapper>
