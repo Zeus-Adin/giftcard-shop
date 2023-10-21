@@ -288,3 +288,34 @@ export const CardSalesCalculatorBalanceSubText = styled('p')(() => ({
     letterSpacing: '0.2px',
     textDecoration: 'none',
 }))
+export const CardSalesCalculatorBalanceButtonWrapper = styled('div')(() => ({
+    flexWrap: 'nowrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    display: 'flex',
+}))
+export const CardSalesCalculatorBalanceButton = styled('button')(() => ({
+    all: 'unset',
+    position: 'relative',
+    display: 'flex',
+    flexShrink: '0',
+    flexGrow: '0',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    fontFamily: "CeraPro-Medium,-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'",
+    whiteSpaceCollapse: 'collapse',
+    textWrap: 'nowrap',
+    gap: '1.6rem',
+    transition: 'all 0.2s ease-in-out 0s',
+}))
+export const CardSalesCalculatorBalanceButtonText = styled('div')(() => ({
+    position: 'absolute',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1.6rem',
+    fontWeight:'455',
+    letterSpacing:'.1rem',
+    fontSize:'1.4rem'
+}))
