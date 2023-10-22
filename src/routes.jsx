@@ -67,7 +67,7 @@ const Routes = ({ path, redirect, authed }) => {
                 {path === "/dashboard" && <Home redirect={redirect} authed={authed} />}
                 {path === "/login" && <Login redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} isActive={isActive} />}
                 {path === "/register" && <Register redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setActivationKey={setActivationKey} />}
-                {path === "/forgotpassword" && <ForgotPassword redirect={redirect} />}
+                {path === "/forgot-password" && <ForgotPassword redirect={redirect} />}
                 {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
                 {path === "/sell" && <Sell redirect={redirect} />}
                 {!allowedPath.includes(path) && <PageNotFound404 />}
