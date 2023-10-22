@@ -1,6 +1,7 @@
 import { Button, Fab, Grid, Menu, MenuItem, Select } from "@mui/material";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import CircularProgress from '@mui/material/CircularProgress';
 
 import {
     // Mobile Header Components
@@ -35,7 +36,6 @@ const Sell = ({ redirect }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const [openSelectCurrency, setOpenSelectCurrency] = useState(false);
     const [selectedCurrency, setSelectedCurrency] = useState('');
-    const [calcRateValue, setCalcRateValue] = useState(0);
     const [rate, setRate] = useState(710);
 
     const [proceed, setProceed] = useState(false);

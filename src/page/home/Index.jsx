@@ -410,11 +410,10 @@ const Home = ({ authed, redirect }) => {
                                     ? <>
                                         <svg width="5" height="6" viewBox="0 0 5 6" fill="none"><circle cx="2.5" cy="3" r="2.5" fill="#7165E3"></circle></svg>
                                         <MobileLeftSideInnerBarItemsContentText
-                                        // onClick={() => setSelectedMenueTab(5)}
                                         >Profile</MobileLeftSideInnerBarItemsContentText>
                                     </>
                                     : <MobileLeftSideInnerBarItemsContentImage src="/svg/profile.svg"
-                                    // onClick={() => setSelectedMenueTab(5)} 
+                                    onClick={() => setSelectedMenueTab(5)} 
                                     />
                                 }
                             </MobileLeftSideInnerBarItemsContent>
