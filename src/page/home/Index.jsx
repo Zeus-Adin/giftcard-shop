@@ -11,11 +11,14 @@ import Profile from "./profile";
 import { Grid } from "@mui/material";
 import TradeCard from "./dashboard/trade-card";
 import SelectCard from "./dashboard/selectcard";
+import Cookies from "js-cookie";
 
+const appOrigin = window.location.origin;
 const Home = ({ authed, redirect }) => {
     const [selectedMenueTab, setSelectedMenueTab] = useState(1);
     const [tradeCard, setTradeCard] = useState(false);
     const [selectedCard, setSelectedCard] = useState(false);
+    const [userData, setUserData] = useState({});
 
     function navTradeCard() {
         console.log('fired trade-card');
@@ -30,6 +33,15 @@ const Home = ({ authed, redirect }) => {
     if (!authed) {
         redirect('/');
     }
+
+    useEffect(() => {
+        const session = Cookies.get(appOrigin);
+        if (session) {
+            setUserData(JSON.parse(session));
+        } else {
+            redirect('/login');
+        }
+    }, [])
 
     const AppBar = styled('div')(({ }) => ({
         position: 'relative',
@@ -413,7 +425,7 @@ const Home = ({ authed, redirect }) => {
                                         >Profile</MobileLeftSideInnerBarItemsContentText>
                                     </>
                                     : <MobileLeftSideInnerBarItemsContentImage src="/svg/profile.svg"
-                                    onClick={() => setSelectedMenueTab(5)} 
+                                        onClick={() => setSelectedMenueTab(5)}
                                     />
                                 }
                             </MobileLeftSideInnerBarItemsContent>
@@ -429,11 +441,11 @@ const Home = ({ authed, redirect }) => {
             {selectedMenueTab === 1 && tradeCard === true && selectedCard === true && <SelectCard navSellCard={navSellCard} redirect={redirect} />}
 
 
-            {selectedMenueTab === 2 && <Activities />}
-            {selectedMenueTab === 3 && <Wallet />}
-            {selectedMenueTab === 4 && <Support />}
-            {selectedMenueTab === 5 && <Profile />}
-            {selectedMenueTab === 6 && <Security />}
+            {selectedMenueTab === 2 && <Activities redirect={redirect} />}
+            {selectedMenueTab === 3 && <Wallet redirect={redirect} />}
+            {selectedMenueTab === 4 && <Support redirect={redirect} />}
+            {selectedMenueTab === 5 && <Profile redirect={redirect} />}
+            {selectedMenueTab === 6 && <Security redirect={redirect} />}
         </AppBar>
     )
 }

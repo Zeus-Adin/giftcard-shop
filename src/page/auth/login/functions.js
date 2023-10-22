@@ -4,6 +4,10 @@ import Cookies from "js-cookie";
 const url = "https://test-mlf1.onrender.com/api/user/login"
 const appOrigin = window.location.origin;
 
+function redirect(path) {
+    window.location.href = `${window.location.origin}${path}`;
+}
+
 export async function login(email, pwd) {
     let result;
     const authOptions = {
@@ -28,7 +32,7 @@ export async function login(email, pwd) {
     return result;
 }
 
-export async function logUserOut(redirect) {
+export async function logUserOut() {
     const currentValue = Cookies.get(appOrigin);
     if (currentValue) Cookies.remove(appOrigin);
     redirect('/login')

@@ -27,15 +27,6 @@ const appOrigin = window.location.origin;
 const DashBoard = ({ navTradeCard, redirect }) => {
     const [userData, setUserData] = useState(null);
 
-    useEffect(() => {
-        // const session = Cookies.get(appOrigin);
-        // if (session) {
-        //     setUserData(JSON.parse(session));
-        // } else {
-        //     redirect('/login');
-        // }
-    }, [])
-
     return (
         <>
             {/* Mobile View */}

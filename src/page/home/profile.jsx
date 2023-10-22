@@ -7,12 +7,10 @@ import {
     FunctionsText, FunctionsImageWrap
 
 } from "./components";
+import { logUserOut } from "../auth/login/functions"
 
-const AppBar = styled('div')(() => ({
-    position: 'relative',
-    height: '100vh',
-}))
-const Profile = () => {
+
+const Profile = ({redirect}) => {
 
     return (
         <ProfileWrapper>
@@ -87,12 +85,11 @@ const Profile = () => {
 
                                 <FunctionsContent>
                                     <FunctionsTextImage>
-                                        <FunctionsImageWrap style={{ backgroundColor: '#E81313' }}>
+                                        <FunctionsImageWrap style={{ backgroundColor: '#E81313' }} onClick={logUserOut}>
                                             <AvatarNavButtonImage src="/svg/logout.svg" />
                                         </FunctionsImageWrap>
                                         <FunctionsText>Logout</FunctionsText>
                                     </FunctionsTextImage>
-                                    <AvatarNavButtonImage src="/svg/arrow-right.svg" />
                                 </FunctionsContent>
 
                                 <FunctionsContent>
@@ -102,7 +99,6 @@ const Profile = () => {
                                         </FunctionsImageWrap>
                                         <FunctionsText>Delete Account</FunctionsText>
                                     </FunctionsTextImage>
-                                    <AvatarNavButtonImage src="/svg/arrow-right.svg" />
                                 </FunctionsContent>
 
                             </FunctionsContainer>
