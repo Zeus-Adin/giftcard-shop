@@ -138,7 +138,7 @@ const MobileView = ({ redirect }) => {
             {/* Header */}
             <MobileLogoGrid item xs={12} position={'fixed'}>
                 <MobileLogoGrid item xs={5}>
-                    <MobileBackButton onClick={() => redirect('/')}>
+                    <MobileBackButton onClick={() => redirect('/login')}>
                         <NavigateBeforeIcon />
                     </MobileBackButton>
                 </MobileLogoGrid>

@@ -15,10 +15,10 @@ const ForgotPassword = ({ redirect }) => {
     return (
         <AppBar>
             {/* Mobile View */}
-            <MobileView />
+            <MobileView redirect={redirect}/>
 
             {/* Desktop View */}
-            <DesktopView />
+            <DesktopView redirect={redirect}/>
         </AppBar>
     )
 }

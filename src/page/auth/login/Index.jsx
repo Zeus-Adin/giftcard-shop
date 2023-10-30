@@ -31,7 +31,7 @@ import { useEffect, useState } from "react";
 import { login } from "./functions";
 import Cookies from "js-cookie";
 import { logUserOut } from "../register/functions";
-
+import CircularProgress from '@mui/material/CircularProgress';
 
 const AppGrid = styled('div')(({ }) => ({
     position: 'relative',
@@ -44,7 +44,7 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
     const [emailValue, setEmailValue] = useState('');
     const [passwordValue, setPasswordValue] = useState('');
     const [submitBtn, setSubmitBtn] = useState(true);
-
+    const [loading, setLoading] = useState(false);
     function handleTextChange(e) {
         const { name, value } = e.target;
         switch (name) {
@@ -63,6 +63,7 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
     }
 
     async function authenticate() {
+        setLoading(true);
         const { authstate, result, message } = await login(emailValue, passwordValue)
         if (authstate) {
             setSubmitBtn(true);
@@ -73,6 +74,7 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
         if (!authstate) {
             setSubmitBtn(false)
             setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender: 'auth' })
+            setLoading(false)
             handleOpenAlertBox()
         }
     }
@@ -151,7 +153,7 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
                                         <path d="M0 33.6444C0 15.0631 15.0631 0 33.6444 0H207.171C224.749 0 239 14.2505 239 31.8295V31.8295C239 49.1489 225.152 63.2897 207.836 63.652L34.3481 67.2814C15.4955 67.6758 0 52.5011 0 33.6444V33.6444Z" fill="#F5CF48">
                                         </path>
                                     </svg>
-                                    <FormSubmitButtonText>Login</FormSubmitButtonText>
+                                    <FormSubmitButtonText>{loading ? <CircularProgress /> : 'Login'}</FormSubmitButtonText>
                                 </FormSubmitButton>
                                 <FormSubmitButtonSubText>Don't have an account? <FormLoginButton onClick={() => redirect('/register')}>Create an account</FormLoginButton></FormSubmitButtonSubText>
                             </FormSubmitButtonWrapper>
