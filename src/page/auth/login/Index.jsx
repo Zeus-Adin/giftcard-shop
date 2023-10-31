@@ -65,6 +65,7 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
     async function authenticate() {
         setLoading(true);
         const { authstate, result, message } = await login(emailValue, passwordValue)
+        console.log(authstate, result, message)
         if (authstate) {
             setSubmitBtn(true);
             Cookies.set(appOrigin, JSON.stringify(result[0]), { expires: 0.5 / 48 });

@@ -3,8 +3,8 @@ import { Alert, AlertTitle, Snackbar } from "@mui/material"
 const AlertBox = ({ open, handleClose, title, paragraph, reason }) => {
 
     return (
-        <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
-            <Alert severity={reason||'info'} >
+        <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} open={open} autoHideDuration={5000} onClose={handleClose}>
+            <Alert severity={reason || 'info'} >
                 <AlertTitle>{title}</AlertTitle>
                 {paragraph}
             </Alert>

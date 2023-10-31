@@ -23,12 +23,11 @@ const Routes = ({ path, redirect, authed }) => {
 
     const [isActive, setIsActive] = useState(true);
 
-    const handleOpenAlertBox = (title, paragraph, reason) => {
-        setAlertBox({ title: title, paragraph: paragraph, reason: reason })
+    const handleOpenAlertBox = () => {
         setAlertBox(true)
     }
     const handleCloseAlertBox = () => {
-        setAlertBox({ title: '', paragraph: '', reason: '' })
+        setAlertText({ title: '', paragraph: '', reason: '' })
         setAlertBox(false)
         if (alertText.reason === 'success' && alertText.sender === 'reg') redirect(`/email-verification?actKey=${activationKey}`)
         if (alertText.reason === 'success' && alertText.sender === 'verif') redirect(`/login`)
@@ -42,6 +41,7 @@ const Routes = ({ path, redirect, authed }) => {
     }
 
     useEffect(() => {
+        console.log(alertBox, alertText)
     }, [alertBox, alertText])
 
     // Activity tracker

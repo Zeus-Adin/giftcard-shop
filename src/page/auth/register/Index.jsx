@@ -35,6 +35,7 @@ import {
 } from "./components"
 import { useEffect, useState } from "react";
 import { registerUser } from './functions'
+import CircularProgress from '@mui/material/CircularProgress';
 
 const AppGrid = styled('div')(({ }) => ({
     position: 'relative',
@@ -48,11 +49,13 @@ const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [pwd, setPwd] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const [submitBtnDisable, setSubmitBtnDisable] = useState(true);
 
     const handleCreatAccount = async () => {
         setSubmitBtnDisable(true)
+        setLoading(true)
         const { act_key, reg_hash, reg_stat, reg_payload, message } = await registerUser(username, phone, email, pwd);
         if (reg_payload.username) setUsername('')
         if (reg_payload.contact) setPhone('')
@@ -63,6 +66,7 @@ const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey
             handleOpenAlertBox()
         } else {
             setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender: 'reg' })
+            setLoading(false)
             setSubmitBtnDisable(false)
             handleOpenAlertBox()
         }
@@ -181,7 +185,7 @@ const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey
                                         <path d="M0 33.6444C0 15.0631 15.0631 0 33.6444 0H207.171C224.749 0 239 14.2505 239 31.8295V31.8295C239 49.1489 225.152 63.2897 207.836 63.652L34.3481 67.2814C15.4955 67.6758 0 52.5011 0 33.6444V33.6444Z" fill="#F5CF48">
                                         </path>
                                     </svg>
-                                    <FormButtonText >Create account</FormButtonText>
+                                    <FormButtonText >{loading ? <CircularProgress /> : 'Create account'}</FormButtonText>
                                 </FormButton>
 
                                 <FormButtonSubText>Already have an account? <FormLoginSubTextButton onClick={() => redirect('/login')}>Login</FormLoginSubTextButton></FormButtonSubText>
@@ -261,7 +265,7 @@ const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey
                                                 <path d="M0 33.6444C0 15.0631 15.0631 0 33.6444 0H207.171C224.749 0 239 14.2505 239 31.8295V31.8295C239 49.1489 225.152 63.2897 207.836 63.652L34.3481 67.2814C15.4955 67.6758 0 52.5011 0 33.6444V33.6444Z" fill="#F5CF48">
                                                 </path>
                                             </svg>
-                                            <FormButtonText>Create account</FormButtonText>
+                                            <FormButtonText>{loading ? <CircularProgress /> : 'Create account'}</FormButtonText>
                                         </FormButton>
 
                                         <FormButtonSubText>Already have an account? <FormLoginSubTextButton onClick={() => redirect('/login')}>Login</FormLoginSubTextButton></FormButtonSubText>
