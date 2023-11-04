@@ -20,15 +20,14 @@ const Routes = ({ path, redirect, authed }) => {
     const [alertBox, setAlertBox] = useState(false);
     const [activationKey, setActivationKey] = useState('');
     const [alertText, setAlertText] = useState({ title: '', paragraph: '', reason: '', sender: '' });
-
     const [isActive, setIsActive] = useState(true);
 
     const handleOpenAlertBox = () => {
         setAlertBox(true)
     }
     const handleCloseAlertBox = () => {
-        setAlertText({ title: '', paragraph: '', reason: '' })
         setAlertBox(false)
+        setAlertText({ title: '', paragraph: '', reason: '' })
         if (alertText.reason === 'success' && alertText.sender === 'reg') redirect(`/email-verification?actKey=${activationKey}`)
         if (alertText.reason === 'success' && alertText.sender === 'verif') redirect(`/login`)
         if (alertText.reason === 'success' && alertText.sender === 'auth') redirect(`/dashboard`)
@@ -37,12 +36,13 @@ const Routes = ({ path, redirect, authed }) => {
         const currentValue = Cookies.get(appOrigin);
         if (currentValue) {
             Cookies.set(appOrigin, currentValue, { expires: 0.5 / 48 });
+        } else {
+            console.log('No session')
         }
     }
 
     useEffect(() => {
-        console.log(alertBox, alertText)
-    }, [alertBox, alertText])
+    }, [alertBox, alertText, isActive])
 
     // Activity tracker
     useEffect(() => {
@@ -64,11 +64,11 @@ const Routes = ({ path, redirect, authed }) => {
         <>
             {path === "/" && <Landing redirect={redirect} />}
             {path === "/dashboard" && <Home redirect={redirect} authed={authed} />}
-            {path === "/login" && <Login redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} isActive={isActive} />}
+            {path === "/login" && <Login redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
             {path === "/register" && <Register redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setActivationKey={setActivationKey} />}
             {path === "/forgot-password" && <ForgotPassword redirect={redirect} />}
             {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
-            {path === "/sell" && <Sell redirect={redirect} />}
+            {path === "/sell" && <Sell redirect={redirect}  openAlert={handleOpenAlertBox} setAlertText={setAlertText}/>}
             {!allowedPath.includes(path) && <PageNotFound404 />}
             <AlertBox open={alertBox} title={alertText.title} paragraph={alertText.paragraph} reason={alertText.reason} handleClose={handleCloseAlertBox} />
         </>
