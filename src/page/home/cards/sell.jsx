@@ -31,7 +31,7 @@ const AppBar = styled('div')(({ }) => ({
 }))
 
 const appOrigin = window.location.origin;
-const Sell = ({ redirect }) => {
+const Sell = ({ redirect, openAlert, setAlertText }) => {
     const [submitBtn, setSubmitBtn] = useState(true);
     const [selectedCardType, setSelectedCardType] = useState(0);
     const [amount, setAmount] = useState(0);
@@ -43,29 +43,19 @@ const Sell = ({ redirect }) => {
     const [proceed, setProceed] = useState(false);
     const [files, setFiles] = useState([]);
 
-    const [alertText, setAlertText] = useState({ title: '', paragraph: '', reason: '', sender: '' });
-    const [alertBox, setAlertBox] = useState(false);
-
-
     let sessionData = Cookies.get(appOrigin);
     if (!sessionData) {
         redirect('/dashboard')
     }
     sessionData = JSON.parse(sessionData);
 
-    function handleCloseAlertBox() {
-        setAlertText({ title: '', paragraph: '', reason: '', sender: '' })
-        setAlertBox(false)
-        redirect('/dashboard')
-    }
-
     async function submitRequest() {
         const { _id: id, username } = sessionData;
-        const { regTx, message } = await submitCardTxRequest({ username, id }, selectedCurrency, amount, rate, files.length, files);
+        const { regTx, message } = await submitCardTxRequest({ username, id }, selectedCurrency, amount, rate, files.length, files, selectedCurrency);
         console.log(regTx, message)
         if (regTx) {
             setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'sell' })
-            setAlertBox(true)
+            openAlert()
         } else {
 
         }
@@ -348,7 +338,6 @@ const Sell = ({ redirect }) => {
                     </ContentWrap>
                 </ContentWrapper>
             </AppBar>
-            <AlertBox open={alertBox} title={alertText.title} paragraph={alertText.paragraph} reason={alertText.reason} handleClose={handleCloseAlertBox} />
         </>
     )
 }

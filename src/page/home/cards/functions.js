@@ -3,7 +3,7 @@ import axios from "axios";
 const url = "https://test-mlf1.onrender.com/api/register/giftcard/tx"
 // const url = "http://localhost:3001/api/register/giftcard/tx"
 
-export async function submitCardTxRequest(user, cardCurrency, amount, rate, fileCount, files) {
+export async function submitCardTxRequest(user, cardCurrency, amount, rate, fileCount, files, currency) {
     let result;
     const txOptions = {
         user: user,
@@ -12,7 +12,8 @@ export async function submitCardTxRequest(user, cardCurrency, amount, rate, file
         rate: rate,
         fileCount: fileCount,
         files: files,
-        status: 'pending'
+        status: 'pending',
+        currency: currency
     }
     await axios.post(url, txOptions)
         .then(res => {

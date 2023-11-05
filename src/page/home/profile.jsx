@@ -34,7 +34,7 @@ const Profile = ({redirect}) => {
                             <FunctionsContainer>
 
                                 <FunctionsContent>
-                                    <FunctionsTextImage>
+                                    <FunctionsTextImage onClick={()=>redirect('/manage-banks')}>
                                         <FunctionsImageWrap>
                                             <AvatarNavButtonImage src="/svg/banks.svg" />
                                         </FunctionsImageWrap>

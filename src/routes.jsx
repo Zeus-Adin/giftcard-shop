@@ -9,10 +9,11 @@ import Email_Verification from "./page/auth/email-verification/Email-Verificatio
 import AlertBox from "./component/errorbox/AlertBox";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
+import ManageBanks from "./page/manage_banks";
 
 const allowedPath = [
     '/', '/dashboard', '/login', '/register', '/forgotpassword', '/email-verification',
-    '/sell'
+    '/sell', '/manage-banks'
 ]
 
 const appOrigin = window.location.origin;
@@ -31,6 +32,7 @@ const Routes = ({ path, redirect, authed }) => {
         if (alertText.reason === 'success' && alertText.sender === 'reg') redirect(`/email-verification?actKey=${activationKey}`)
         if (alertText.reason === 'success' && alertText.sender === 'verif') redirect(`/login`)
         if (alertText.reason === 'success' && alertText.sender === 'auth') redirect(`/dashboard`)
+        if (alertText.reason === 'success' && alertText.sender === 'sell') redirect(`/dashboard`)
     }
     function handleActivity() {
         const currentValue = Cookies.get(appOrigin);
@@ -69,6 +71,7 @@ const Routes = ({ path, redirect, authed }) => {
             {path === "/forgot-password" && <ForgotPassword redirect={redirect} />}
             {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
             {path === "/sell" && <Sell redirect={redirect}  openAlert={handleOpenAlertBox} setAlertText={setAlertText}/>}
+            {path === "/manage-banks" && <ManageBanks redirect={redirect}  openAlert={handleOpenAlertBox} setAlertText={setAlertText}/>}
             {!allowedPath.includes(path) && <PageNotFound404 />}
             <AlertBox open={alertBox} title={alertText.title} paragraph={alertText.paragraph} reason={alertText.reason} handleClose={handleCloseAlertBox} />
         </>
