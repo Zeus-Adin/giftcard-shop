@@ -212,7 +212,7 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
                                                 <path d="M0 33.6444C0 15.0631 15.0631 0 33.6444 0H207.171C224.749 0 239 14.2505 239 31.8295V31.8295C239 49.1489 225.152 63.2897 207.836 63.652L34.3481 67.2814C15.4955 67.6758 0 52.5011 0 33.6444V33.6444Z" fill="#F5CF48">
                                                 </path>
                                             </svg>
-                                            <FormButtonText>{loading ? <CircularProgress /> : 'Submit'}</FormButtonText>
+                                            <FormButtonText>{loading ? <CircularProgress /> : 'Login'}</FormButtonText>
                                         </FormButton>
 
                                         <FormButtonSubText>Don't have an account? <FormLoginSubTextButton onClick={() => redirect('/register')}>Create an account</FormLoginSubTextButton></FormButtonSubText>
