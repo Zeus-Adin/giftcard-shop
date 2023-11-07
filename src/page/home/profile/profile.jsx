@@ -20,7 +20,7 @@ const Profile = ({ redirect }) => {
                         <Grid sx={{ display: { md: 'flex', lg: 'none', xl: 'none', xs: 'flex', sm: 'flex', alignItems: 'center', justifyContent: 'center' } }}>
                             <Title>Account</Title>
                         </Grid>
-                        
+
                         <Container>
 
                             <AvatarContainer>
@@ -88,7 +88,7 @@ const Profile = ({ redirect }) => {
 
                                 <FunctionsContent>
                                     <FunctionsTextImage>
-                                        <FunctionsImageWrap style={{ backgroundColor: '#E81313' }} onClick={logUserOut}>
+                                        <FunctionsImageWrap onClick={logUserOut}>
                                             <AvatarNavButtonImage src="/svg/logout.svg" />
                                         </FunctionsImageWrap>
                                         <FunctionsText>Logout</FunctionsText>
@@ -97,7 +97,7 @@ const Profile = ({ redirect }) => {
 
                                 <FunctionsContent>
                                     <FunctionsTextImage>
-                                        <FunctionsImageWrap style={{ backgroundColor: '#E81313' }}>
+                                        <FunctionsImageWrap >
                                             <AvatarNavButtonImage src="/svg/delete.svg" />
                                         </FunctionsImageWrap>
                                         <FunctionsText>Delete Account</FunctionsText>

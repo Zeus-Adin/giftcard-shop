@@ -30,7 +30,6 @@ import {
 import { useEffect, useState } from "react";
 import { login } from "./functions";
 import Cookies from "js-cookie";
-import { logUserOut } from "../register/functions";
 import CircularProgress from '@mui/material/CircularProgress';
 
 const AppGrid = styled('div')(({ }) => ({

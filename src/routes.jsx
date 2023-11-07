@@ -57,7 +57,7 @@ const Routes = ({ path, redirect, authed }) => {
         if (alertText.reason === 'success' && alertText.sender === 'reg') redirect(`/email-verification?actKey=${activationKey}`)
         if (alertText.reason === 'success' && alertText.sender === 'verif') redirect(`/login`)
         if (alertText.reason === 'success' && alertText.sender === 'auth') redirect(`/dashboard`)
-        if (alertText.reason === 'success' && alertText.sender === 'sell') redirect(`/dashboard`)
+        if (alertText.reason === 'success' && alertText.sender === 'sell') redirect(`/cards`)
     }
     function handleActivity() {
         const currentValue = Cookies.get(appOrigin);
