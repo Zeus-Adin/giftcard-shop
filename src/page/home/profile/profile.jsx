@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import { Grid } from "@mui/material";
 import {
     ProfileWrapper, ProfileWrap, ProfileWraps, ProfileContents,
     Title, Container, AvatarContainer, AvatarBox, AvatarNavButtonImage,
@@ -7,17 +7,20 @@ import {
     FunctionsText, FunctionsImageWrap
 
 } from "./components";
-import { logUserOut } from "../auth/login/functions"
+import { logUserOut } from "../../auth/login/functions"
 
 
-const Profile = ({redirect}) => {
+const Profile = ({ redirect }) => {
 
     return (
         <ProfileWrapper>
             <ProfileWrap>
                 <ProfileWraps>
                     <ProfileContents>
-                        <Title>Account</Title>
+                        <Grid sx={{ display: { md: 'flex', lg: 'none', xl: 'none', xs: 'flex', sm: 'flex', alignItems: 'center', justifyContent: 'center' } }}>
+                            <Title>Account</Title>
+                        </Grid>
+                        
                         <Container>
 
                             <AvatarContainer>
@@ -34,7 +37,7 @@ const Profile = ({redirect}) => {
                             <FunctionsContainer>
 
                                 <FunctionsContent>
-                                    <FunctionsTextImage onClick={()=>redirect('/manage-banks')}>
+                                    <FunctionsTextImage onClick={() => redirect('/manage-banks')}>
                                         <FunctionsImageWrap>
                                             <AvatarNavButtonImage src="/svg/banks.svg" />
                                         </FunctionsImageWrap>

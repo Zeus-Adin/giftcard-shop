@@ -115,14 +115,14 @@ export const AccountCard = styled('div')(() => (`
     display: flex;
 `))
 
-export const Card = styled('div')(() => (`
-    box-shadow: none;
+export const Card = styled('div')(({ active }) => (`
+    box-shadow: ${active ? 'rgb(242, 159, 58) 0px 0px 0px 2px' : 'none'};
     justify-content: flex-start;
     align-items: stretch;
     flex-wrap: nowrap;
     flex-direction: row;
     width: 28rem;
-    height: 14rem;
+    height: 15rem;
     border-radius: 2.4rem;
     overflow: hidden;
     position: relative;

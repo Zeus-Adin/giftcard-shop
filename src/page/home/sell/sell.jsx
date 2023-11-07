@@ -23,7 +23,6 @@ import {
 } from "./components";
 import Cookies from 'js-cookie';
 import { submitCardTxRequest } from './functions';
-import AlertBox from '../../../component/errorbox/AlertBox';
 
 const AppBar = styled('div')(({ }) => ({
     position: 'relative',

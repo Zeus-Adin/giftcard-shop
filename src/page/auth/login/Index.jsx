@@ -64,16 +64,16 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
 
     async function authenticate() {
         setLoading(true);
-        const { authstate, result, message } = await login(emailValue, passwordValue)
-        if (authstate) {
+        const res = await login(emailValue, passwordValue)
+        if (res.authstate) {
             setSubmitBtn(true);
-            Cookies.set(appOrigin, JSON.stringify(result[0]), { expires: 0.5 / 48 });
-            setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'auth' })
+            Cookies.set(appOrigin, JSON.stringify(res.result[0]), { expires: 0.5 / 48 });
+            setAlertText({ title: 'Success', paragraph: res.message, reason: 'success', sender: 'auth' })
             handleOpenAlertBox()
         }
-        if (!authstate) {
+        if (!res.authstate) {
             setSubmitBtn(false)
-            setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender: 'auth' })
+            setAlertText({ title: 'Error', paragraph: res.message, reason: 'error', sender: 'auth' })
             setLoading(false)
             handleOpenAlertBox()
         }
