@@ -181,7 +181,7 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
                                             <FormInputWrap>
                                                 <FormInputContent>
                                                     <FormInputLabel>Email address</FormInputLabel>
-                                                    <FormInputBox placeholder="e.g you@email.com" name="email" required onBlur={handleTextChange} />
+                                                    <FormInput name="email" type="email" onChange={handleTextChange} placeholder="e.g you@email.com" />
                                                 </FormInputContent>
                                             </FormInputWrap>
                                         </FormInputWrapper>
@@ -190,7 +190,7 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
                                             <FormInputWrap>
                                                 <FormInputContent>
                                                     <FormInputLabel>Password</FormInputLabel>
-                                                    <FormInputBox placeholder="e.g johndoe" type="password" name="pwd" required onBlur={handleTextChange} />
+                                                    <FormInput name="pwd" type={passwordType} onChange={handleTextChange} placeholder="******" />
                                                 </FormInputContent>
                                                 <FormToggleButton>
                                                     <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" color="#7165E3" height="22" width="22" xmlns="http://www.w3.org/2000/svg" >
