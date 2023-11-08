@@ -12,7 +12,7 @@ import {
 
 } from './components'
 
-const DashBoard = ({ redirect }) => {
+const DashBoard = ({ redirect, openWithdrawModal }) => {
 
     return (
         <>
@@ -48,7 +48,7 @@ const DashBoard = ({ redirect }) => {
                                         </SubHeaderWalletBalanceHeaderWrapper>
                                     </SubHeaderWalletBalanceTextWrapper>
                                     <WithdrawBtnWrapper>
-                                        <WithdrawBtn>
+                                        <WithdrawBtn onClick={() => openWithdrawModal()}>
                                             <svg width="100%" height="47" viewBox="0 0 127 47" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M1.60451e-06 23.2329C7.18362e-07 10.4017 10.4017 0 23.2329 0H106.426C117.789 0 127 9.21126 127 20.5739C127 31.4265 118.57 40.4128 107.74 41.1058L24.7165 46.4184C11.329 47.2751 2.53096e-06 36.6478 1.60451e-06 23.2329Z" fill="#F5CF48">
                                                 </path>
@@ -92,7 +92,7 @@ const DashBoard = ({ redirect }) => {
                         </QuickActionsWrapper>
 
                         <QuickActionsWrap onClick={() => redirect('/trade-cards')}>
-                            <img width="100%" class="bg" src="/svg/dashboard-trade.svg" alt="" />
+                            <img width="100%" src="/svg/dashboard-trade.svg" alt="" />
                             <QuickActionsSubText>Trade <br /><br /> Gift Cards</QuickActionsSubText>
                         </QuickActionsWrap>
 

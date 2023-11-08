@@ -51,7 +51,7 @@ export const NavContentWrapper = styled('div')(() => (`
     display: flex;
 `))
 export const NavContentWrap = styled('div')(({ active }) => (`
-    background-color: ${active ? '#7165E3' : 'rgb(248, 247, 254)'};
+    background-color: ${active};
     border-radius: 6rem;
     padding: 1rem;
     justify-content: space-between;
@@ -79,7 +79,7 @@ export const NavImage = styled('img')(() => (`
 export const NavImageText = styled('p')(({ active }) => (`
     width: 100%;
     white-space: nowrap;
-    color: ${active ? '#FFFFFF' : '#7165E3'};
+    color: ${active};
     font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     text-align: left;
     line-height: 1.6rem;
@@ -88,7 +88,7 @@ export const NavImageText = styled('p')(({ active }) => (`
 `))
 
 // Mobile
-export const MobileNavWrapper = styled('div')(()=>(`
+export const MobileNavWrapper = styled('div')(() => (`
     width: 100%;
     position: fixed;
     left: 0px;
@@ -97,21 +97,21 @@ export const MobileNavWrapper = styled('div')(()=>(`
     background-color: white;
     border-top: 1px solid rgba(64, 0, 255, 0.2); 
 `))
-export const MobileNavWrap = styled('div')(()=>(`
+export const MobileNavWrap = styled('div')(() => (`
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
     display: flex;
 `))
-export const MobileNavContentWrap = styled('div')(()=>(`
+export const MobileNavContentWrap = styled('div')(() => (`
     justify-content: flex-start;
     align-items: stretch;
     flex-wrap: nowrap;
     flex-direction: row;
     display: flex;
 `))
-export const MobileNavContent = styled('div')(()=>(`
+export const MobileNavContent = styled('div')(() => (`
     gap: .4rem;
     justify-content: flex-start;
     flex-wrap: nowrap;
@@ -119,7 +119,7 @@ export const MobileNavContent = styled('div')(()=>(`
     flex-direction: row;
     display: flex;
 `))
-export const MobileNavContentText = styled('p')(({active})=>(`
+export const MobileNavContentText = styled('p')(({ active }) => (`
     font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
     text-align: left;
     font-size: 0.8rem;
@@ -128,7 +128,7 @@ export const MobileNavContentText = styled('p')(({active})=>(`
     letter-spacing: 0.2px;
     text-decoration: none;
 `))
-export const MobileNavContentImage = styled('img')(({active})=>(`
+export const MobileNavContentImage = styled('img')(({ active }) => (`
     height: 2.2rem;
     width: 2.2rem;
     opacity: 0.5;

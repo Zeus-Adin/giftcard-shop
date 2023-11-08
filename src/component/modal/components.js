@@ -178,3 +178,68 @@ export const AccountText = styled('p')(() => (`
     letter-spacing: 0.2px;
     text-decoration: none;
 `))
+
+export const WithdrawalWrapper = styled('div')(() => (`
+    gap: 2.4rem;
+    justify-content: flex-start;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    display: flex;
+    margin-top: 4rem;
+`))
+
+export const WithdrawalAmountTextWrapper = styled('div')(() => (`
+    justify-content: flex-start;
+    gap: .8rem;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+`))
+
+export const WithdrawalAmountText = styled('p')(() => (`
+    color: rgb(215, 208, 218);
+    font-size: 4rem;
+    text-align: left;
+    font-family: CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+    font-weight: 600;
+`))
+
+export const WithdrawalNumberKeysWrapper = styled('div')(() => (`
+    width: 20rem;
+    margin-top: 2rem;
+    row-gap: 4rem;
+    gap: 1.6rem;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    display: flex;
+`))
+
+export const WithdrawalNumberRowOneWrapper = styled('div')(() => (`
+    gap: 1.6rem;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+`))
+
+export const WithdrawalNumberText = styled('p')(() => (`
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    color: #3F1E4B;
+    font-size: 1.6rem;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))

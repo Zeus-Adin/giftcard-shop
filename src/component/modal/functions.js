@@ -31,7 +31,7 @@ export async function getAccounts(id, username) {
         const response = (await axios(options)).data;
         return response
     } catch (error) {
-        return null
+        return { accounts: [] }
     }
 }
 

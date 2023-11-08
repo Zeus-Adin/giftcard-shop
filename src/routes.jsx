@@ -9,13 +9,16 @@ import Email_Verification from "./page/auth/email-verification/Email-Verificatio
 import AlertBox from "./component/errorbox/AlertBox";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import ManageBanks from "./page/manage_banks";
+
 
 import BankModal from "./component/modal/BankModal";
 import DepositModal from "./component/modal/DepositModal";
 import WithdrawModal from "./component/modal/WithdrawModal";
 import TradeCard from "./page/home/trade-cards/trade-card";
 import SelectCard from "./page/home/cards/selectcard";
+
+import ManageBanks from "./page/home/manage_banks";
+
 
 const allowedPath = [
     '/', '/login', '/register', '/forgotpassword', '/email-verification',
@@ -43,7 +46,7 @@ const Routes = ({ path, redirect, authed }) => {
     function closeDepositModal() { setShowDepositModal(false); }
 
     const [showWithdrawModal, setShowWithdrawModal] = useState(false);
-    function openWithdrawModal() { setShowWithdrawModal(true); }
+    function openWithdrawModal() {setShowWithdrawModal(true); }
     function closeWithdrawModal() { setShowWithdrawModal(false); }
 
 
@@ -95,7 +98,7 @@ const Routes = ({ path, redirect, authed }) => {
             {path === "/forgot-password" && <ForgotPassword redirect={redirect} />}
             {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
 
-            {path === "/dashboard" && <Home redirect={redirect} authed={authed} />}
+            {path === "/dashboard" && <Home redirect={redirect} authed={authed} openWithdrawModal={openWithdrawModal}/>}
             {path === '/cards' && <SelectCard redirect={redirect} authed={authed} />}
             {path === '/trade-cards' && <TradeCard redirect={redirect} authed={authed} />}
             {path === "/sell" && <Sell redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}

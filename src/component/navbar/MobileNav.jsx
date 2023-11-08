@@ -1,6 +1,5 @@
 import { Grid } from "@mui/material";
 import { MobileNavContent, MobileNavContentImage, MobileNavContentText, MobileNavContentWrap, MobileNavWrap, MobileNavWrapper, NavContent } from "./components";
-import styled from "styled-components";
 
 const MobileNavBar = ({ selectedNav, setSelectedNav }) => {
 
@@ -22,9 +21,9 @@ const MobileNavBar = ({ selectedNav, setSelectedNav }) => {
             <MobileNavWrapper>
                 <MobileNavWrap>
                     {navImages.map(({ label, action, nonactive }, i) => (
-                        <>
+                        <div key={i}>
                             {selectedNav === i
-                                ? <MobileNavContentWrap>
+                                ? <MobileNavContentWrap >
                                     <MobileNavContent>
                                         {active}
                                         <MobileNavContentText>{label}</MobileNavContentText>
@@ -32,7 +31,7 @@ const MobileNavBar = ({ selectedNav, setSelectedNav }) => {
                                 </MobileNavContentWrap>
                                 : <NavContent onClick={() => action(i)}><MobileNavContentImage src={nonactive} /></NavContent>
                             }
-                        </>
+                        </div>
                     ))}
                 </MobileNavWrap>
             </MobileNavWrapper>

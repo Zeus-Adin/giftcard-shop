@@ -22,9 +22,7 @@ import {
 } from "./components";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { getAccounts } from "../../component/modal/functions";
-import { ContentsHolder } from "../home/sell/components";
-
+import { getAccounts } from "../../../component/modal/functions";
 
 const AppBar = styled('div')(() => (
     `
@@ -46,6 +44,7 @@ const ManageBanks = ({ redirect, openBankModal }) => {
 
     async function init() {
         const account = await getAccounts(session._id, session.username);
+        console.log(account)
         if (account.accounts) {
             setAccounts(account.accounts);
         }
