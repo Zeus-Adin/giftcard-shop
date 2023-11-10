@@ -1,16 +1,62 @@
 import { useEffect, useState } from "react";
 import BaseModal from "./baseModal";
 import { WithdrawalAmountText, WithdrawalAmountTextWrapper, WithdrawalNumberKeysWrapper, WithdrawalNumberRowOneWrapper, WithdrawalNumberText, WithdrawalWrapper } from "./components";
+import { Alert } from "@mui/material";
+import Cookies from 'js-cookie'
 
-const WithdrawModal = ({ show, close }) => {
+import PinModal from "../../component/modal/PinModal";
+import CreatePinModal from "./CreatePinModal";
+
+const currencySvg = <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.03846 22V0H8.09508L15.4972 14.2371V0H20.2188V22H15.1622L7.76 7.76286V22H3.03846Z" fill="#3F1E4B"></path><path d="M0.5 10.0882V6.11111H22.5V10.0882H0.5ZM0.5 16.5873V12.6102H22.5V16.5873H0.5Z" fill="#3F1E4B"></path></svg>
+const appOrigin = window.location.origin;
+
+const WithdrawModal = ({ show, close, withdrawToAccount, openAlert, setAlertText }) => {
     const [submitBtn, setSubmitBtn] = useState(true);
     const [amount, setAmount] = useState('');
 
+    const [withdrawError, setWithdrawError] = useState(false);
+    const [withdrawErrorMessage, setWithdrawErrorMessage] = useState({ severity: '', message: '' });
+
+    const [showPinModal, setShowPinModal] = useState(false);
+    function openPinModal() { setShowPinModal(true); }
+    function closePinModal() { setShowPinModal(false); }
+
+    const [showCreatePinModal, setCreateShowPinModal] = useState(false);
+    function openCreatePinModal() { setCreateShowPinModal(true); }
+    function closeCreatePinModal() { setCreateShowPinModal(false); }
+
+    let session = Cookies.get(appOrigin);
+    if (session) {
+        session = JSON.parse(session);
+    }
+
+    function cancelWithDraw() {
+        setAmount('');
+        setWithdrawError(false);
+        close();
+    }
+
     async function requestWithdrawal() {
-        setSubmitBtn(true)
+        setSubmitBtn(true);
+        if (parseInt(amount) > session.balance) {
+            setWithdrawErrorMessage({ severity: 'error', message: `Invalid amount, available balance is NGN ${parseInt(session.balance).toLocaleString()}` });
+            setWithdrawError(true);
+            return
+        }
+        if (parseInt(amount) < 50 || !amount) {
+            setWithdrawErrorMessage({ severity: 'error', message: `Invalid amount, minimum is NGN 50` });
+            setWithdrawError(true);
+            return
+        }
+        if (!session.txpin) {
+            openCreatePinModal();
+            return
+        }
+        openPinModal();
     }
 
     function handleKeyStokes(value) {
+        if (!amount && value === '.') return
         setAmount(amount => amount + value)
     }
     function handleBackSpace() {
@@ -18,7 +64,15 @@ const WithdrawModal = ({ show, close }) => {
     }
 
     useEffect(() => {
-        if (amount && amount !== '.') setSubmitBtn(false)
+        if (session) {
+            if (amount && amount !== '.') setSubmitBtn(false)
+            if (parseInt(amount) > session.balance) {
+                setWithdrawErrorMessage({ severity: 'error', message: 'Insufficient balance' });
+                setWithdrawError(true);
+            } else {
+                setWithdrawError(false);
+            }
+        }
     }, [amount])
 
     const backSpace = <svg width="11" height="15" viewBox="0 0 11 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 1L2.37093 9.13768C1.61428 9.94477 1.65659 11.2128 2.46536 11.9677L10 19" stroke="#3F1E4B" strokeWidth="2" strokeLinecap="round"></path></svg>;
@@ -53,39 +107,41 @@ const WithdrawModal = ({ show, close }) => {
         }
     ]
     return (
-        <BaseModal show={show} close={close}
-            title={'Withdraw to bank'}
-            subtitle={'Transacftion will be confirmed withen 24 hours.'}
-            submitBtn={submitBtn}
-            submit={requestWithdrawal}
-        >
+        <>
+            <BaseModal show={show} close={cancelWithDraw}
+                title={'Withdraw to bank'}
+                subtitle={'Transacftion will be confirmed withen 24 hours.'}
+                submitBtn={submitBtn && showPinModal}
+                submit={requestWithdrawal}
+                btnText={'Request Withdrawal'}
+            >
 
-            <WithdrawalWrapper>
+                <WithdrawalWrapper>
 
-                <WithdrawalAmountTextWrapper>
-                    <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3.03846 22V0H8.09508L15.4972 14.2371V0H20.2188V22H15.1622L7.76 7.76286V22H3.03846Z" fill="#3F1E4B"></path><path d="M0.5 10.0882V6.11111H22.5V10.0882H0.5ZM0.5 16.5873V12.6102H22.5V16.5873H0.5Z" fill="#3F1E4B">
-                        </path>
-                    </svg>
-                    <WithdrawalAmountText>{amount || '0.00'}</WithdrawalAmountText>
-                </WithdrawalAmountTextWrapper>
+                    <WithdrawalAmountTextWrapper>
+                        {currencySvg}
+                        <WithdrawalAmountText>{amount ? parseInt(amount).toLocaleString() : '0.00'}</WithdrawalAmountText>
+                    </WithdrawalAmountTextWrapper>
+                    <WithdrawalNumberKeysWrapper>
+                        {!withdrawError && <Alert style={{ width: '100%', justifyContent: 'center' }} severity="info">Minimum withdraws is NGN 50 </Alert>}
+                        {withdrawError && <Alert style={{ width: '100%', justifyContent: 'center' }} severity={withdrawErrorMessage.severity}>{withdrawErrorMessage.message}</Alert>}
 
-                <WithdrawalNumberKeysWrapper>
+                        {
+                            numbersActions.map(({ row }, i) => (
+                                <WithdrawalNumberRowOneWrapper key={i}>
+                                    <WithdrawalNumberText onClick={() => row[0].action(row[0].value)}>{row[0].label}</WithdrawalNumberText>
+                                    <WithdrawalNumberText onClick={() => row[1].action(row[1].value)} >{row[1].label}</WithdrawalNumberText>
+                                    <WithdrawalNumberText onClick={() => row[2].action(row[2].value)}>{row[2].label}</WithdrawalNumberText>
+                                </WithdrawalNumberRowOneWrapper>
+                            ))
+                        }
 
-                    {
-                        numbersActions.map(({ row }, i) => (
-                            <WithdrawalNumberRowOneWrapper key={i}>
-                                <WithdrawalNumberText onClick={() => row[0].action(row[0].value)}>{row[0].label}</WithdrawalNumberText>
-                                <WithdrawalNumberText onClick={() => row[1].action(row[1].value)} >{row[1].label}</WithdrawalNumberText>
-                                <WithdrawalNumberText onClick={() => row[2].action(row[2].value)}>{row[2].label}</WithdrawalNumberText>
-                            </WithdrawalNumberRowOneWrapper>
-                        ))
-                    }
-
-                </WithdrawalNumberKeysWrapper>
-
-            </WithdrawalWrapper>
-        </BaseModal>
+                    </WithdrawalNumberKeysWrapper>
+                </WithdrawalWrapper>
+            </BaseModal>
+            <PinModal show={showPinModal} close={closePinModal} withdrawToAccount={withdrawToAccount} amount={amount} session={session} />
+            <CreatePinModal show={showCreatePinModal} close={closeCreatePinModal} withdrawToAccount={withdrawToAccount} amount={amount} session={session} openAlert={openAlert} setAlertText={setAlertText} />
+        </>
     )
 }
 

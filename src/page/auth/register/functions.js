@@ -3,6 +3,7 @@ import axios from "axios";
 const appOrigin = window.location.origin;
 
 export async function registerUser(username, contact, email, pwd) {
+    console.log(username, contact, email, pwd)
     let result;
     const url = 'https://test-mlf1.onrender.com/api/register/user/data/'
     const regOptions = {

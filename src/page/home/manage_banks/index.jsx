@@ -22,7 +22,7 @@ import {
 } from "./components";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { getAccounts } from "../../../component/modal/functions";
+import { getAccounts } from "../../../services/bankhandlers";
 
 const AppBar = styled('div')(() => (
     `

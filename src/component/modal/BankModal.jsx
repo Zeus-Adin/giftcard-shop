@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import BaseModal from "./baseModal";
 import { AccountText, BankSelect, BankSelectImage, BankSelectPointer, BankSelectText, InputContent, InputContentBox, InputContentLabel, InputContentWrap, InputWrap, InputWrapper } from "./components";
-import { getAccounts, getBanks, regBankInfo, validateBankAccount } from "./functions";
+import { getAccounts, getBanks, regBankInfo, validateBankAccount } from "../../services/bankhandlers";
 import { Menu, MenuItem } from "@mui/material";
 import Cookies from "js-cookie";
 
@@ -51,6 +51,7 @@ const BankModal = ({ show, close, redirect, openAlert, setAlertText }) => {
 
     async function validateAccount() {
         const res = await validateBankAccount(accountNumber, selectedBank.code);
+        if (res.length === 0) return
         if (res.account_name) setAccuntName(res.account_name);
         setAccuntName(res.account_name);
         setSubmitBtn(false);
@@ -105,6 +106,8 @@ const BankModal = ({ show, close, redirect, openAlert, setAlertText }) => {
             subtitle={'This would be added to your list of bank accounts to process withdrawals'}
             submitBtn={submitBtn}
             submit={addAccounts}
+            btnText={'Add Account'}
+
         >
             <InputWrapper>
                 <BankSelect onClick={showBanks}>

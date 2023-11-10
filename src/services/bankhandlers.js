@@ -22,7 +22,7 @@ export async function getBanks() {
 export async function getAccounts(id, username) {
     console.log(id, username)
     const options = {
-        baseURL: 'http://localhost:3001',
+        baseURL: 'https://test-mlf1.onrender.com',
         url: `/api/get/bank/info/${id}/${username}`,
         method: 'get',
     }
@@ -55,7 +55,7 @@ export async function validateBankAccount(account_number, bank_code) {
 
 export async function regBankInfo(info) {
     let result;
-    await axios.post('http://localhost:3001/api/register/bank/info', info)
+    await axios.post('https://test-mlf1.onrender.com/api/register/bank/info', info)
         .then(res => {
             console.log(res)
             if (res.data) {
@@ -64,10 +64,8 @@ export async function regBankInfo(info) {
             }
         })
         .catch(err => {
-            console.log(err)
             if (err.response) {
-                const { response: { data } } = err;
-                result = data
+                result = { bankReg: false, message: err.message }
             }
         })
     return result;

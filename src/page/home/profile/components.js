@@ -100,7 +100,7 @@ export const AvatarName = styled('p')(() => ({
     textDecoration: 'none',
 }))
 export const FunctionsContainer = styled('div')(() => ({
-    gap:'2rem',
+    gap: '2rem',
     justifyContent: 'flex-start',
     alignItems: 'stretch',
     flexDirection: 'column',
@@ -139,3 +139,201 @@ export const FunctionsImageWrap = styled('div')(() => ({
     borderRadius: '50%',
     padding: '12px',
 }))
+
+export const DesktopAvatarNav = styled('div')(() => (`
+    margin-left: 8.0rem;
+    cursor: pointer;
+    background-color: #7165E3;
+    border-radius: 1.8rem;
+    padding: .8rem;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+`))
+export const DesktopAvatarNavText = styled('p')(() => (`
+    color: #FFFFFF;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+
+export const EdithHeaderWrapper = styled.div(() => (`
+    padding: .8rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 1;
+    background-color: var(--colors-white);
+`))
+
+export const EdithHeaderBackButtonWrapper = styled.div(() => (`
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+`))
+
+export const EdithHeaderBackButton = styled.div(() => (`
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F2F2F2;
+    border-radius: .8rem;
+    cursor: pointer;
+`))
+
+export const EdithHeaderText = styled.p(() => (`
+    text-align: center;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+
+// =============
+export const DesktopEdithHeaderWrapper = styled.div(() => (`
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+`))
+
+export const DesktopEdithHeaderBackButtonWrapper = styled.div(() => (`
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+`))
+
+export const DesktopEdithHeaderBackButtonText = styled.div(() => (`
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    color: #BDBDBD;
+    text-align: left;
+    font-family: CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+
+export const InputWrappers = styled.div(() => (`
+    gap: 1.2rem;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    display: flex;
+    margin-top: 3rem;
+`))
+
+export const InputAvatarWrappers = styled.div(() => (`
+    position: relative;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+`))
+
+export const InputAvatar = styled.div(() => (`
+    position: relative;
+`))
+
+export const InputAvatarBadge = styled.img(() => (`
+    position: absolute;
+    left: 70%;
+    bottom: 0%;
+    width: 2.5rem;
+    height: 2.5rem;
+    cursor: pointer;
+`))
+
+export const InputAvatarImage = styled.img(() => (`
+    object-fit: cover;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 50%;
+    overflow: hidden;
+`))
+
+export const InputBoxWrapper = styled.div(() => (`
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    display: flex;
+`))
+
+export const InputBoxArea = styled.div(() => (`
+    background-color: #F2F2F2;
+    width: 100%;
+    border-radius: 5rem;
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid transparent;
+    transition: all 0.2s ease-in-out 0s;
+`))
+
+export const InputBox = styled.div(() => (`
+    width: 100%;
+`))
+
+export const InputLabel = styled.label(() => (`
+    display: block;
+    color: #4F4F4F;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-size: 1rem;
+    letter-spacing: .4px;
+    will-change: color;
+    transition: color 0.2s ease-in-out
+`))
+
+export const Input = styled.input(() => (`
+    transition: all 0.3s ease-in 0s;
+    all: unset;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    color: #4F4F4F;
+    font-size: 1.6rem;
+    letter-spacing: .4rem;
+    width: 100%;
+`))
+
+export const UpdateBtn = styled.button(() => (`
+    margin-top: 3.2rem;
+    all: unset;
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    flex-grow: 0;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    gap: 1.6rem;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out 0s;    
+`))
+
+export const UpdateBtnText = styled.div(() => (`
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;    
+`))

@@ -28,7 +28,6 @@ const allowedPath = [
     '/sell',
     '/manage-banks',
 ]
-
 const appOrigin = window.location.origin;
 const Routes = ({ path, redirect, authed }) => {
     const [activationKey, setActivationKey] = useState('');
@@ -46,8 +45,10 @@ const Routes = ({ path, redirect, authed }) => {
     function closeDepositModal() { setShowDepositModal(false); }
 
     const [showWithdrawModal, setShowWithdrawModal] = useState(false);
-    function openWithdrawModal() {setShowWithdrawModal(true); }
+    function openWithdrawModal() { setShowWithdrawModal(true); }
     function closeWithdrawModal() { setShowWithdrawModal(false); }
+
+    const [withdrawToAccount, setWithdrawToAccount] = useState('');
 
 
 
@@ -98,7 +99,7 @@ const Routes = ({ path, redirect, authed }) => {
             {path === "/forgot-password" && <ForgotPassword redirect={redirect} />}
             {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
 
-            {path === "/dashboard" && <Home redirect={redirect} authed={authed} openWithdrawModal={openWithdrawModal}/>}
+            {path === "/dashboard" && <Home redirect={redirect} authed={authed} openWithdrawModal={openWithdrawModal} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
             {path === '/cards' && <SelectCard redirect={redirect} authed={authed} />}
             {path === '/trade-cards' && <TradeCard redirect={redirect} authed={authed} />}
             {path === "/sell" && <Sell redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
@@ -108,7 +109,7 @@ const Routes = ({ path, redirect, authed }) => {
             <AlertBox open={alertBox} title={alertText.title} paragraph={alertText.paragraph} reason={alertText.reason} handleClose={handleCloseAlertBox} />
             <BankModal show={showBankModal} close={closeBankModal} redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />
             <DepositModal show={showDepositModal} close={closeDepositModal} redirect={redirect} />
-            <WithdrawModal show={showWithdrawModal} close={closeWithdrawModal} redirect={redirect} />
+            <WithdrawModal show={showWithdrawModal} close={closeWithdrawModal} redirect={redirect} withdrawToAccount={withdrawToAccount} setWithdrawToAccount={setWithdrawToAccount} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />
         </>
 
     )
