@@ -3,7 +3,8 @@ import BaseModal from "./baseModal";
 import { Alert } from "@mui/material";
 import { WithdrawalAmountText, WithdrawalAmountTextWrapper, WithdrawalNumberKeysWrapper, WithdrawalNumberRowOneWrapper, WithdrawalNumberText, WithdrawalWrapper } from "./components";
 import { user } from '../../services/user'
-
+import Cookies from 'js-cookie'
+const appOrigin = window.location.origin;
 const CreatePinModal = ({ show, close, session, openAlert, setAlertText }) => {
     const [submitBtn, setSubmitBtn] = useState(false);
     const [pin, setPin] = useState('');
@@ -12,8 +13,10 @@ const CreatePinModal = ({ show, close, session, openAlert, setAlertText }) => {
     async function createPin() {
         setSubmitBtn(true);
         const { _id: userId, username } = session;
-        const { txStat, message } = await user.createTxPin(userId, username);
+        const { txStat, message, userData } = await user.createTxPin(userId, username, pin);
+
         if (txStat) {
+            Cookies.set(appOrigin, JSON.stringify(userData, { expires: 0.5 / 48 }));
             setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'createPin' })
             openAlert();
             close();
@@ -84,7 +87,8 @@ const CreatePinModal = ({ show, close, session, openAlert, setAlertText }) => {
             <WithdrawalWrapper style={{ width: '1rem' }}>
 
                 <WithdrawalAmountTextWrapper>
-                    <WithdrawalAmountText>{displayedPin.join('.') || '*.*.*.*'}</WithdrawalAmountText>
+                    {displayedPin.length > 0 && <WithdrawalAmountText style={{ color: 'black' }}>{displayedPin.join('.')}</WithdrawalAmountText>}
+                    {displayedPin.length === 0 && <WithdrawalAmountText>*.*.*.*</WithdrawalAmountText>}
                 </WithdrawalAmountTextWrapper>
 
                 <WithdrawalNumberKeysWrapper>

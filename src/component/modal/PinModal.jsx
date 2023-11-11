@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import BaseModal from "./baseModal";
 import { WithdrawalAmountText, WithdrawalAmountTextWrapper, WithdrawalNumberKeysWrapper, WithdrawalNumberRowOneWrapper, WithdrawalNumberText, WithdrawalWrapper } from "./components";
+import { Alert } from "@mui/material";
 
 const PinModal = ({ show, close, withdrawToAccount, amount, session, action }) => {
     const [submitBtn, setSubmitBtn] = useState(false);
     const [pin, setPin] = useState('');
+    const [displayedPin, setDisplayedPin] = useState([]);
 
     function handleClose() {
         setPin('')
@@ -12,11 +14,14 @@ const PinModal = ({ show, close, withdrawToAccount, amount, session, action }) =
     }
 
     function handleKeyStokes(value) {
-        if (!amount && value === '.') return
+        if (displayedPin.length === 4) return
+        setDisplayedPin(displayedPin => [...displayedPin, '*']);
         setPin(pin => pin + value)
     }
     function handleBackSpace() {
-        setPin(pin.slice(0, pin.length - 1))
+        if (displayedPin.length === 0) return
+        setDisplayedPin([]);
+        setPin('')
     }
 
 
@@ -55,18 +60,19 @@ const PinModal = ({ show, close, withdrawToAccount, amount, session, action }) =
             title={'Pin'}
             subtitle={''}
             submitBtn={submitBtn}
-            submit={action}
+            submit={() => action(pin)}
             btnText={'Confirm'}
         >
 
             <WithdrawalWrapper style={{ width: '1rem' }}>
 
                 <WithdrawalAmountTextWrapper>
-                    <WithdrawalAmountText>{pin || '*.*.*.*'}</WithdrawalAmountText>
+                    {displayedPin.length > 0 && <WithdrawalAmountText style={{ color: 'black' }}>{displayedPin.join('.')}</WithdrawalAmountText>}
+                    {displayedPin.length === 0 && <WithdrawalAmountText>*.*.*.*</WithdrawalAmountText>}
                 </WithdrawalAmountTextWrapper>
 
                 <WithdrawalNumberKeysWrapper>
-
+                    <Alert style={{ width: '100%', justifyContent: 'center' }} severity="info">Enter your 4 digit transaction pin</Alert>
                     {
                         numbersActions.map(({ row }, i) => (
                             <WithdrawalNumberRowOneWrapper key={i}>

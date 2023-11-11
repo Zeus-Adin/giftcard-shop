@@ -24,8 +24,8 @@ const Profile = ({ redirect, setSelectedNav }) => {
         { action: () => setSelectedNav(3), title: 'Customer Support', icon: '/svg/support.svg', nacIcon: '/svg/arrow-right.svg' },
         { action: () => redirect('/terms'), title: 'Terms of Service', icon: '/svg/terms.svg', nacIcon: '/svg/arrow-right.svg' },
         { action: () => redirect('/dashboard'), title: 'Download App (Coming Soon)', icon: '/svg/share.svg', nacIcon: '/svg/arrow-right.svg' },
-        { action: () => logUserOut, title: 'Logout', icon: '/svg/logout.svg', nacIcon: '' },
-        { action: () => logUserOut, title: 'Delete Account', icon: '/svg/delete.svg', nacIcon: '' },
+        { action: () => logUserOut(), title: 'Logout', icon: '/svg/logout.svg', nacIcon: '' },
+        { action: () => logUserOut(), title: 'Delete Account', icon: '/svg/delete.svg', nacIcon: '' },
     ]
 
     return (

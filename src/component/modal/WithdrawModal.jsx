@@ -55,6 +55,10 @@ const WithdrawModal = ({ show, close, withdrawToAccount, openAlert, setAlertText
         openPinModal();
     }
 
+    async function confiremRequest(txpin) {
+        console.log('users txpin: ' + txpin, 'session users txpin: ' + session.txpin, 'username : ' + session.username);
+    }
+
     function handleKeyStokes(value) {
         if (!amount && value === '.') return
         setAmount(amount => amount + value)
@@ -139,7 +143,7 @@ const WithdrawModal = ({ show, close, withdrawToAccount, openAlert, setAlertText
                     </WithdrawalNumberKeysWrapper>
                 </WithdrawalWrapper>
             </BaseModal>
-            <PinModal show={showPinModal} close={closePinModal} withdrawToAccount={withdrawToAccount} amount={amount} session={session} />
+            <PinModal show={showPinModal} close={closePinModal} withdrawToAccount={withdrawToAccount} amount={amount} session={session} action={confiremRequest} />
             <CreatePinModal show={showCreatePinModal} close={closeCreatePinModal} withdrawToAccount={withdrawToAccount} amount={amount} session={session} openAlert={openAlert} setAlertText={setAlertText} />
         </>
     )
