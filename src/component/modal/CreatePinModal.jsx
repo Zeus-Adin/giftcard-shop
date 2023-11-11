@@ -4,7 +4,7 @@ import { Alert } from "@mui/material";
 import { WithdrawalAmountText, WithdrawalAmountTextWrapper, WithdrawalNumberKeysWrapper, WithdrawalNumberRowOneWrapper, WithdrawalNumberText, WithdrawalWrapper } from "./components";
 import { user } from '../../services/user'
 
-const CreatePinModal = ({ show, close, withdrawToAccount, amount, session, openAlert, setAlertText }) => {
+const CreatePinModal = ({ show, close, session, openAlert, setAlertText }) => {
     const [submitBtn, setSubmitBtn] = useState(false);
     const [pin, setPin] = useState('');
     const [displayedPin, setDisplayedPin] = useState([]);
@@ -36,7 +36,9 @@ const CreatePinModal = ({ show, close, withdrawToAccount, amount, session, openA
         setPin(pin => pin + value)
     }
     function handleBackSpace() {
-        setPin(pin.slice(0, pin.length - 1))
+        if (displayedPin.length === 0) return
+        setDisplayedPin([]);
+        setPin('')
     }
 
 
