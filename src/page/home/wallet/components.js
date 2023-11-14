@@ -210,9 +210,67 @@ export const MobileBannerBalanceButtonWithdrawText = styled('p')(({ }) => ({
     textDecoration: 'none',
 }))
 
-export const DataGridContainer = styled(DataGrid)(({ }) => ({
-    marginTop: '1.5rem'
+export const DataGridContainer = styled('div')(({ }) => ({
+    marginTop: '1.5rem',
 }))
+export const DataTable = styled('table')(({ }) => (`
+    width: 100%;
+    position: relative;
+`))
+export const TableData = styled('td')(({ }) => (`
+    border-bottom: 1px solid #F3F2FD;
+    padding: 1.6rem 0rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`))
+export const TableDataContentWrapper = styled('div')(({ }) => (`
+    column-gap: .8rem;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+`))
+export const TableDataContentWrap = styled('div')(({ }) => (`
+    gap: 1.6rem;
+    justify-content: flex-start;
+    width: 100%;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+`))
+export const TableDataContentImag = styled('img')(({ }) => (`
+    border-radius: .8rem;
+    background: #F2F2F2;
+    width: 3.5rem;
+    height: 3.5rem;
+    padding: 1rem;
+`))
+export const TableDataContentTextWrap = styled('div')(({ }) => (`
+    gap: .4rem;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    display: flex;
+`))
+export const TableDataContentText = styled('p')(({ }) => (`
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+export const TableDataContentText2 = styled('p')(({ }) => (`
+    font-size: 1.2rem;
+    color: #BDBDBD;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
 
 // Wallet History Components
 export const MobileHistoryWrapper = styled('div')(({ }) => ({
@@ -254,28 +312,177 @@ export const MobileHistoryHeaderTextDateFilterButtonWrap = styled(Button)(({ }) 
 
 
 // Desktop Components
-export const DesktopViewWrapper = styled(Grid)(({ }) => ({
-    width: 'calc(100vw - 250px)',
-    overflowY: 'scroll',
-    backgroundColor: '',
-    overflow: 'auto',
-    height: '100vh',
-    transition: 'width 0.3s ease-in-out 0s',
-    padding: '2rem 2rem',
+export const DesktopViewWrapper = styled(Grid)(({ }) => (`
+    width: calc(100vw - 250px);
+    overflow-y: scroll;
+    background-color: #FFFFFF;
+    overflow: auto;
+    height: 100vh;
+    transition: width 0.3s ease-in-out 0s;
+`))
+export const DesktopViewWrap     = styled('div')(({ }) => (`
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+    display: flex;
+`))
 
-}))
-export const DesktopHeader = styled('div')(({ }) => ({
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%'
-}))
-export const DesktopBannerWrapper = styled('div')(({ }) => ({
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
-    flexWrap: 'nowrap',
-    flexDirection: 'row',
-    position: 'relative',
-    width: '100%',
-    marginTop: '3.2rem',
-    display: 'flex',
-}))
+export const DesktopView = styled('div')(({ }) => (`
+    gap: 2.4rem;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 2rem 3.2rem;
+    margin-top: 2rem; 
+    display: flex;
+`))
+
+export const DesktopHeaderWrapper = styled('div')(({ }) => (`
+    gap: 2.4rem;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+`))
+
+export const DesktopHeaderText = styled('p')(({ }) => (`
+    font-size: 2.8rem;
+    text-align: left;
+    font-family: CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    line-height: 1.6rem;
+    color: #7165E3;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+
+export const DesktopBannerWrapper = styled('div')(({ }) => (`
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+`))
+
+export const DesktopBannerImage = styled('img')(({ }) => (`
+    width: 100%;
+    height: 100%;
+`))
+
+export const DesktopBannerContentWrapper = styled('div')(({ }) => (`
+    gap: 1.6rem;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 2.4rem 4.8rem;
+    display: flex;
+`))
+
+export const DesktopBannerContentTextWrapper = styled('div')(({ }) => (`
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: .8rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    display: flex;
+`))
+
+export const DesktopBannerContentNairaTextWrapper = styled('div')(({ }) => (`
+    gap: 1.6rem;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+`))
+
+export const DesktopBannerContentNairaText = styled('p')(({ }) => (`
+    color: #FFFFFF;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+
+export const DesktopBannerContentNairaTextImageWrapper = styled('div')(({ }) => (`
+    cursor: pointer;
+    margin-left: 10rem;
+`))
+
+export const DesktopBannerContentNairaTextImage = styled('img')(({ }) => (`
+    width: 2rem;
+`))
+
+export const DesktopBannerContentBalanceText = styled('p')(({ }) => (`
+    font-size: 4rem;
+    color: #FFFFFF;
+    text-align: left;
+    font-family: CeraPro-Bold, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+
+    font-weight: 600;
+`))
+
+export const DesktopBannerContentCurrency = styled('span')(({ }) => (`
+    font-size: 1rem;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    vertical-align: top;
+`))
+
+export const DesktopBannerButtonContentWrapper = styled('div')(({ }) => (`
+    gap: 6.4rem;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+`))
+
+export const DesktopBannerButtonContent1Wrapper = styled('div')(({ }) => (`
+    cursor: pointer;
+    transition: all 0.2s ease-in-out 0s;
+    justify-content: flex-start;
+    gap: .8rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    display: flex;
+`))
+
+export const DesktopBannerOrderContentWrapper = styled('div')(({ }) => (`
+    width: 100%;
+`))
+
+export const DesktopBannerOrderContentWrap = styled('div')(({ }) => (`
+    column-gap: .8rem;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+`))
+
+export const DesktopBannerOrderContentHeaderText = styled('p')(({ }) => (`
+    font-family: var(--fonts-medium);
+    text-align: left;
+    line-height: var(--lineHeights-normal);
+    color: var(--colors-blue);
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))

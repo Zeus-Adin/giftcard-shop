@@ -16,11 +16,18 @@ import {
     DesktopQuickActionContentLeftWrap, DesktopQuickActionContentRightWrap, PayBillTextWrapper, PayBillText, PayBillSubText,
 } from './components'
 import { useEffect, useState } from 'react';
+import { MobileBannerTextHideIconImage, MobileBannerTextHideIconWrapper } from '../wallet/components';
 
-const DashBoard = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, handleOpenAlertBox, setAlertText }) => {
+const DashBoard = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, handleOpenAlertBox, setAlertText, setSelectedNav }) => {
     const [withdrawFired, setWithdrawFired] = useState(false);
+    const [hideBalance, setHideBalance] = useState(true);
+
+    async function showBalance() {
+        setHideBalance(!hideBalance);
+    }
 
     async function withDraw() {
+        setSelectedNav(2)
         setWithdrawFired(true)
         if (userData) {
             console.log(userData)
@@ -28,6 +35,7 @@ const DashBoard = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount
             if (balance < 50) {
                 setAlertText({ title: 'Insufficient funds', paragraph: 'Your balance is low.', reason: 'warning', sender: 'dashboard' })
                 handleOpenAlertBox()
+                setWithdrawFired(false)
                 return
             }
             const account = await getAccounts(id, username);
@@ -68,10 +76,13 @@ const DashBoard = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount
                                 </svg>
                                 <SubHeaderTextWrapper>
                                     <SubHeaderWalletTypeText>Naira Wallet</SubHeaderWalletTypeText>
+                                    <MobileBannerTextHideIconWrapper onClick={showBalance} >
+                                        <MobileBannerTextHideIconImage src="/svg/eye-slash.svg" />
+                                    </MobileBannerTextHideIconWrapper>
                                     <SubHeaderWalletBalanceTextWrapper>
                                         <SubHeaderWalletBalanceTextHeader>Balance</SubHeaderWalletBalanceTextHeader>
                                         <SubHeaderWalletBalanceHeaderWrapper>
-                                            <BalanceText>{parseFloat(userData.balance).toLocaleString() || '0.00'}</BalanceText>
+                                            <BalanceText>{hideBalance ? '****' : parseFloat(userData.balance).toLocaleString() || '0.00'}</BalanceText>
                                             <CurrencyText>NGN</CurrencyText>
                                         </SubHeaderWalletBalanceHeaderWrapper>
                                     </SubHeaderWalletBalanceTextWrapper>
@@ -82,7 +93,7 @@ const DashBoard = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount
                                                 </path>
                                             </svg>
                                             <WithdrawBtnTextWrapper>
-                                                {!withdrawFired ? <WithdrawBtnText>Withdraw</WithdrawBtnText> : <CircularProgress />}
+                                                <WithdrawBtnText>Withdraw</WithdrawBtnText>{withdrawFired && <CircularProgress />}
                                             </WithdrawBtnTextWrapper>
                                         </WithdrawBtn>
                                     </WithdrawBtnWrapper>
@@ -157,13 +168,16 @@ const DashBoard = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount
                                 <img width={'100%'} height={'100%'} src="/svg/dashboard-purple.svg" alt="" />
                                 <DesktopSubHeaderContentTextWrapper>
                                     <DesktopSubHeaderWalletTypeText>Naira Wallet Balance</DesktopSubHeaderWalletTypeText>
-                                    <BalanceText>{parseFloat(userData.balance).toLocaleString() || '0.00'}<span style={{ fontSize: '1.5rem', fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'", verticalAlign: 'top' }}>NGN</span></BalanceText>
+                                    <MobileBannerTextHideIconWrapper onClick={showBalance} >
+                                        <MobileBannerTextHideIconImage src="/svg/eye-slash.svg" />
+                                    </MobileBannerTextHideIconWrapper>
+                                    <BalanceText>{hideBalance ? '****' : parseFloat(userData.balance).toLocaleString() || '0.00'}<span style={{ fontSize: '1.5rem', fontFamily: "CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'", verticalAlign: 'top' }}>NGN</span></BalanceText>
                                     <DesktopWithdrawBtn onClick={() => withDraw()}>
                                         <svg width="239" height="68" viewBox="0 0 239 68" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M0 33.6444C0 15.0631 15.0631 0 33.6444 0H207.171C224.749 0 239 14.2505 239 31.8295V31.8295C239 49.1489 225.152 63.2897 207.836 63.652L34.3481 67.2814C15.4955 67.6758 0 52.5011 0 33.6444V33.6444Z" fill="#F5CF48">
                                             </path>
                                         </svg>
-                                        {!withdrawFired ? <DesktopWithdrawBtnText>Withdraw</DesktopWithdrawBtnText> : <CircularProgress />}
+                                        <DesktopWithdrawBtnText>Withdraw</DesktopWithdrawBtnText>{withdrawFired && <CircularProgress />}
                                     </DesktopWithdrawBtn>
                                 </DesktopSubHeaderContentTextWrapper>
                             </DesktopSubHeaderContentLeft>

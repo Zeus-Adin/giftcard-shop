@@ -30,6 +30,8 @@ const allowedPath = [
 ]
 const appOrigin = window.location.origin;
 const Routes = ({ path, redirect, authed }) => {
+    const [selectedNav, setSelectedNav] = useState(0);
+
     const [activationKey, setActivationKey] = useState('');
     const [isActive, setIsActive] = useState(true);
 
@@ -62,6 +64,10 @@ const Routes = ({ path, redirect, authed }) => {
         if (alertText.reason === 'success' && alertText.sender === 'verif') redirect(`/login`)
         if (alertText.reason === 'success' && alertText.sender === 'auth') redirect(`/dashboard`)
         if (alertText.reason === 'success' && alertText.sender === 'sell') redirect(`/cards`)
+        if (alertText.reason === 'success' && alertText.sender === 'withdrawModal') {
+            closeWithdrawModal();
+        }
+
     }
     function handleActivity() {
         const currentValue = Cookies.get(appOrigin);
@@ -99,7 +105,7 @@ const Routes = ({ path, redirect, authed }) => {
             {path === "/forgot-password" && <ForgotPassword redirect={redirect} />}
             {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
 
-            {path === "/dashboard" && <Home redirect={redirect} authed={authed} openWithdrawModal={openWithdrawModal} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
+            {path === "/dashboard" && <Home redirect={redirect} authed={authed} openWithdrawModal={openWithdrawModal} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} selectedNav={selectedNav} setSelectedNav={setSelectedNav} />}
             {path === '/cards' && <SelectCard redirect={redirect} authed={authed} />}
             {path === '/trade-cards' && <TradeCard redirect={redirect} authed={authed} />}
             {path === "/sell" && <Sell redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}

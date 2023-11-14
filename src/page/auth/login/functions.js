@@ -23,11 +23,8 @@ export async function login(email, pwd) {
             }
         })
         .catch(err => {
-            console.log(err)
-            if (err.response) {
-                const { response: { data } } = err;
-                result = data
-            }
+            console.log('Here is the error', err)
+            result = { authState: false, message: err.message }
         })
     return result;
 }

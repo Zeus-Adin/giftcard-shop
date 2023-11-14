@@ -1,7 +1,4 @@
-import { Button, Grid, Typography } from "@mui/material";
-import styled from "styled-components";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-
 import {
     MobileAppBar, MobileGridBar, MobileContentBar, MobileHeaderBar, MobileHeaderTextWrapper, MobileHeaderSalutationText,
     MobileHeaderUserNotificationIconWrapper, MobileHeaderUserNotificationIcon, MobileHeaderUserNotificationIconImage, MobileBannerWrapper,
@@ -9,8 +6,16 @@ import {
     MobileBannerTextHideIconImage, MobileBannerBalanceText, MobileBannerBalanceTextCurrency, MobileBannerBalanceButtonWrapper, MobileBannerBalanceButtonAddWrapper,
     MobileBannerBalanceButtonAddImage, MobileBannerBalanceButtonAddText, MobileBannerBalanceButtonWithdrawWrapper, MobileBannerBalanceButtonWithdrawImage,
     MobileBannerBalanceButtonWithdrawText, DataGridContainer, MobileHistoryWrapper, MobileHistoryInnerWrapper, MobileHistoryHeaderWrapper, MobileHistoryHeaderText,
-    MobileHistoryHeaderTextItermsWrapper, MobileHistoryHeaderTextDateFilterButtonWrap, DesktopViewWrapper, DesktopHeader, DesktopBannerWrapper,
+    MobileHistoryHeaderTextItermsWrapper, MobileHistoryHeaderTextDateFilterButtonWrap,
+    DataTable, TableData, TableDataContentWrapper, TableDataContentWrap, TableDataContentImag, TableDataContentTextWrap, TableDataContentText,
+    TableDataContentText2,
+
+    DesktopViewWrapper, DesktopViewWrap, DesktopView, DesktopHeaderWrapper, DesktopHeaderText, DesktopBannerWrapper, DesktopBannerImage, DesktopBannerContentWrapper,
+    DesktopBannerContentTextWrapper, DesktopBannerContentNairaTextWrapper, DesktopBannerContentNairaText, DesktopBannerContentNairaTextImageWrapper, DesktopBannerContentNairaTextImage, DesktopBannerContentBalanceText, DesktopBannerContentCurrency, DesktopBannerButtonContentWrapper, DesktopBannerButtonContent1Wrapper, DesktopBannerOrderContentWrapper, DesktopBannerOrderContentWrap, DesktopBannerOrderContentHeaderText
 } from './components'
+import { useEffect, useState } from 'react';
+import { user } from '../../../services/user';
+import Cookies from 'js-cookie';
 
 const columns = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -34,9 +39,30 @@ const rows = [
     { id: 9, lastName: 'Roxie' },
 ];
 
-
-
+const appOrigin = window.location.origin;
 const Wallet = ({ redirect }) => {
+    const [orders, setOrders] = useState([0]);
+    const [hideBalance, setHideBalance] = useState(true);
+
+    let session = Cookies.get(appOrigin);
+    if (session) {
+        session = JSON.parse(session);
+    } else {
+        window.location.reload();
+    }
+
+    async function init() {
+        const res = await user.usersOrders(session._id, session.username)
+        setOrders(res);
+    }
+
+    async function showBalance() {
+        setHideBalance(!hideBalance);
+    }
+
+    useEffect(() => {
+        init();
+    }, [])
 
     return (
         <>
@@ -62,11 +88,11 @@ const Wallet = ({ redirect }) => {
                                 <MobileBannerTextInnerWrapper>
                                     <MobileBannerTextInnerWrap>
                                         <MobileBannerText>Naira Wallet</MobileBannerText>
-                                        <MobileBannerTextHideIconWrapper>
+                                        <MobileBannerTextHideIconWrapper onClick={showBalance}>
                                             <MobileBannerTextHideIconImage src="/svg/eye-slash.svg" />
                                         </MobileBannerTextHideIconWrapper>
                                     </MobileBannerTextInnerWrap>
-                                    <MobileBannerBalanceText>0.00<MobileBannerBalanceTextCurrency>NGN</MobileBannerBalanceTextCurrency></MobileBannerBalanceText>
+                                    <MobileBannerBalanceText>{hideBalance ? '****' : parseFloat(session.balance).toLocaleString() || '0.00'}<MobileBannerBalanceTextCurrency>NGN</MobileBannerBalanceTextCurrency></MobileBannerBalanceText>
                                 </MobileBannerTextInnerWrapper>
                                 <MobileBannerBalanceButtonWrapper>
                                     <MobileBannerBalanceButtonAddWrapper>
@@ -97,20 +123,47 @@ const Wallet = ({ redirect }) => {
                                         </MobileHistoryHeaderTextDateFilterButtonWrap>
                                     </MobileHistoryHeaderTextItermsWrapper>
                                 </MobileHistoryHeaderWrapper>
-                                <DataGridContainer
-                                    rows={rows}
-                                    columns={columns}
-                                    columnHeaderHeight={0}
-                                    initialState={{
-                                        pagination: {
-                                            paginationModel: {
-                                                pageSize: 7,
-                                            },
-                                        },
-                                    }}
-                                    pageSizeOptions={[5]}
-                                    disableRowSelectionOnClick
-                                />
+                                <DataGridContainer>
+                                    <DataTable>
+                                        <tbody>
+                                            {orders && orders.map(({ _id, userId, username, action, amount, status, timeStammp }, i) => (
+                                                <tr key={i}>
+                                                    <TableData >
+                                                        <TableDataContentWrapper>
+                                                            <TableDataContentWrap>
+                                                                <TableDataContentImag src="/svg/money-remove.svg" />
+                                                                <TableDataContentTextWrap>
+                                                                    <TableDataContentText>{action}</TableDataContentText>
+                                                                    {/* <TableDataContentText2>RDM CREDIT</TableDataContentText2> */}
+                                                                </TableDataContentTextWrap>
+                                                            </TableDataContentWrap>
+                                                        </TableDataContentWrapper>
+                                                    </TableData>
+                                                    <TableData>
+                                                        <TableDataContentWrapper>
+                                                            <TableDataContentWrap>
+                                                                <TableDataContentTextWrap>
+                                                                    <TableDataContentText>NGN {parseFloat(amount).toLocaleString()}.00</TableDataContentText>
+                                                                    <TableDataContentText2>{status}</TableDataContentText2>
+                                                                </TableDataContentTextWrap>
+                                                            </TableDataContentWrap>
+                                                        </TableDataContentWrapper>
+                                                    </TableData>
+                                                    <TableData>
+                                                        <TableDataContentWrapper>
+                                                            <TableDataContentWrap style={{ cursor: 'pointer' }}>
+                                                                <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                                                                    </path>
+                                                                </svg>
+                                                            </TableDataContentWrap>
+                                                        </TableDataContentWrapper>
+                                                    </TableData>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </DataTable>
+                                </DataGridContainer>
                             </MobileHistoryInnerWrapper>
                         </MobileHistoryWrapper>
                     </MobileContentBar>
@@ -120,81 +173,118 @@ const Wallet = ({ redirect }) => {
             {/* Desktop Nav Bar */}
             <DesktopViewWrapper sx={{ display: { lg: 'flex', xl: 'flex', sm: 'none', xs: 'none' } }}>
                 {/* Main Box */}
-                <DesktopHeader>
+                <DesktopViewWrap>
+                    <DesktopView>
+                        {/* Desktop Header */}
+                        <DesktopHeaderWrapper>
+                            <DesktopHeaderText>Wallet</DesktopHeaderText>
+                            <a href="/manage-banks"><img src='/svg/edit-wallet.svg' /></a>
+                        </DesktopHeaderWrapper>
 
-                    <MobileContentBar>
-                        {/* Header */}
-                        <MobileHeaderBar>
-                            <MobileHeaderTextWrapper>
-                                <MobileHeaderSalutationText>Wallet</MobileHeaderSalutationText>
-                            </MobileHeaderTextWrapper>
-                            <MobileHeaderUserNotificationIconWrapper>
-                                <MobileHeaderUserNotificationIcon>
-                                    <MobileHeaderUserNotificationIconImage src="/svg/edit-wallet.svg" />
-                                </MobileHeaderUserNotificationIcon>
-                            </MobileHeaderUserNotificationIconWrapper>
-                        </MobileHeaderBar>
-
+                        {/* Contents */}
                         <DesktopBannerWrapper>
-                            <MobileBannerImage src="/svg/wallet-mobile-bg.svg" />
-                            <MobileBannerTextWrapper>
-                                <MobileBannerTextInnerWrapper>
-                                    <MobileBannerTextInnerWrap>
-                                        <MobileBannerText>Naira Wallet</MobileBannerText>
-                                        <MobileBannerTextHideIconWrapper>
-                                            <MobileBannerTextHideIconImage src="/svg/eye-slash.svg" />
-                                        </MobileBannerTextHideIconWrapper>
-                                    </MobileBannerTextInnerWrap>
-                                    <MobileBannerBalanceText>0.00<MobileBannerBalanceTextCurrency>NGN</MobileBannerBalanceTextCurrency></MobileBannerBalanceText>
-                                </MobileBannerTextInnerWrapper>
-                                <MobileBannerBalanceButtonWrapper>
-                                    <MobileBannerBalanceButtonAddWrapper>
-                                        <MobileBannerBalanceButtonAddImage src="/svg/fund-icon.svg" />
-                                        <MobileBannerBalanceButtonAddText>Fund Account</MobileBannerBalanceButtonAddText>
-                                    </MobileBannerBalanceButtonAddWrapper>
-                                    <MobileBannerBalanceButtonWithdrawWrapper>
-                                        <MobileBannerBalanceButtonWithdrawImage src="/svg/withdraw-icon.svg" />
-                                        <MobileBannerBalanceButtonWithdrawText>Withdraw</MobileBannerBalanceButtonWithdrawText>
-                                    </MobileBannerBalanceButtonWithdrawWrapper>
-                                </MobileBannerBalanceButtonWrapper>
-                            </MobileBannerTextWrapper>
-                        </DesktopBannerWrapper>
-                        <MobileHistoryWrapper>
-                            <MobileHistoryInnerWrapper>
-                                <MobileHistoryHeaderWrapper>
-                                    <MobileHistoryHeaderText>Wallet History</MobileHistoryHeaderText>
-                                    <MobileHistoryHeaderTextItermsWrapper>
-                                        {/* Date Filter */}
-                                        <MobileHistoryHeaderTextDateFilterButtonWrap variant="outlined" size="medium">
-                                            Date
-                                            <KeyboardArrowDownIcon sx={{ mr: 1, marginLeft: 2 }} />
-                                        </MobileHistoryHeaderTextDateFilterButtonWrap>
-                                        {/* Filter */}
-                                        <MobileHistoryHeaderTextDateFilterButtonWrap variant="outlined" size="medium">
-                                            Filter
-                                            <KeyboardArrowDownIcon sx={{ mr: 1, marginLeft: 2 }} />
-                                        </MobileHistoryHeaderTextDateFilterButtonWrap>
-                                    </MobileHistoryHeaderTextItermsWrapper>
-                                </MobileHistoryHeaderWrapper>
-                                <DataGridContainer
-                                    rows={rows}
-                                    columns={columns}
-                                    columnHeaderHeight={0}
-                                    initialState={{
-                                        pagination: {
-                                            paginationModel: {
-                                                pageSize: 7,
-                                            },
-                                        },
-                                    }}
-                                    pageSizeOptions={[5]}
-                                    disableRowSelectionOnClick
-                                />
-                            </MobileHistoryInnerWrapper>
-                        </MobileHistoryWrapper>
-                    </MobileContentBar>
+                            <DesktopBannerImage src='svg/wallet-bg.svg' />
+                            <DesktopBannerContentWrapper>
+                                <DesktopBannerContentTextWrapper>
+                                    <DesktopBannerContentNairaTextWrapper>
+                                        <DesktopBannerContentNairaText>Naira Wallet</DesktopBannerContentNairaText>
+                                        <DesktopBannerContentNairaTextImageWrapper onClick={showBalance}>
+                                            <DesktopBannerContentNairaTextImage src='/svg/eye-slash.svg' />
+                                        </DesktopBannerContentNairaTextImageWrapper>
+                                    </DesktopBannerContentNairaTextWrapper>
+                                    <DesktopBannerContentBalanceText>{hideBalance ? '****' : parseFloat(session.balance).toLocaleString() || '0.00'}<DesktopBannerContentCurrency>NGN</DesktopBannerContentCurrency></DesktopBannerContentBalanceText>
+                                </DesktopBannerContentTextWrapper>
 
-                </DesktopHeader>
+                                <DesktopBannerButtonContentWrapper>
+                                    <DesktopBannerButtonContent1Wrapper>
+                                        <img src='/svg/fund-icon.svg' />
+                                        <DesktopBannerContentNairaText>Fund Account</DesktopBannerContentNairaText>
+                                    </DesktopBannerButtonContent1Wrapper>
+                                    <DesktopBannerButtonContent1Wrapper>
+                                        <img src='/svg/withdraw-icon.svg' />
+                                        <DesktopBannerContentNairaText>Withdraw</DesktopBannerContentNairaText>
+                                    </DesktopBannerButtonContent1Wrapper>
+                                </DesktopBannerButtonContentWrapper>
+                            </DesktopBannerContentWrapper>
+                        </DesktopBannerWrapper>
+
+                        <DesktopBannerOrderContentWrapper>
+                            <MobileHistoryHeaderWrapper>
+                                <MobileHistoryHeaderText>Wallet History</MobileHistoryHeaderText>
+                                <MobileHistoryHeaderTextItermsWrapper>
+                                    {/* Date Filter */}
+                                    <MobileHistoryHeaderTextDateFilterButtonWrap variant="outlined" size="medium">
+                                        Date
+                                        <KeyboardArrowDownIcon sx={{ mr: 1, marginLeft: 2 }} />
+                                    </MobileHistoryHeaderTextDateFilterButtonWrap>
+                                    {/* Filter */}
+                                    <MobileHistoryHeaderTextDateFilterButtonWrap variant="outlined" size="medium">
+                                        Filter
+                                        <KeyboardArrowDownIcon sx={{ mr: 1, marginLeft: 2 }} />
+                                    </MobileHistoryHeaderTextDateFilterButtonWrap>
+                                </MobileHistoryHeaderTextItermsWrapper>
+                            </MobileHistoryHeaderWrapper>
+                            <DataGridContainer>
+                                <DataTable>
+                                    <tbody>
+                                        {orders && orders.map(({ _id, userId, username, action, amount, status, timeStammp }, i) => (
+                                            <tr key={i}>
+                                                <TableData >
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentImag src="/svg/money-remove.svg" />
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText>{action}</TableDataContentText>
+                                                                {/* <TableDataContentText2>RDM CREDIT</TableDataContentText2> */}
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText>{timeStammp}</TableDataContentText>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText>NGN {parseFloat(amount).toLocaleString()}.00</TableDataContentText>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText2>{status}</TableDataContentText2>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap style={{ cursor: 'pointer' }}>
+                                                            <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                                                                </path>
+                                                            </svg>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </DataTable>
+                            </DataGridContainer>
+                        </DesktopBannerOrderContentWrapper>
+                    </DesktopView>
+                </DesktopViewWrap>
             </DesktopViewWrapper>
         </>
     )

@@ -24,10 +24,31 @@ export const user = {
     updateTxPin: async () => {
 
     },
-    balanceWithdraw: async (userId, username, amount) => {
-
+    balanceWithdraw: async (userId, username, amount, txpin) => {
+        let withdrawStat = false; let message; let userData;
+        const txPinOptons = { userId, username, amount, txpin }
+        try {
+            const { withdrawStat: reqStat, message: regMsg, userInfo } = await (await axios.post('http://localhost:3001/api/balance/withdraw', txPinOptons)).data;
+            withdrawStat = reqStat;
+            message = regMsg;
+            userData = userInfo;
+        } catch (error) {
+            withdrawStat = false;
+            message = error.message;
+            userData = [];
+        }
+        return { withdrawStat: withdrawStat, message, userData }
     },
     balanceDeposit: async () => {
 
+    },
+    usersOrders: async (userID, username) => {
+        console.log(userID, username)
+        try {
+            const response = (await axios.get(`http://localhost:3001/api/orders/${userID}/${username}`)).data;
+            return response
+        } catch (error) {
+            return []
+        }
     }
 }

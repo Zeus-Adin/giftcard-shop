@@ -6,6 +6,7 @@ import Cookies from 'js-cookie'
 
 import PinModal from "../../component/modal/PinModal";
 import CreatePinModal from "./CreatePinModal";
+import { user } from "../../services/user";
 
 const currencySvg = <svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.03846 22V0H8.09508L15.4972 14.2371V0H20.2188V22H15.1622L7.76 7.76286V22H3.03846Z" fill="#3F1E4B"></path><path d="M0.5 10.0882V6.11111H22.5V10.0882H0.5ZM0.5 16.5873V12.6102H22.5V16.5873H0.5Z" fill="#3F1E4B"></path></svg>
 const appOrigin = window.location.origin;
@@ -56,7 +57,23 @@ const WithdrawModal = ({ show, close, withdrawToAccount, openAlert, setAlertText
     }
 
     async function confiremRequest(txpin) {
-        console.log('users txpin: ' + txpin, 'session users txpin: ' + session.txpin, 'username : ' + session.username);
+        if (txpin !== session.txpin) {
+            setAlertText({ title: 'Pin Error', paragraph: 'wrong pin!', reason: 'error', sender: 'withdrawModal' });
+            openAlert();
+            return
+        }
+        const { withdrawStat, message, userData } = await user.balanceWithdraw(session._id, session.username, amount, txpin);
+        if (withdrawStat) {
+            Cookies.set(appOrigin, JSON.stringify(userData, { expires: 0.5 / 48 }));
+            setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'withdrawModal' });
+            openAlert();
+            window.location.reload();
+            return
+        } else {
+            setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender: 'withdrawModal' });
+            openAlert();
+            return
+        }
     }
 
     function handleKeyStokes(value) {
