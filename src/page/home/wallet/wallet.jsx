@@ -16,31 +16,12 @@ import {
 import { useEffect, useState } from 'react';
 import { user } from '../../../services/user';
 import Cookies from 'js-cookie';
-
-const columns = [
-    { field: 'id', headerName: 'ID', width: 90 },
-    {
-        field: 'lastName',
-        headerName: 'First name',
-        width: 150,
-        editable: true,
-    },
-];
-
-const rows = [
-    { id: 1, lastName: 'Snow' },
-    { id: 2, lastName: 'Lannister' },
-    { id: 3, lastName: 'Lannister' },
-    { id: 4, lastName: 'Stark' },
-    { id: 5, lastName: 'Targaryen' },
-    { id: 6, lastName: 'Melisandre' },
-    { id: 7, lastName: 'Clifford' },
-    { id: 8, lastName: 'Frances' },
-    { id: 9, lastName: 'Roxie' },
-];
+import { getAccounts } from '../../../services/bankhandlers';
+import { CircularProgress } from '@mui/material';
 
 const appOrigin = window.location.origin;
-const Wallet = ({ redirect }) => {
+const Wallet = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, handleOpenAlertBox, setAlertText }) => {
+    const [withdrawFired, setWithdrawFired] = useState(false);
     const [orders, setOrders] = useState([0]);
     const [hideBalance, setHideBalance] = useState(true);
 
@@ -58,6 +39,27 @@ const Wallet = ({ redirect }) => {
 
     async function showBalance() {
         setHideBalance(!hideBalance);
+    }
+
+    async function withDraw() {
+        setWithdrawFired(true)
+        if (userData) {
+            const { _id: id, username, balance } = userData;
+            if (balance < 50) {
+                setAlertText({ title: 'Insufficient funds', paragraph: 'Your balance is low.', reason: 'warning', sender: 'dashboard' })
+                handleOpenAlertBox()
+                setWithdrawFired(false)
+                return
+            }
+            const account = await getAccounts(id, username);
+            if (account.accounts.length > 0) {
+                setWithdrawFired(false)
+                setWithdrawToAccount(account.accounts[0])
+                openWithdrawModal()
+            } else {
+                redirect('/manage-banks');
+            }
+        }
     }
 
     useEffect(() => {
@@ -99,8 +101,8 @@ const Wallet = ({ redirect }) => {
                                         <MobileBannerBalanceButtonAddImage src="/svg/fund-icon.svg" />
                                         <MobileBannerBalanceButtonAddText>Fund Account</MobileBannerBalanceButtonAddText>
                                     </MobileBannerBalanceButtonAddWrapper>
-                                    <MobileBannerBalanceButtonWithdrawWrapper>
-                                        <MobileBannerBalanceButtonWithdrawImage src="/svg/withdraw-icon.svg" />
+                                    <MobileBannerBalanceButtonWithdrawWrapper onClick={withDraw}>
+                                        {withdrawFired ? <CircularProgress /> : <MobileBannerBalanceButtonWithdrawImage src="/svg/withdraw-icon.svg" />}
                                         <MobileBannerBalanceButtonWithdrawText>Withdraw</MobileBannerBalanceButtonWithdrawText>
                                     </MobileBannerBalanceButtonWithdrawWrapper>
                                 </MobileBannerBalanceButtonWrapper>
@@ -200,8 +202,8 @@ const Wallet = ({ redirect }) => {
                                         <img src='/svg/fund-icon.svg' />
                                         <DesktopBannerContentNairaText>Fund Account</DesktopBannerContentNairaText>
                                     </DesktopBannerButtonContent1Wrapper>
-                                    <DesktopBannerButtonContent1Wrapper>
-                                        <img src='/svg/withdraw-icon.svg' />
+                                    <DesktopBannerButtonContent1Wrapper onClick={withDraw}>
+                                        {withdrawFired ? <CircularProgress /> : <img src='/svg/withdraw-icon.svg' />}
                                         <DesktopBannerContentNairaText>Withdraw</DesktopBannerContentNairaText>
                                     </DesktopBannerButtonContent1Wrapper>
                                 </DesktopBannerButtonContentWrapper>
