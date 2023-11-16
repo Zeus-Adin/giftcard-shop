@@ -62,12 +62,11 @@ const Email_Verification = ({ redirect, openAlert, setAlertText }) => {
     }
 
     async function resendEmailVerificationToken() {
-        setResendTokenBtnDisable(true)
-        const { resend_stat, message } = await resendToken(email);
+        const { resend_stat, message, actKey } = await resendToken(email);
         if (resend_stat) {
             setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'resendtoken' })
             openAlert()
-            setResendTokenBtnDisable(false)
+            redirect(`/email-verification?actKey=${actKey}&email=${email}`)
         } else {
             setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender: 'resendtoken' })
             openAlert()

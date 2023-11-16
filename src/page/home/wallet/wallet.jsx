@@ -11,7 +11,8 @@ import {
     TableDataContentText2,
 
     DesktopViewWrapper, DesktopViewWrap, DesktopView, DesktopHeaderWrapper, DesktopHeaderText, DesktopBannerWrapper, DesktopBannerImage, DesktopBannerContentWrapper,
-    DesktopBannerContentTextWrapper, DesktopBannerContentNairaTextWrapper, DesktopBannerContentNairaText, DesktopBannerContentNairaTextImageWrapper, DesktopBannerContentNairaTextImage, DesktopBannerContentBalanceText, DesktopBannerContentCurrency, DesktopBannerButtonContentWrapper, DesktopBannerButtonContent1Wrapper, DesktopBannerOrderContentWrapper, DesktopBannerOrderContentWrap, DesktopBannerOrderContentHeaderText
+    DesktopBannerContentTextWrapper, DesktopBannerContentNairaTextWrapper, DesktopBannerContentNairaText, DesktopBannerContentNairaTextImageWrapper, DesktopBannerContentNairaTextImage, DesktopBannerContentBalanceText, DesktopBannerContentCurrency, DesktopBannerButtonContentWrapper, DesktopBannerButtonContent1Wrapper, DesktopBannerOrderContentWrapper, 
+    DesktopBannerOrderContentWrap, DesktopBannerOrderContentHeaderText
 } from './components'
 import { useEffect, useState } from 'react';
 import { user } from '../../../services/user';
@@ -22,7 +23,7 @@ import { CircularProgress } from '@mui/material';
 const appOrigin = window.location.origin;
 const Wallet = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, handleOpenAlertBox, setAlertText }) => {
     const [withdrawFired, setWithdrawFired] = useState(false);
-    const [orders, setOrders] = useState([0]);
+    const [orders, setOrders] = useState([]);
     const [hideBalance, setHideBalance] = useState(true);
 
     let session = Cookies.get(appOrigin);

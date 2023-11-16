@@ -2,8 +2,9 @@ import axios from "axios";
 
 export async function verifyToken(tokenKey, token) {
     let result;
-    const url = `https://test-mlf1.onrender.com/api/activate/user/${tokenKey}`
-    const regOptions = { 'token': token };
+    const url = `https://test-mlf1.onrender.com/api/activate/user`
+    // const url = `http://localhost:3001/api/activate/user`
+    const regOptions = { 'token': token, id: tokenKey };
     await axios.post(url, regOptions)
         .then(res => {
             if (res.data) {
@@ -23,6 +24,7 @@ export async function verifyToken(tokenKey, token) {
 export async function resendToken(email) {
     let result;
     const url = 'https://test-mlf1.onrender.com/api/resend/token'
+    // const url = 'http://localhost:3001/api/resend/token'
     const regOptions = { 'email': email };
     await axios.post(url, regOptions)
         .then(res => {

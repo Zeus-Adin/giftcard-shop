@@ -1,19 +1,21 @@
 import axios from "axios";
 
-const url = "https://test-mlf1.onrender.com/api/register/giftcard/tx"
-// const url = "http://localhost:3001/api/register/giftcard/tx"
+// const url = "https://test-mlf1.onrender.com/api/register/giftcard/tx"
+const url = "http://localhost:3001/api/register/giftcard/tx"
 
-export async function submitCardTxRequest(user, cardCurrency, amount, rate, fileCount, files, currency) {
+export async function submitCardTxRequest(userId, userName, currency, amount, rate, files, ecode, fileCount, cardType) {
     let result;
     const txOptions = {
-        user: user,
-        cardCurrency: cardCurrency,
-        amount: amount,
-        rate: rate,
-        fileCount: fileCount,
-        files: files,
-        status: 'pending',
-        currency: currency
+        userId: userId,
+        userName,
+        currency,
+        amount,
+        rate,
+        files,
+        ecode,
+        fileCount,
+        cardType,
+        action: 'sell'
     }
     await axios.post(url, txOptions)
         .then(res => {
@@ -24,11 +26,7 @@ export async function submitCardTxRequest(user, cardCurrency, amount, rate, file
             }
         })
         .catch(err => {
-            console.log(err)
-            if (err.response) {
-                const { response: { data } } = err;
-                result = data
-            }
+            result = { regCardTx: false, message: err.message, result: {} }
         })
     return result;
 }

@@ -49,19 +49,10 @@ const WithdrawModal = ({ show, close, withdrawToAccount, openAlert, setAlertText
             setWithdrawError(true);
             return
         }
-        if (!session.txpin) {
-            openCreatePinModal();
-            return
-        }
         openPinModal();
     }
 
     async function confiremRequest(txpin) {
-        if (txpin !== session.txpin) {
-            setAlertText({ title: 'Pin Error', paragraph: 'wrong pin!', reason: 'error', sender: 'withdrawModal' });
-            openAlert();
-            return
-        }
         const { withdrawStat, message, userData } = await user.balanceWithdraw(session._id, session.username, amount, txpin);
         if (withdrawStat) {
             Cookies.set(appOrigin, JSON.stringify(userData, { expires: 0.5 / 48 }));

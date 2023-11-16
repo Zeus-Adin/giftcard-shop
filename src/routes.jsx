@@ -33,6 +33,7 @@ const Routes = ({ path, redirect, authed }) => {
     const [selectedNav, setSelectedNav] = useState(0);
 
     const [activationKey, setActivationKey] = useState('');
+    const [emailVerify, setEmailVerifiy] = useState('');
     const [isActive, setIsActive] = useState(true);
 
     const [alertBox, setAlertBox] = useState(false);
@@ -60,7 +61,7 @@ const Routes = ({ path, redirect, authed }) => {
     const handleCloseAlertBox = () => {
         setAlertBox(false)
         setAlertText({ title: '', paragraph: '', reason: '' })
-        if (alertText.reason === 'success' && alertText.sender === 'reg') redirect(`/email-verification?actKey=${activationKey}`)
+        if (alertText.reason === 'success' && alertText.sender === 'reg') redirect(`/email-verification?actKey=${activationKey}&email=${emailVerify}`)
         if (alertText.reason === 'success' && alertText.sender === 'verif') redirect(`/login`)
         if (alertText.reason === 'success' && alertText.sender === 'auth') redirect(`/dashboard`)
         if (alertText.reason === 'success' && alertText.sender === 'sell') redirect(`/cards`)
@@ -101,7 +102,7 @@ const Routes = ({ path, redirect, authed }) => {
         <>
             {path === "/" && <Landing redirect={redirect} />}
             {path === "/login" && <Login redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
-            {path === "/register" && <Register redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setActivationKey={setActivationKey} />}
+            {path === "/register" && <Register redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setActivationKey={setActivationKey} setEmailVerifiy={setEmailVerifiy}/>}
             {path === "/forgot-password" && <ForgotPassword redirect={redirect} />}
             {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
 

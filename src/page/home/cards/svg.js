@@ -43,3 +43,27 @@ export const cards = [
     { name: 'walmartvisa', label: 'Walmart Visa', icon: 'walmart-visa.png', path: 'walmartvisa', svg: walmartVisaSvg },
     { name: 'xbox', label: 'Xbox', icon: 'xbox.png', path: 'xbox', svg: xboxSvg },
 ]
+
+export const cardImg = {
+    "amazon": 'amazon.png',
+    "americanexpress": 'american-express.png',
+    "americanexpressserver": 'american-express-server.png',
+    "appleitunes": 'apple-itunes.png',
+    "ebay": 'ebay.png',
+    "footlocker": 'footlocker.png',
+    "googleplay": 'google-play.png',
+    "jcpenney": 'jcpenney.png',
+    "macys": 'macys.png',
+    "netspend": 'netspend.png',
+    "nike": 'nike.png',
+    "nordstrom": 'nordstrom.png',
+    "razergold": 'razer-gold.png',
+    "roblox": 'roblox.png',
+    "sephora": 'sephora.png',
+    "steam": 'steam.png',
+    "vanilaonevanila": 'vanila-onevanila.png',
+    "visa": 'visa.png',
+    "walmart": 'walmart.png',
+    "walmartvisa": 'walmart-visa.png',
+    "xbox": 'xbox.png',
+}

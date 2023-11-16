@@ -41,6 +41,11 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
     const [rate, setRate] = useState(710);
     const [proceed, setProceed] = useState(false);
     const [files, setFiles] = useState([]);
+    const [ecode, setEcode] = useState('')
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const card = searchParams.get('card');
+    const label = searchParams.get('label');
 
     let sessionData = Cookies.get(appOrigin);
     if (!sessionData) {
@@ -51,13 +56,15 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
     async function submitRequest() {
         setSubmitBtn(true);
         const { _id: id, username } = sessionData;
-        const { regTx, message } = await submitCardTxRequest({ username, id }, selectedCurrency, amount, rate, files.length, files, selectedCurrency);
+        const { regTx, message } = await submitCardTxRequest(id, username, selectedCurrency, amount, rate, files, ecode, files.length, card);
         console.log(regTx, message)
         if (regTx) {
             setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'sell' })
             openAlert()
         } else {
-
+            setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender: 'sell' })
+            openAlert()
+            setSubmitBtn(false);
         }
     }
 
@@ -83,12 +90,9 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
         const { name, value } = e.target;
         if (name === 'amount') setAmount(parseFloat(value));
         if (name === 'howmany') setHowMany(parseFloat(value));
+        if (name === 'ecode') setEcode(value);
     }
 
-
-    const searchParams = new URLSearchParams(window.location.search);
-    const card = searchParams.get('card');
-    const label = searchParams.get('label');
 
     function selectCardType(type) {
         setSelectedCardType(type);
@@ -281,7 +285,7 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
                                                     <CardSalesInputWrap>
                                                         <CardSalesInputContents>
                                                             <CardSalesInputContentsLabel>Enter code if card is blurry (Optional)</CardSalesInputContentsLabel>
-                                                            <CardSalesInputContentsInput name="email" placeholder="e.g XDG2345678901234" onBlur={handleTextChange} />
+                                                            <CardSalesInputContentsInput name="ecode" placeholder="e.g XDG2345678901234" onBlur={handleTextChange} />
                                                         </CardSalesInputContents>
                                                     </CardSalesInputWrap>
                                                 </CurrencySelect>

@@ -61,7 +61,7 @@ const Home = ({ redirect, openWithdrawModal, setWithdrawToAccount, handleOpenAle
                 {selectedNav === 1 && <Activities redirect={redirect} />}
                 {selectedNav === 2 && <Wallet redirect={redirect} openWithdrawModal={openWithdrawModal} userData={userData} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
                 {/* {selectedNav === 3 && <Support redirect={redirect} />} */}
-                {selectedNav === 4 && <Profile redirect={redirect} />}
+                {selectedNav === 4 && <Profile redirect={redirect} setSelectedNav={setSelectedNav}/>}
                 {selectedNav === 5 && <Security redirect={redirect} />}
             </DesktopAppBar >
         </>

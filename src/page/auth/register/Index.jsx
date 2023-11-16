@@ -42,9 +42,8 @@ const AppGrid = styled('div')(({ }) => ({
     height: '100vh',
 }))
 
-const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey }) => {
+const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey, setEmailVerifiy }) => {
     const [timerValue, setTimerValue] = useState(1);
-
     const [pwshow, setPwdShow] = useState(false);
     function showPwd() {
         setPwdShow(!pwshow)
@@ -88,6 +87,7 @@ const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey
                 break;
             case 'email':
                 setEmail(value)
+                setEmailVerifiy(value)
                 break;
             case 'pwd':
                 setPwd(value)
