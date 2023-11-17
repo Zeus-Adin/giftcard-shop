@@ -25,19 +25,31 @@ export const user = {
 
     },
     balanceWithdraw: async (userId, username, amount, txpin) => {
-        let withdrawStat = false; let message; let userData;
+        let withdrawStat = false; let message; let userData; let code;
         const txPinOptons = { userId, username, amount, txpin }
         try {
             const { withdrawStat: reqStat, message: regMsg, userInfo } = await (await axios.post('http://localhost:3001/api/balance/withdraw', txPinOptons)).data;
             withdrawStat = reqStat;
             message = regMsg;
             userData = userInfo;
+            code = '';
         } catch (error) {
-            withdrawStat = false;
-            message = error.message;
-            userData = [];
+            console.log(error)
+            if (error.response) {
+                const { response: { data, status } } = error;
+                withdrawStat = data.withdrawStat;
+                message = data.message;
+                userData = [];
+                code = status;
+            } else {
+                withdrawStat = false;
+                message = error.message;
+                userData = [];
+                code = error.code
+            }
+
         }
-        return { withdrawStat: withdrawStat, message, userData }
+        return { withdrawStat: withdrawStat, message, userData, code }
     },
     balanceDeposit: async () => {
 

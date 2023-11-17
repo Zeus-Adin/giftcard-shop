@@ -53,7 +53,14 @@ const WithdrawModal = ({ show, close, withdrawToAccount, openAlert, setAlertText
     }
 
     async function confiremRequest(txpin) {
-        const { withdrawStat, message, userData } = await user.balanceWithdraw(session._id, session.username, amount, txpin);
+        const { withdrawStat, message, userData, code } = await user.balanceWithdraw(session._id, session.username, amount, txpin);
+        console.log(code)
+        if (code === 501) {
+            setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender: 'withdrawModal' });
+            openAlert();
+            openCreatePinModal();
+            return
+        }
         if (withdrawStat) {
             Cookies.set(appOrigin, JSON.stringify(userData, { expires: 0.5 / 48 }));
             setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'withdrawModal' });

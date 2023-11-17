@@ -18,6 +18,7 @@ import TradeCard from "./page/home/trade-cards/trade-card";
 import SelectCard from "./page/home/cards/selectcard";
 
 import ManageBanks from "./page/home/manage_banks";
+import AdminPage from './page/home/admin/index'
 
 
 const allowedPath = [
@@ -27,6 +28,7 @@ const allowedPath = [
     '/cards',
     '/sell',
     '/manage-banks',
+    '/admin'
 ]
 const appOrigin = window.location.origin;
 const Routes = ({ path, redirect, authed }) => {
@@ -101,8 +103,10 @@ const Routes = ({ path, redirect, authed }) => {
     return (
         <>
             {path === "/" && <Landing redirect={redirect} />}
+            {path === "/admin" && <AdminPage redirect={redirect} />}
+
             {path === "/login" && <Login redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
-            {path === "/register" && <Register redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setActivationKey={setActivationKey} setEmailVerifiy={setEmailVerifiy}/>}
+            {path === "/register" && <Register redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setActivationKey={setActivationKey} setEmailVerifiy={setEmailVerifiy} />}
             {path === "/forgot-password" && <ForgotPassword redirect={redirect} />}
             {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
 

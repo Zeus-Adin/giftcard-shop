@@ -1,5 +1,4 @@
 import axios from "axios";
-const url = "https://test-mlf1.onrender.com/api/user/login"
 
 export async function getBanks() {
     const options = {
@@ -22,7 +21,8 @@ export async function getBanks() {
 export async function getAccounts(id, username) {
     console.log(id, username)
     const options = {
-        baseURL: 'https://test-mlf1.onrender.com',
+        // baseURL: 'https://test-mlf1.onrender.com',
+        baseURL: 'http://localhost:3001',
         url: `/api/get/bank/info/${id}/${username}`,
         method: 'get',
     }

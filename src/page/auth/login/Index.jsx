@@ -57,8 +57,20 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
         const res = await login(emailValue, passwordValue)
         if (res.authstate) {
             setSubmitBtn(true);
-            Cookies.set(appOrigin, JSON.stringify(res.result[0]), { expires: 0.5 / 48 });
-            setAlertText({ title: 'Success', paragraph: res.message, reason: 'success', sender: 'auth' })
+            Cookies.set(appOrigin, JSON.stringify(res.result), { expires: 0.5 / 48 });
+            const { admin, activation } = res.result;
+            if (admin && activation) {
+                redirect('/admin');
+                return
+            }
+
+            if (activation) {
+                setAlertText({ title: 'Success', paragraph: res.message, reason: 'success', sender: 'auth' })
+            } else {
+                setAlertText({ title: 'Error', paragraph: 'Account not activated!', reason: 'warning', sender: 'auth' })
+                Cookies.remove(appOrigin)
+            }
+
             handleOpenAlertBox()
         }
         if (!res.authstate) {
