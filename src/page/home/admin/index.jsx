@@ -18,7 +18,10 @@ const AdminPage = ({ redirect }) => {
     let session = Cookies.get(appOrigin);
     if (session) {
         const { admin, activation } = JSON.parse(session)
-        if (!(admin && activation)) redirect('/dashboard');
+        if (!(admin && activation)) {
+            redirect('/dashboard')
+            return
+        };
     }
 
 
