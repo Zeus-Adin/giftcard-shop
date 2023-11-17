@@ -66,6 +66,7 @@ const Routes = ({ path, redirect, authed }) => {
         if (alertText.reason === 'success' && alertText.sender === 'reg') redirect(`/email-verification?actKey=${activationKey}&email=${emailVerify}`)
         if (alertText.reason === 'success' && alertText.sender === 'verif') redirect(`/login`)
         if (alertText.reason === 'success' && alertText.sender === 'auth') redirect(`/dashboard`)
+        if (alertText.reason === 'success' && alertText.sender === 'admin') redirect(`/admin`)
         if (alertText.reason === 'success' && alertText.sender === 'sell') redirect(`/cards`)
         if (alertText.reason === 'success' && alertText.sender === 'withdrawModal') {
             closeWithdrawModal();

@@ -49,7 +49,7 @@ const Activities = ({ redirect, openWithdrawModal, userData, setWithdrawToAccoun
     useEffect(() => {
         init();
     }, [])
-    console.log(cards)
+
     return (
         <>
             {/* MobileView */}

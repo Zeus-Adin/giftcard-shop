@@ -60,7 +60,8 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
             Cookies.set(appOrigin, JSON.stringify(res.result), { expires: 0.5 / 48 });
             const { admin, activation } = res.result;
             if (admin && activation) {
-                redirect('/admin');
+                setAlertText({ title: 'Success', paragraph: res.message, reason: 'success', sender: 'admin' })
+                handleOpenAlertBox()
                 return
             }
 
@@ -91,7 +92,15 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
 
     useEffect(() => {
         const session = Cookies.get(appOrigin);
-        if (session) redirect('/dashboard');
+        if (session) {
+            const { admin, activation } = JSON.parse(session);
+            if (admin && activation) {
+                redirect('/admin');
+                return
+            } else {
+                redirect('/dashboard');
+            }
+        }
     }, [])
 
     useEffect(() => {
