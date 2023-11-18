@@ -1,0 +1,31 @@
+import axios from 'axios'
+
+export async function getAllUsers(userId, username) {
+    try {
+        const option = { userId, username };
+        const res = (await axios.post('http://localhost:3001/api/get/all/users', option)).data;
+        console.log(res)
+        return res;
+    } catch (error) {
+        if (error.response) {
+            const { data: { authState, message, result } } = error.response;
+            return { authState, message, result }
+        }
+        return { authState: false, message: error.message, result: [] }
+    }
+}
+
+export async function getAllCardsTx(userId, username) {
+    try {
+        const option = { userId, username };
+        const res = (await axios.post('http://localhost:3001/api/get/all/cardtx', option)).data;
+        console.log(res)
+        return res;
+    } catch (error) {
+        if (error.response) {
+            const { data: { authState, message, result } } = error.response;
+            return { authState, message, result }
+        }
+        return { authState: false, message: error.message, result: [] }
+    }
+}
