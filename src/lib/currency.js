@@ -1,4 +1,5 @@
 export const curreniesSymbols = {
     "usd": "$",
-    "euro": "€"
+    "euro": "€",
+    "ngn": "₦"
 }

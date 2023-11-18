@@ -29,3 +29,18 @@ export async function getAllCardsTx(userId, username) {
         return { authState: false, message: error.message, result: [] }
     }
 }
+
+export async function getAllOrder(userId, username) {
+    try {
+        const option = { userId, username };
+        const res = (await axios.post('http://localhost:3001/api/get/all/orders', option)).data;
+        console.log(res)
+        return res;
+    } catch (error) {
+        if (error.response) {
+            const { data: { authState, message, result } } = error.response;
+            return { authState, message, result }
+        }
+        return { authState: false, message: error.message, result: [] }
+    }
+}

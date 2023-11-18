@@ -18,7 +18,7 @@ import AdminHeader from './header';
 import {
     ContentWrappers
 } from './components';
-import { getAllCardsTx, getAllUsers } from './functions';
+import { getAllCardsTx, getAllOrder, getAllUsers } from './functions';
 import { DataGridContainer, DataTable, TableData, TableDataContentImag, TableDataContentText, TableDataContentText2, TableDataContentTextWrap, TableDataContentWrap, TableDataContentWrapper } from '../wallet/components';
 import { Declined, Pending, Success } from '../activities/components';
 import { curreniesSymbols } from '../../../lib/currency';
@@ -46,6 +46,7 @@ const appOrigin = window.location.origin;
 const AdminPage = ({ redirect }) => {
     const [users, setUsers] = useState([]);
     const [cards, setCards] = useState([]);
+    const [orders, setOrders] = useState([]);
     const [search, setSearch] = useState('');
 
     async function init() {
@@ -55,6 +56,9 @@ const AdminPage = ({ redirect }) => {
         const { authState: cardsAuthState, message: cardsMessage, result: cardsRes } = await getAllCardsTx('654e97d013c3feb799557957', 'DaNiel');
         if (!cardsAuthState) return;
         setCards(cardsRes);
+        const { authState: orderAuthState, message: orderMessage, result: ordersRes } = await getAllOrder('654e97d013c3feb799557957', 'DaNiel');
+        if (!orderAuthState) return;
+        setOrders(ordersRes);
     }
 
     // let session = Cookies.get(appOrigin);
@@ -118,7 +122,7 @@ const AdminPage = ({ redirect }) => {
                                                 <TableDataContentWrapper>
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '2rem' }}>NGN {balance}.00</TableDataContentText>
+                                                            <TableDataContentText style={{ fontSize: '2rem' }}>{curreniesSymbols['ngn']} {balance}.00</TableDataContentText>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -161,7 +165,7 @@ const AdminPage = ({ redirect }) => {
                                 <thead style={{ borderWidth: '.4em' }}>
                                     <tr style={{ textAlign: 'left' }}>
                                         <th>User/Card Tx Ref</th>
-                                        <th>Currency</th>
+                                        <th>Amount Each</th>
                                         <th>Rate</th>
                                         <th>Count</th>
                                         <th>Status</th>
@@ -194,7 +198,7 @@ const AdminPage = ({ redirect }) => {
                                                 <TableDataContentWrapper>
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>NGN {rate}</TableDataContentText>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols['ngn']} {rate}</TableDataContentText>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -237,53 +241,178 @@ const AdminPage = ({ redirect }) => {
                 </ContentWrappers>
 
                 {/* -------------------------------------- */}
-                <Root>
-                    <Divider><Chip label="Order" icon={<ReceiptLongIcon />} /></Divider>
+                <ContentWrappers xs={12} >
+                    <Root>
+                        <Divider><Chip label="Order" icon={<ReceiptLongIcon />} /></Divider>
+                        <DataGridContainer style={{ padding: '2rem 2rem' }}>
+                            <DataTable >
+                                <thead style={{ borderWidth: '.4em' }}>
+                                    <tr style={{ textAlign: 'left' }}>
+                                        <th>User/Order Ref</th>
+                                        <th>Date</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    {orders ? orders.map(({ _id: orderRef, username, amount, action, timeStammp, status }, i) => (
+                                        <tr key={i}>
+                                            <TableData >
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{username}</TableDataContentText>
+                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{orderRef}</TableDataContentText2>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                            <TableData>
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{timeStammp}</TableDataContentText>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                            <TableData>
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols['ngn']} {amount}.00</TableDataContentText>
+                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{action}</TableDataContentText2>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                            <TableData>
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            {status === 'pending' && <Pending>{status}</Pending>}
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                            <TableData>
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap style={{ cursor: 'pointer' }}>
+                                                        <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                                                            </path>
+                                                        </svg>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                        </tr>
+                                    )) : <div>No data found yet</div>
+                                    }
+                                </tbody>
+                            </DataTable>
+                        </DataGridContainer>
+                    </Root>
+                </ContentWrappers>
 
-                </Root>
             </DesktopView>
 
             {/* Mobile */}
             <MobileView container spacing={2}>
-                <Root>
-                    <Divider><Chip label="Users" icon={<GroupIcon />} /></Divider>
-                    <DataGridContainer style={{ padding: '0rem 2rem' }}>
-                        <DataTable>
-                            <tbody>
-                                {users ? users.map(({ _id: usersId, username, email, balance, activation, avatarIcon, admin }, i) => (
-                                    <tr key={i}>
-                                        <TableData >
-                                            <TableDataContentWrapper>
-                                                <TableDataContentWrap>
-                                                    <TableDataContentImag style={{ width: '4.5rem', height: '4.5rem' }} src={`${avatarIcon}`} />
-                                                    <TableDataContentTextWrap>
-                                                        <TableDataContentText>{username}</TableDataContentText>
-                                                        <TableDataContentText2>{email}</TableDataContentText2>
-                                                    </TableDataContentTextWrap>
-                                                </TableDataContentWrap>
-                                            </TableDataContentWrapper>
-                                        </TableData>
-                                        <TableData>
-                                            <TableDataContentWrapper>
-                                                <TableDataContentWrap>
-                                                    <TableDataContentTextWrap>
-                                                        <TableDataContentText style={{ fontSize: '2rem' }}>{balance}.00</TableDataContentText>
-                                                    </TableDataContentTextWrap>
-                                                </TableDataContentWrap>
-                                            </TableDataContentWrapper>
-                                        </TableData>
+                <ContentWrappers xs={12} >
+                    <Root>
+                        <Divider><Chip label="Users" icon={<GroupIcon />} /></Divider>
+                        <DataGridContainer style={{ padding: '0rem 2rem' }}>
+                            <DataTable>
+                                <thead style={{ borderWidth: '.4em' }}>
+                                    <tr style={{ textAlign: 'left' }}>
+                                        <th>User/Email/Action</th>
+                                        <th>Balance</th>
                                     </tr>
-                                )) : <div>No data found</div>
-                                }
-                            </tbody>
-                        </DataTable>
-                    </DataGridContainer>
-                </Root>
-                {/* -------------------------------------- */}
-                <Root>
-                    <Divider><Chip label="Card" icon={<CardGiftcardIcon />} /></Divider>
+                                </thead>
+                                <tbody>
+                                    {users ? users.map(({ _id: usersId, username, email, balance, activation, avatarIcon, admin }, i) => (
+                                        <tr key={i}>
+                                            <TableData >
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentImag style={{ width: '4.5rem', height: '4.5rem' }} src={`${avatarIcon}`} />
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText>{username}</TableDataContentText>
+                                                            <TableDataContentText2>{email}</TableDataContentText2>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                            <TableData>
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols['ngn']} {balance}.00</TableDataContentText>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                        </tr>
+                                    )) : <div>No data found</div>
+                                    }
+                                </tbody>
+                            </DataTable>
+                        </DataGridContainer>
+                    </Root>
+                </ContentWrappers>
 
-                </Root>
+                {/* -------------------------------------- */}
+                <ContentWrappers xs={12} >
+                    <Root>
+                        <Divider><Chip label="Card" icon={<CardGiftcardIcon />} /></Divider>
+                        <DataGridContainer style={{ padding: '2rem 2rem' }}>
+                            <DataTable >
+                                <thead style={{ borderWidth: '.4em' }}>
+                                    <tr style={{ textAlign: 'left' }}>
+                                        <th>User/Card Tx Ref/Action</th>
+                                        <th>Amount Each</th>
+                                        <th>Rate</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    {cards ? cards.map(({ _id: txRef, userId, userName, currency, amount, rate, files, fileCount, ecode, cardType, action, status, timeStamp }, i) => (
+                                        <tr key={i}>
+                                            <TableData >
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{userName}</TableDataContentText>
+                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{txRef}</TableDataContentText2>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                            <TableData>
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency]} {amount}.00</TableDataContentText>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                            <TableData>
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols['ngn']} {rate}</TableDataContentText>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                        </tr>
+                                    )) : <div>No data found yet</div>
+                                    }
+                                </tbody>
+                            </DataTable>
+                        </DataGridContainer>
+                    </Root>
+                </ContentWrappers>
                 {/* -------------------------------------- */}
                 <Root>
                     <Divider><Chip label="Order" icon={<ReceiptLongIcon />} /></Divider>
