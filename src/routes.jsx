@@ -14,6 +14,7 @@ import Cookies from "js-cookie";
 import BankModal from "./component/modal/BankModal";
 import DepositModal from "./component/modal/DepositModal";
 import WithdrawModal from "./component/modal/WithdrawModal";
+import WalletMoreInfoModal from "./component/modal/WalletMoreInfoModal";
 import TradeCard from "./page/home/trade-cards/trade-card";
 import SelectCard from "./page/home/cards/selectcard";
 
@@ -23,12 +24,7 @@ import AdminPage from './page/home/admin/index'
 
 const allowedPath = [
     '/', '/login', '/register', '/forgotpassword', '/email-verification',
-    '/dashboard',
-    '/trade-cards',
-    '/cards',
-    '/sell',
-    '/manage-banks',
-    '/admin'
+    '/dashboard', '/trade-cards', '/cards', '/sell', '/manage-banks', '/admin'
 ]
 const appOrigin = window.location.origin;
 const Routes = ({ path, redirect, authed }) => {
@@ -52,6 +48,11 @@ const Routes = ({ path, redirect, authed }) => {
     const [showWithdrawModal, setShowWithdrawModal] = useState(false);
     function openWithdrawModal() { setShowWithdrawModal(true); }
     function closeWithdrawModal() { setShowWithdrawModal(false); }
+
+    const [moreInfoValues, setMoreInfoValues] = useState({});
+    const [showWalletMoreInfoModal, setShowWalletMoreInfoModal] = useState(false);
+    function openWalletMoreInfoModal() { setShowWalletMoreInfoModal(true); }
+    function closeWalletMoreInfoModal() { setShowWalletMoreInfoModal(false); }
 
     const [withdrawToAccount, setWithdrawToAccount] = useState('');
 
@@ -104,14 +105,14 @@ const Routes = ({ path, redirect, authed }) => {
     return (
         <>
             {path === "/" && <Landing redirect={redirect} />}
-            {path === "/admin" && <AdminPage redirect={redirect} />}
+            {path === "/admin" && <AdminPage redirect={redirect} setMoreInfoValues={setMoreInfoValues} openWalletMoreInfoModal={openWalletMoreInfoModal} />}
 
             {path === "/login" && <Login redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
             {path === "/register" && <Register redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setActivationKey={setActivationKey} setEmailVerifiy={setEmailVerifiy} />}
             {path === "/forgot-password" && <ForgotPassword redirect={redirect} />}
             {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
 
-            {path === "/dashboard" && <Home redirect={redirect} authed={authed} openWithdrawModal={openWithdrawModal} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} selectedNav={selectedNav} setSelectedNav={setSelectedNav} />}
+            {path === "/dashboard" && <Home redirect={redirect} authed={authed} openWithdrawModal={openWithdrawModal} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} selectedNav={selectedNav} setSelectedNav={setSelectedNav} setMoreInfoValues={setMoreInfoValues} openWalletMoreInfoModal={openWalletMoreInfoModal} />}
             {path === '/cards' && <SelectCard redirect={redirect} authed={authed} />}
             {path === '/trade-cards' && <TradeCard redirect={redirect} authed={authed} />}
             {path === "/sell" && <Sell redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
@@ -122,6 +123,7 @@ const Routes = ({ path, redirect, authed }) => {
             <BankModal show={showBankModal} close={closeBankModal} redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />
             <DepositModal show={showDepositModal} close={closeDepositModal} redirect={redirect} />
             <WithdrawModal show={showWithdrawModal} close={closeWithdrawModal} redirect={redirect} withdrawToAccount={withdrawToAccount} setWithdrawToAccount={setWithdrawToAccount} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />
+            <WalletMoreInfoModal show={showWalletMoreInfoModal} close={closeWalletMoreInfoModal} values={moreInfoValues} />
         </>
 
     )

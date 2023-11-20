@@ -243,3 +243,135 @@ export const WithdrawalNumberText = styled('p')(() => (`
     letter-spacing: 0.2px;
     text-decoration: none;
 `))
+
+// -=---------------------------------
+export const OrderContentWrapper = styled.div(() => (`
+    gap: 1.6rem;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    display: flex;
+`))
+export const OrderContentHeaderWrapper = styled.div(() => (`
+    padding-top: 1.6rem;
+    padding-bottom: 1.6rem;
+    gap: 1.6rem;
+    justify-content: flex-start;
+    width: 100%;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+`))
+export const OrderContentHeaderImage = styled.img(() => (`
+    border-radius: .8rem;
+    background: #F2F2F2;
+    width: 4.5rem;
+    height: 4.5rem;
+    padding: 1.3rem;
+`))
+export const OrderContentHeaderSubTextWrapper = styled.div(() => (`
+    gap: .4rem;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    display: flex;
+`))
+export const OrderContentHeaderText = styled.p(() => (`
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+export const OrderContentHeaderSubText = styled.p(() => (`
+    color: #BDBDBD;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+
+export const OrderSubContentWrapper = styled.div(() => (`
+    gap:.4rem;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    display: flex;
+`))
+export const OrderSubContentText = styled.div(() => (`
+    color: #BDBDBD;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+export const OrderSubContentSubTextWrapper = styled.div(() => (`
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    display: flex;
+`))
+export const OrderSubContentSubText = styled.div(() => (`
+    font-size: 1.6rem;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+export const OrderSubContentCopyImageWrapper = styled.div(() => (`
+    cursor: pointer;
+    margin-left: 1.6rem;
+`))
+export const OrderSubContentCopyImage = styled.img(() => (`
+    width: 2rem;
+`))
+export const OrderSubContentSuccessText = styled.p(() => (`
+    width: fit-content;
+    padding: 1.6rem 2.4rem;
+    color: #27AE60;
+    background-color: rgb(234, 250, 241);
+    border-radius: 2.4rem;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+export const OrderSubContentPendingText = styled.p(() => (`
+    width: fit-content;
+    padding: 1.6rem 2.4rem;
+    color: #F5CF48;
+    background-color: #FAE69E;
+    border-radius: 2.4rem;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+export const OrderSubContentDeclinedText = styled.p(() => (`
+    width: fit-content;
+    padding: 1.6rem 2.4rem;
+    color: #27AE60;
+    background-color: #E81313;
+    border-radius: 2.4rem;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))

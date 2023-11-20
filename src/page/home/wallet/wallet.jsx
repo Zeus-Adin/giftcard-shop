@@ -11,7 +11,7 @@ import {
     TableDataContentText2,
 
     DesktopViewWrapper, DesktopViewWrap, DesktopView, DesktopHeaderWrapper, DesktopHeaderText, DesktopBannerWrapper, DesktopBannerImage, DesktopBannerContentWrapper,
-    DesktopBannerContentTextWrapper, DesktopBannerContentNairaTextWrapper, DesktopBannerContentNairaText, DesktopBannerContentNairaTextImageWrapper, DesktopBannerContentNairaTextImage, DesktopBannerContentBalanceText, DesktopBannerContentCurrency, DesktopBannerButtonContentWrapper, DesktopBannerButtonContent1Wrapper, DesktopBannerOrderContentWrapper, 
+    DesktopBannerContentTextWrapper, DesktopBannerContentNairaTextWrapper, DesktopBannerContentNairaText, DesktopBannerContentNairaTextImageWrapper, DesktopBannerContentNairaTextImage, DesktopBannerContentBalanceText, DesktopBannerContentCurrency, DesktopBannerButtonContentWrapper, DesktopBannerButtonContent1Wrapper, DesktopBannerOrderContentWrapper,
     DesktopBannerOrderContentWrap, DesktopBannerOrderContentHeaderText
 } from './components'
 import { useEffect, useState } from 'react';
@@ -20,11 +20,18 @@ import Cookies from 'js-cookie';
 import { getAccounts } from '../../../services/bankhandlers';
 import { CircularProgress } from '@mui/material';
 
+import { curreniesSymbols } from "../../../lib/currency"
+
 const appOrigin = window.location.origin;
-const Wallet = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, handleOpenAlertBox, setAlertText }) => {
+const Wallet = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, handleOpenAlertBox, setAlertText, setMoreInfoValues, openWalletMoreInfoModal }) => {
     const [withdrawFired, setWithdrawFired] = useState(false);
     const [orders, setOrders] = useState([]);
     const [hideBalance, setHideBalance] = useState(true);
+
+    function moreOrderInfo(i) {
+        setMoreInfoValues(orders[i]);
+        openWalletMoreInfoModal();
+    }
 
     let session = Cookies.get(appOrigin);
     if (session) {
@@ -146,7 +153,7 @@ const Wallet = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, h
                                                         <TableDataContentWrapper>
                                                             <TableDataContentWrap>
                                                                 <TableDataContentTextWrap>
-                                                                    <TableDataContentText>NGN {parseFloat(amount).toLocaleString()}.00</TableDataContentText>
+                                                                    <TableDataContentText>{curreniesSymbols['NGN'].symbol} {parseFloat(amount).toLocaleString()}.00</TableDataContentText>
                                                                     <TableDataContentText2>{status}</TableDataContentText2>
                                                                 </TableDataContentTextWrap>
                                                             </TableDataContentWrap>
@@ -154,7 +161,7 @@ const Wallet = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, h
                                                     </TableData>
                                                     <TableData>
                                                         <TableDataContentWrapper>
-                                                            <TableDataContentWrap style={{ cursor: 'pointer' }}>
+                                                            <TableDataContentWrap style={{ cursor: 'pointer' }} onClick={() => moreOrderInfo(i)}>
                                                                 <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
                                                                     </path>
@@ -256,7 +263,7 @@ const Wallet = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, h
                                                     <TableDataContentWrapper>
                                                         <TableDataContentWrap>
                                                             <TableDataContentTextWrap>
-                                                                <TableDataContentText>NGN {parseFloat(amount).toLocaleString()}.00</TableDataContentText>
+                                                                <TableDataContentText>{curreniesSymbols['NGN'].symbol} {parseFloat(amount).toLocaleString()}.00</TableDataContentText>
                                                             </TableDataContentTextWrap>
                                                         </TableDataContentWrap>
                                                     </TableDataContentWrapper>
@@ -272,7 +279,7 @@ const Wallet = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, h
                                                 </TableData>
                                                 <TableData>
                                                     <TableDataContentWrapper>
-                                                        <TableDataContentWrap style={{ cursor: 'pointer' }}>
+                                                        <TableDataContentWrap style={{ cursor: 'pointer' }} onClick={() => moreOrderInfo(i)}>
                                                             <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
                                                                 </path>

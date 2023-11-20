@@ -1,10 +1,7 @@
 import Cookies from 'js-cookie'
-import { Button, Grid, TextField, Typography } from "@mui/material";
-import Paper from '@mui/material/Paper';
+import { Grid, } from "@mui/material";
 import Chip from '@mui/material/Chip';
 import { styled } from '@mui/material/styles';
-import SendIcon from '@mui/icons-material/Send';
-import UpdateIcon from '@mui/icons-material/Update';
 import Divider from '@mui/material/Divider';
 
 import GroupIcon from '@mui/icons-material/Group';
@@ -18,10 +15,10 @@ import AdminHeader from './header';
 import {
     ContentWrappers
 } from './components';
-import { getAllCardsTx, getAllOrder, getAllUsers } from './functions';
+import { getAllBank, getAllCardsTx, getAllOrder, getAllUsers } from './functions';
 import { DataGridContainer, DataTable, TableData, TableDataContentImag, TableDataContentText, TableDataContentText2, TableDataContentTextWrap, TableDataContentWrap, TableDataContentWrapper } from '../wallet/components';
 import { Declined, Pending, Success } from '../activities/components';
-import { curreniesSymbols } from '../../../lib/currency';
+import { curreniesSymbols, currencies } from '../../../lib/currency';
 
 const MobileView = styled(Grid)(({ theme }) => ({
     [theme.breakpoints.down('md')]: { display: 'flex', },
@@ -35,6 +32,10 @@ const DesktopView = styled(Grid)(({ theme }) => ({
     alignItems: 'center', justifyContent: 'center',
 }))
 
+const BankWrapper = styled(Grid)(({ theme }) => ({
+    alignItems: 'center', justifyContent: 'center', marginTop: '5rem'
+}))
+
 const Root = styled('div')(({ theme }) => ({
     width: '100%',
     ...theme.typography.body2,
@@ -43,11 +44,21 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const appOrigin = window.location.origin;
-const AdminPage = ({ redirect }) => {
+const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => {
     const [users, setUsers] = useState([]);
     const [cards, setCards] = useState([]);
     const [orders, setOrders] = useState([]);
+    const [banks, setBanks] = useState([]);
     const [search, setSearch] = useState('');
+
+    // let session = Cookies.get(appOrigin);
+    // if (session) {
+    //     const { admin, activation } = JSON.parse(session)
+    //     if (!(admin && activation)) {
+    //         redirect('/dashboard')
+    //         return
+    //     };
+    // }
 
     async function init() {
         const { authState: usersAuthState, message: usersMessage, result: usersRes } = await getAllUsers('654e97d013c3feb799557957', 'DaNiel');
@@ -59,21 +70,24 @@ const AdminPage = ({ redirect }) => {
         const { authState: orderAuthState, message: orderMessage, result: ordersRes } = await getAllOrder('654e97d013c3feb799557957', 'DaNiel');
         if (!orderAuthState) return;
         setOrders(ordersRes);
+        const { authState: bankAuthState, message: bankMessage, result: bankRes } = await getAllBank('654e97d013c3feb799557957', 'DaNiel');
+        if (!bankAuthState) return;
+        setBanks(bankRes);
     }
 
-    // let session = Cookies.get(appOrigin);
-    // if (session) {
-    //     const { admin, activation } = JSON.parse(session)
-    //     if (!(admin && activation)) {
-    //         redirect('/dashboard')
-    //         return
-    //     };
-    // }
+    function moreInfo(i) {
+        setMoreInfoValues(orders[i]);
+        openWalletMoreInfoModal();
+    }
+
+
 
     useEffect(() => {
         init();
     }, [])
 
+
+    console.log(curreniesSymbols['NGN'])
     return (
         <>
             {/* Header */}
@@ -122,7 +136,7 @@ const AdminPage = ({ redirect }) => {
                                                 <TableDataContentWrapper>
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '2rem' }}>{curreniesSymbols['ngn']} {balance}.00</TableDataContentText>
+                                                            <TableDataContentText style={{ fontSize: '2rem' }}>{curreniesSymbols['NGN'].symbol} {balance}.00</TableDataContentText>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -189,7 +203,7 @@ const AdminPage = ({ redirect }) => {
                                                 <TableDataContentWrapper>
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency]} {amount}.00</TableDataContentText>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency].symbol} {amount}.00</TableDataContentText>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -198,7 +212,7 @@ const AdminPage = ({ redirect }) => {
                                                 <TableDataContentWrapper>
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols['ngn']} {rate}</TableDataContentText>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency].symbol} {rate}</TableDataContentText>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -280,7 +294,7 @@ const AdminPage = ({ redirect }) => {
                                                 <TableDataContentWrapper>
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols['ngn']} {amount}.00</TableDataContentText>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols["NGN"].symbol} {amount}.00</TableDataContentText>
                                                             <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{action}</TableDataContentText2>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
@@ -297,7 +311,7 @@ const AdminPage = ({ redirect }) => {
                                             </TableData>
                                             <TableData>
                                                 <TableDataContentWrapper>
-                                                    <TableDataContentWrap style={{ cursor: 'pointer' }}>
+                                                    <TableDataContentWrap style={{ cursor: 'pointer' }} onClick={() => moreInfo(i)}>
                                                         <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
                                                             </path>
@@ -347,7 +361,7 @@ const AdminPage = ({ redirect }) => {
                                                 <TableDataContentWrapper>
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols['ngn']} {balance}.00</TableDataContentText>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols["NGN"].symbol} {balance}.00</TableDataContentText>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -391,7 +405,7 @@ const AdminPage = ({ redirect }) => {
                                                 <TableDataContentWrapper>
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency]} {amount}.00</TableDataContentText>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency].symbol} {amount}.00</TableDataContentText>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -400,7 +414,7 @@ const AdminPage = ({ redirect }) => {
                                                 <TableDataContentWrapper>
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols['ngn']} {rate}</TableDataContentText>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency].symbol} {rate}</TableDataContentText>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -414,11 +428,125 @@ const AdminPage = ({ redirect }) => {
                     </Root>
                 </ContentWrappers>
                 {/* -------------------------------------- */}
-                <Root>
-                    <Divider><Chip label="Order" icon={<ReceiptLongIcon />} /></Divider>
-
-                </Root>
+                <ContentWrappers xs={12} >
+                    <Root>
+                        <Divider><Chip label="Order" icon={<ReceiptLongIcon />} /></Divider>
+                        <DataGridContainer style={{ padding: '2rem 2rem' }}>
+                            <DataTable >
+                                <thead style={{ borderWidth: '.4em' }}>
+                                    <tr style={{ textAlign: 'left' }}>
+                                        <th>User/Order Ref</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    {orders ? orders.map(({ _id: orderRef, username, amount, action, timeStammp, status }, i) => (
+                                        <tr key={i}>
+                                            <TableData >
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{username}</TableDataContentText>
+                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{orderRef}</TableDataContentText2>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                            <TableData>
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols["NGN"].symbol} {amount}.00</TableDataContentText>
+                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{action}</TableDataContentText2>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                            <TableData>
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap style={{ cursor: 'pointer' }} onClick={() => moreInfo(i)}>
+                                                        <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                                                            </path>
+                                                        </svg>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                        </tr>
+                                    )) : <div>No data found yet</div>
+                                    }
+                                </tbody>
+                            </DataTable>
+                        </DataGridContainer>
+                    </Root>
+                </ContentWrappers>
             </MobileView>
+
+            <BankWrapper container>
+                <ContentWrappers xs={12} >
+                    <Root>
+                        <Divider><Chip label="Order" icon={<ReceiptLongIcon />} /></Divider>
+                        <DataGridContainer style={{ padding: '2rem 2rem' }}>
+                            <DataTable >
+                                <thead style={{ borderWidth: '.4em' }}>
+                                    <tr style={{ textAlign: 'left' }}>
+                                        <th>User/Bank Ref</th>
+                                        <th>Bank/BankCode</th>
+                                        <th>Account Name/Account Number</th>
+                                        <th>Active Account</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    {banks ? banks.map(({ _id: bankRef, id, username, name, code, account_number, account_name, active }, i) => (
+                                        <tr key={i}>
+                                            <TableData >
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{username}</TableDataContentText>
+                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{id}</TableDataContentText2>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                            <TableData>
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{name}</TableDataContentText>
+                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{code}</TableDataContentText2>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                            <TableData>
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{account_name}</TableDataContentText>
+                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{account_number}</TableDataContentText2>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                            <TableData>
+                                                <TableDataContentWrapper>
+                                                    <TableDataContentWrap>
+                                                        <TableDataContentTextWrap>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{active.toString()}</TableDataContentText>
+                                                        </TableDataContentTextWrap>
+                                                    </TableDataContentWrap>
+                                                </TableDataContentWrapper>
+                                            </TableData>
+                                        </tr>
+                                    )) : <div>No data found yet</div>
+                                    }
+                                </tbody>
+                            </DataTable>
+                        </DataGridContainer>
+                    </Root>
+                </ContentWrappers>
+            </BankWrapper>
         </>
     )
 }

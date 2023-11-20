@@ -30,3 +30,12 @@ export async function submitCardTxRequest(userId, userName, currency, amount, ra
         })
     return result;
 }
+
+export async function getPlateFormRates() {
+    try {
+        const rates = (await axios.get('http://localhost:3001/api/get/rates')).data
+        return rates
+    } catch (error) {
+        return []
+    }
+}

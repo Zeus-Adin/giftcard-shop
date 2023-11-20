@@ -49,13 +49,15 @@ export async function validateBankAccount(account_number, bank_code) {
         const response = (await axios(options)).data;
         return response.data
     } catch (error) {
-        return null
+        return []
     }
 }
 
 export async function regBankInfo(info) {
     let result;
-    await axios.post('https://test-mlf1.onrender.com/api/register/bank/info', info)
+    const url = 'http://localhost:3001/api/register/bank/info';
+    // const url = 'https://test-mlf1.onrender.com/api/register/bank/info';
+    await axios.post(url, info)
         .then(res => {
             console.log(res)
             if (res.data) {
@@ -65,6 +67,9 @@ export async function regBankInfo(info) {
         })
         .catch(err => {
             if (err.response) {
+                const { data } = err.response;
+                result = data;
+            } else {
                 result = { bankReg: false, message: err.message }
             }
         })

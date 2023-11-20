@@ -22,7 +22,8 @@ import {
     ProceedButtonWrapText
 } from "./components";
 import Cookies from 'js-cookie';
-import { submitCardTxRequest } from './functions';
+import { getPlateFormRates, submitCardTxRequest } from './functions';
+import { curreniesSymbols } from '../../../lib/currency'
 
 const AppBar = styled('div')(({ }) => ({
     position: 'relative',
@@ -37,8 +38,9 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
     const [howMany, setHowMany] = useState(1);
     const [anchorEl, setAnchorEl] = useState(null);
     const [openSelectCurrency, setOpenSelectCurrency] = useState(false);
-    const [selectedCurrency, setSelectedCurrency] = useState('');
-    const [rate, setRate] = useState(710);
+    const [selectedCurrency, setSelectedCurrency] = useState({ code: '', label: '' });
+    const [rate, setRate] = useState(0);
+    const [plateFormRates, setPlateFormRates] = useState([]);
     const [proceed, setProceed] = useState(false);
     const [files, setFiles] = useState([]);
     const [ecode, setEcode] = useState('')
@@ -56,7 +58,7 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
     async function submitRequest() {
         setSubmitBtn(true);
         const { _id: id, username } = sessionData;
-        const { regTx, message } = await submitCardTxRequest(id, username, selectedCurrency, amount, rate, files, ecode, files.length, card);
+        const { regTx, message } = await submitCardTxRequest(id, username, selectedCurrency.code, amount, rate, files, ecode, files.length, card);
         console.log(regTx, message)
         if (regTx) {
             setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'sell' })
@@ -83,7 +85,9 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
     }
 
     function handleSelectChange(e) {
-        setSelectedCurrency(e.currentTarget.getAttribute('name'))
+        setSelectedCurrency({ code: e.currentTarget.getAttribute('name'), label: e.currentTarget.getAttribute('label') })
+        setRate(e.currentTarget.getAttribute('value'));
+        console.log(e.currentTarget.getAttribute('value'))
     }
 
     function handleTextChange(e) {
@@ -134,6 +138,16 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
         } else { setSubmitBtn(false); }
     }, [files, howMany, amount, rate])
 
+    async function init() {
+        const res = await getPlateFormRates();
+        setPlateFormRates(res);
+        console.log(res)
+    }
+
+    useEffect(() => {
+        init();
+    }, [])
+
     return (
         <>
             <AppBar>
@@ -161,7 +175,7 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
                                         <>
                                             <CurrencySelect>
                                                 <CurrencySelectButton onClick={handleOpenSelect}>
-                                                    <span style={{ pointerEvents: 'none', textAlign: 'center' }}>{selectedCurrency || 'Select Currency'}</span>
+                                                    <span style={{ pointerEvents: 'none', textAlign: 'center' }}>{selectedCurrency.label || 'Select Currency'}</span>
                                                     <span aria-hidden="true">
                                                         <CurrencySelectButtonImage src="/svg/chevron-down.svg" alt="" />
                                                     </span>
@@ -173,8 +187,11 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
                                                     onClose={handleCloseSelect}
                                                     MenuListProps={{ 'aria-labelledby': 'basic-button' }}
                                                 >
-                                                    <MenuItem sx={{ width: '40rem' }} name="usd" onClick={handleSelectChange}>United States(USD)</MenuItem>
-                                                    <MenuItem sx={{ width: '40rem' }} name="euro" onClick={handleSelectChange}>Euro(Euro)</MenuItem>
+                                                    {plateFormRates && plateFormRates.map((res) => {
+                                                        const currency = Object.keys(res)[1];
+                                                        return <MenuItem sx={{ width: '40rem' }} name={currency} value={res[currency]} label={curreniesSymbols[currency].name} onClick={handleSelectChange}>{curreniesSymbols[currency].name}</MenuItem>
+                                                    })
+                                                    }
                                                 </Menu>
                                             </CurrencySelect>
 
@@ -249,7 +266,7 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
                                                             <CardSalesCalculator>
                                                                 <CardSalesCalculatorText>You would get:</CardSalesCalculatorText>
                                                                 <CardSalesCalculatorBalanceWrapper>
-                                                                    <CardSalesCalculatorBalanceText>NGN&nbsp;{(amount * rate * howMany).toLocaleString()}</CardSalesCalculatorBalanceText>
+                                                                    <CardSalesCalculatorBalanceText>{curreniesSymbols["NGN"].symbol} {(amount * rate * howMany).toLocaleString()}</CardSalesCalculatorBalanceText>
                                                                 </CardSalesCalculatorBalanceWrapper>
                                                             </CardSalesCalculator>
                                                             <CardSalesCalculatorBalanceSubText>Rate: {rate}</CardSalesCalculatorBalanceSubText>

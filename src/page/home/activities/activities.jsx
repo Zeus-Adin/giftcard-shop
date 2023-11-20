@@ -25,6 +25,8 @@ import { cardImg } from '../cards/svg';
 import { getCardTx } from './functions';
 import Cookies from 'js-cookie'
 
+import { curreniesSymbols } from "../../../lib/currency"
+
 const appOrigin = window.location.origin;
 const Activities = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, handleOpenAlertBox, setAlertText }) => {
     const [active, setActive] = useState(false);
@@ -111,7 +113,7 @@ const Activities = ({ redirect, openWithdrawModal, userData, setWithdrawToAccoun
                                                     <TableDataContentWrapper>
                                                         <TableDataContentWrap>
                                                             <TableDataContentTextWrap>
-                                                                <TableDataContentText>NGN {parseFloat(amount).toLocaleString()}.00</TableDataContentText>
+                                                                <TableDataContentText>{curreniesSymbols[currency].symbol} {parseFloat(amount).toLocaleString()}.00</TableDataContentText>
                                                                 <TableDataContentText2>{status || 'nada'}</TableDataContentText2>
                                                             </TableDataContentTextWrap>
                                                         </TableDataContentWrap>
@@ -208,7 +210,7 @@ const Activities = ({ redirect, openWithdrawModal, userData, setWithdrawToAccoun
                                                         <TableDataContentWrapper>
                                                             <TableDataContentWrap>
                                                                 <TableDataContentTextWrap>
-                                                                    <TableDataContentText>NGN {parseFloat(amount).toLocaleString()}.00</TableDataContentText>
+                                                                    <TableDataContentText>{curreniesSymbols[currency].symbol} {parseFloat(amount).toLocaleString()}.00</TableDataContentText>
                                                                 </TableDataContentTextWrap>
                                                             </TableDataContentWrap>
                                                         </TableDataContentWrapper>

@@ -29,7 +29,7 @@ const DesktopAppBar = styled(Grid)(() => (`
 `))
 
 const appOrigin = window.location.origin;
-const Home = ({ redirect, openWithdrawModal, setWithdrawToAccount, handleOpenAlertBox, setAlertText, selectedNav, setSelectedNav }) => {
+const Home = ({ redirect, openWithdrawModal, setWithdrawToAccount, handleOpenAlertBox, setAlertText, selectedNav, setSelectedNav, setMoreInfoValues, openWalletMoreInfoModal }) => {
     const [userData, setUserData] = useState({});
     useEffect(() => {
         const session = Cookies.get(appOrigin);
@@ -47,7 +47,7 @@ const Home = ({ redirect, openWithdrawModal, setWithdrawToAccount, handleOpenAle
             <MobileAppBar sx={{ display: { md: 'flex', lg: 'none', xl: 'none', xs: 'flex', sm: 'flex', justifyContent: 'center' } }}>
                 {selectedNav === 0 && userData && <DashBoard redirect={redirect} openWithdrawModal={openWithdrawModal} userData={userData} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setSelectedNav={setSelectedNav} />}
                 {selectedNav === 1 && <Activities redirect={redirect} />}
-                {selectedNav === 2 && <Wallet redirect={redirect} openWithdrawModal={openWithdrawModal} userData={userData} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
+                {selectedNav === 2 && <Wallet redirect={redirect} openWithdrawModal={openWithdrawModal} userData={userData} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setMoreInfoValues={setMoreInfoValues} openWalletMoreInfoModal={openWalletMoreInfoModal} />}
                 {/* {selectedNav === 3 && <Support redirect={redirect} />} */}
                 {selectedNav === 4 && <Profile redirect={redirect} setSelectedNav={setSelectedNav} />}
                 {selectedNav === 5 && <Security redirect={redirect} />}
@@ -59,9 +59,9 @@ const Home = ({ redirect, openWithdrawModal, setWithdrawToAccount, handleOpenAle
                 <DesktopNavBar selectedNav={selectedNav} setSelectedNav={setSelectedNav} />
                 {selectedNav === 0 && <DashBoard redirect={redirect} openWithdrawModal={openWithdrawModal} userData={userData} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setSelectedNav={setSelectedNav} />}
                 {selectedNav === 1 && <Activities redirect={redirect} />}
-                {selectedNav === 2 && <Wallet redirect={redirect} openWithdrawModal={openWithdrawModal} userData={userData} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
+                {selectedNav === 2 && <Wallet redirect={redirect} openWithdrawModal={openWithdrawModal} userData={userData} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setMoreInfoValues={setMoreInfoValues} openWalletMoreInfoModal={openWalletMoreInfoModal} />}
                 {/* {selectedNav === 3 && <Support redirect={redirect} />} */}
-                {selectedNav === 4 && <Profile redirect={redirect} setSelectedNav={setSelectedNav}/>}
+                {selectedNav === 4 && <Profile redirect={redirect} setSelectedNav={setSelectedNav} />}
                 {selectedNav === 5 && <Security redirect={redirect} />}
             </DesktopAppBar >
         </>

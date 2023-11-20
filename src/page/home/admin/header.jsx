@@ -14,6 +14,8 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import RateModal from './modal/UpdateRateModal';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -68,6 +70,12 @@ export default function AdminHeader({ redirect }) {
     function handleDesktopMenueOpen(e) { setDesktopMoreAnchorEl(e.currentTarget); }
     function handleDesktopMenueClose(e) { setDesktopMoreAnchorEl(null); }
 
+    const [showRateModal, setShowRateModal] = useState(false);
+    function openCloseRateUpdateModal() {
+        handleMenueClose();
+        setShowRateModal(!showRateModal)
+    }
+
     const isMenue = Boolean(anchorMenue);
     const isMobileMenue = Boolean(mobileMoreAnchorEl);
     const isDesktopMenue = Boolean(desktopMoreAnchorEl);
@@ -77,44 +85,18 @@ export default function AdminHeader({ redirect }) {
         console.log(value);
     }
 
-    const menue = [{ label: 'Message', icon: <MailIcon /> }, { label: 'Notification', icon: <NotificationsIcon /> }];
+    const menue = [{ label: 'Message', icon: <MailIcon />, action: '' }, { label: 'Notification', icon: <NotificationsIcon />, action: '' }, { label: 'Rate', icon: <AttachMoneyIcon />, action: () => openCloseRateUpdateModal() }];
     const accounts = [{ label: 'Amin', icon: <AdminPanelSettingsIcon />, action: () => redirect('/admin') }, { label: 'User', icon: <AccountCircle />, action: () => redirect('/dashboard') }];
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="fixed">
-                <Toolbar>
-                    <IconButton size="large" edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }} onClick={handleMenueOpen}>
-                        <MenuIcon />
-                    </IconButton>
-                    <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorMenue} anchorOrigin={{ vertical: 'top', horizontal: 'right', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right', }} open={isMenue} onClose={handleMenueClose}>
-                        {menue.map(({ label, icon }, i) => (
-                            <MenuItem key={i} onClick={handleMenueClose}>
-                                <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                                    {icon}
-                                </IconButton>
-                                <Typography textAlign="center">{label}</Typography>
-                            </MenuItem>
-                        ))}
-                    </Menu>
-
-                    <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        Admin
-                    </Typography>
-
-                    <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} onChange={handleSearchTextChange} />
-                    </Search>
-
-                    <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton size="large" edge="end" aria-label="account of current user" aria-haspopup="true" onClick={handleDesktopMenueOpen} color="inherit">
-                            <AccountCircle />
+        <>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="fixed">
+                    <Toolbar>
+                        <IconButton size="large" edge="start" color="inherit" aria-label="open drawer" sx={{ mr: 2 }} onClick={handleMenueOpen}>
+                            <MenuIcon />
                         </IconButton>
-                        <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={desktopMoreAnchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right', }} open={isDesktopMenue} onClose={handleDesktopMenueClose}>
-                            {accounts.map(({ label, icon, action }, i) => (
+                        <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={anchorMenue} anchorOrigin={{ vertical: 'top', horizontal: 'right', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right', }} open={isMenue} onClose={handleMenueClose}>
+                            {menue.map(({ label, icon, action }, i) => (
                                 <MenuItem key={i} onClick={action}>
                                     <IconButton size="large" aria-label="show 4 new mails" color="inherit">
                                         {icon}
@@ -123,25 +105,54 @@ export default function AdminHeader({ redirect }) {
                                 </MenuItem>
                             ))}
                         </Menu>
-                    </Box>
 
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton size="large" edge="end" aria-label="account of current user" aria-haspopup="true" onClick={handleMobileMenueOpen} color="inherit">
-                            <AccountCircle />
-                        </IconButton>
-                        <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={mobileMoreAnchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right', }} open={isMobileMenue} onClose={handleMobileMenueClose}>
-                            {accounts.map(({ label, icon, action }, i) => (
-                                <MenuItem key={i} onClick={action}>
-                                    <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                                        {icon}
-                                    </IconButton>
-                                    <Typography textAlign="center">{label}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box>
-                </Toolbar>
-            </AppBar>
-        </Box>
+                        <Typography variant="h6" noWrap component="div" sx={{ display: { xs: 'none', sm: 'block' } }}>
+                            Admin
+                        </Typography>
+
+                        <Search>
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} onChange={handleSearchTextChange} />
+                        </Search>
+
+                        <Box sx={{ flexGrow: 1 }} />
+                        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                            <IconButton size="large" edge="end" aria-label="account of current user" aria-haspopup="true" onClick={handleDesktopMenueOpen} color="inherit">
+                                <AccountCircle />
+                            </IconButton>
+                            <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={desktopMoreAnchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right', }} open={isDesktopMenue} onClose={handleDesktopMenueClose}>
+                                {accounts.map(({ label, icon, action }, i) => (
+                                    <MenuItem key={i} onClick={action}>
+                                        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                                            {icon}
+                                        </IconButton>
+                                        <Typography textAlign="center">{label}</Typography>
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </Box>
+
+                        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                            <IconButton size="large" edge="end" aria-label="account of current user" aria-haspopup="true" onClick={handleMobileMenueOpen} color="inherit">
+                                <AccountCircle />
+                            </IconButton>
+                            <Menu sx={{ mt: '45px' }} id="menu-appbar" anchorEl={mobileMoreAnchorEl} anchorOrigin={{ vertical: 'top', horizontal: 'right', }} keepMounted transformOrigin={{ vertical: 'top', horizontal: 'right', }} open={isMobileMenue} onClose={handleMobileMenueClose}>
+                                {accounts.map(({ label, icon, action }, i) => (
+                                    <MenuItem key={i} onClick={action}>
+                                        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+                                            {icon}
+                                        </IconButton>
+                                        <Typography textAlign="center">{label}</Typography>
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </Box>
+                    </Toolbar>
+                </AppBar>
+            </Box>
+            <RateModal show={showRateModal} close={openCloseRateUpdateModal} />
+        </>
     );
 }

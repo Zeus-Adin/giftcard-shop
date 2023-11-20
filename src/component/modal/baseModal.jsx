@@ -20,12 +20,7 @@ const style = {
 
 export default function BaseModal({ show, close, title, subtitle, submitBtn, btnText, submit, children }) {
   return (
-    <Modal
-      open={show}
-      onClose={close}
-      aria-labelledby="parent-modal-title"
-      aria-describedby="parent-modal-description"
-    >
+    <Modal open={show} onClose={close} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
       <Box sx={{ ...style, width: 400, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <CloseBtn onClick={close} />
         {title && <Title>{title}</Title>}
