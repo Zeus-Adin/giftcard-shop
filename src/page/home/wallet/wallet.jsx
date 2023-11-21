@@ -263,7 +263,7 @@ const Wallet = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, h
                                                     <TableDataContentWrapper>
                                                         <TableDataContentWrap>
                                                             <TableDataContentTextWrap>
-                                                                <TableDataContentText>{curreniesSymbols['NGN'].symbol} {parseFloat(amount).toLocaleString()}.00</TableDataContentText>
+                                                                <TableDataContentText>{curreniesSymbols['NGN'].symbol} {parseFloat(amount).toLocaleString()}</TableDataContentText>
                                                             </TableDataContentTextWrap>
                                                         </TableDataContentWrap>
                                                     </TableDataContentWrapper>

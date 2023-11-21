@@ -16,6 +16,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import RateModal from './modal/UpdateRateModal';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import UpdateBalanceModal from './modal/UpdateBalanceModal';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',

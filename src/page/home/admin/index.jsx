@@ -19,6 +19,8 @@ import { getAllBank, getAllCardsTx, getAllOrder, getAllUsers } from './functions
 import { DataGridContainer, DataTable, TableData, TableDataContentImag, TableDataContentText, TableDataContentText2, TableDataContentTextWrap, TableDataContentWrap, TableDataContentWrapper } from '../wallet/components';
 import { Declined, Pending, Success } from '../activities/components';
 import { curreniesSymbols, currencies } from '../../../lib/currency';
+import UpdateBalanceModal from './modal/UpdateBalanceModal';
+import GiftCardViewer from './modal/GiftCardViewer';
 
 const MobileView = styled(Grid)(({ theme }) => ({
     [theme.breakpoints.down('md')]: { display: 'flex', },
@@ -60,6 +62,30 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
     //     };
     // }
 
+    const [selectUserInfo, setselectUserInfo] = useState({ userId: '', username: '' });
+    const [showBalanceModal, setShowBalanceModal] = useState(false);
+    function openCloseBalanceUpdateModal() {
+        setShowBalanceModal(!showBalanceModal)
+    }
+
+    const [selectCardInfo, setselectCardInfo] = useState({ txRef: '', userName: '', cid: '' });
+    const [showGiftCardViewerModal, setShowGiftCardViewerModal] = useState(false);
+    function openCloseGiftCardViewerModal() {
+        setShowGiftCardViewerModal(!showGiftCardViewerModal)
+    }
+
+    function handleCardTxClick(options) {
+        setselectCardInfo(options);
+        openCloseGiftCardViewerModal();
+    }
+
+    function handleUserBalanceClick(options) {
+        setselectUserInfo(options);
+        openCloseBalanceUpdateModal();
+    }
+
+
+
     async function init() {
         const { authState: usersAuthState, message: usersMessage, result: usersRes } = await getAllUsers('654e97d013c3feb799557957', 'DaNiel');
         if (!usersAuthState) return;
@@ -80,14 +106,10 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
         openWalletMoreInfoModal();
     }
 
-
-
     useEffect(() => {
         init();
     }, [])
 
-
-    console.log(curreniesSymbols['NGN'])
     return (
         <>
             {/* Header */}
@@ -136,7 +158,7 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                                 <TableDataContentWrapper>
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '2rem' }}>{curreniesSymbols['NGN'].symbol} {balance}.00</TableDataContentText>
+                                                            <TableDataContentText style={{ fontSize: '2rem' }} onClick={() => handleUserBalanceClick({ usersId, username, balance })}>{curreniesSymbols['NGN'].symbol} {parseFloat(balance)}</TableDataContentText>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -194,7 +216,7 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
                                                             <TableDataContentText style={{ fontSize: '1.3rem' }}>{userName}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{txRef}</TableDataContentText2>
+                                                            <TableDataContentText2 style={{ fontSize: '1.3rem', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleCardTxClick({ txRef, userName, cid: files })}>{txRef}</TableDataContentText2>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -294,7 +316,7 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                                 <TableDataContentWrapper>
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols["NGN"].symbol} {amount}.00</TableDataContentText>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols["NGN"].symbol} {parseFloat(amount)}</TableDataContentText>
                                                             <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{action}</TableDataContentText2>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
@@ -327,7 +349,6 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                         </DataGridContainer>
                     </Root>
                 </ContentWrappers>
-
             </DesktopView>
 
             {/* Mobile */}
@@ -361,7 +382,7 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                                 <TableDataContentWrapper>
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols["NGN"].symbol} {balance}.00</TableDataContentText>
+                                                            <TableDataContentText style={{ fontSize: '1.3rem' }} onClick={() => handleUserBalanceClick({ usersId, username, balance })}>{curreniesSymbols["NGN"].symbol} {balance}.00</TableDataContentText>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -396,7 +417,7 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
                                                             <TableDataContentText style={{ fontSize: '1.3rem' }}>{userName}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{txRef}</TableDataContentText2>
+                                                            <TableDataContentText2 style={{ fontSize: '1.3rem', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleCardTxClick({ txRef, userName, cid: files })}>{txRef}</TableDataContentText2>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -547,6 +568,10 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                     </Root>
                 </ContentWrappers>
             </BankWrapper>
+
+            {/* ==============Modals========== */}
+            <UpdateBalanceModal show={showBalanceModal} close={openCloseBalanceUpdateModal} selectUserInfo={selectUserInfo} />
+            <GiftCardViewer show={showGiftCardViewerModal} close={openCloseGiftCardViewerModal} selectCardInfo={selectCardInfo} />            
         </>
     )
 }

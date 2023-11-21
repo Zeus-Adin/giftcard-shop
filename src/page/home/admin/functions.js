@@ -69,3 +69,43 @@ export async function updateCurrencyRates(option) {
         return { rateUpdateState: false, message: error.message }
     }
 }
+
+export async function updateUsersBalance(option) {
+    try {
+        const res = (await axios.post('http://localhost:3001/api/update/amount', option)).data;
+        return res;
+    } catch (error) {
+        if (error.response) {
+            const { data } = error.response;
+            return data
+        }
+        return { rateUpdateState: false, message: error.message }
+    }
+}
+
+export async function getCardTxImages(option) {
+    try {
+        const res = (await axios.get('http://localhost:3001/api/get/giftcard/:cid', option)).data;
+        return res;
+    } catch (error) {
+        if (error.response) {
+            const { data } = error.response;
+            return data
+        }
+        return { rateUpdateState: false, message: error.message }
+    }
+}
+
+
+export async function updateCardTx(option) {
+    try {
+        const res = (await axios.post('http://localhost:3001/api/update/cardtx/data', option)).data;
+        return res;
+    } catch (error) {
+        if (error.response) {
+            const { data } = error.response;
+            return data
+        }
+        return { rateUpdateState: false, message: error.message }
+    }
+}
