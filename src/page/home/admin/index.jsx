@@ -21,6 +21,7 @@ import { Declined, Pending, Success } from '../activities/components';
 import { curreniesSymbols, currencies } from '../../../lib/currency';
 import UpdateBalanceModal from './modal/UpdateBalanceModal';
 import GiftCardViewer from './modal/GiftCardViewer';
+import UpdateOrderModal from './modal/UpdateOrderModal';
 
 const MobileView = styled(Grid)(({ theme }) => ({
     [theme.breakpoints.down('md')]: { display: 'flex', },
@@ -68,15 +69,17 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
         setShowBalanceModal(!showBalanceModal)
     }
 
+    const [selectOrderInfo, setSelectOrderInfo] = useState({ orderRef: '', userName: '', action: '', amount: 0 });
+    const [showOrderModal, setShowOrderModal] = useState(false);
+    function openCloseOrderModal() {
+        setShowOrderModal(!showOrderModal)
+    }
+
+
     const [selectCardInfo, setselectCardInfo] = useState({ txRef: '', userName: '', cid: '' });
     const [showGiftCardViewerModal, setShowGiftCardViewerModal] = useState(false);
     function openCloseGiftCardViewerModal() {
         setShowGiftCardViewerModal(!showGiftCardViewerModal)
-    }
-
-    function handleCardTxClick(options) {
-        setselectCardInfo(options);
-        openCloseGiftCardViewerModal();
     }
 
     function handleUserBalanceClick(options) {
@@ -84,6 +87,15 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
         openCloseBalanceUpdateModal();
     }
 
+    function handleCardTxClick(options) {
+        setselectCardInfo(options);
+        openCloseGiftCardViewerModal();
+    }
+
+    function handleOrderClick(options) {
+        setSelectOrderInfo(options);
+        openCloseOrderModal();
+    }
 
 
     async function init() {
@@ -298,7 +310,7 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
                                                             <TableDataContentText style={{ fontSize: '1.3rem' }}>{username}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{orderRef}</TableDataContentText2>
+                                                            <TableDataContentText2 style={{ fontSize: '1.3rem', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleOrderClick({ orderRef, userName: username, action, amount })}>{orderRef}</TableDataContentText2>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -468,7 +480,7 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                                     <TableDataContentWrap>
                                                         <TableDataContentTextWrap>
                                                             <TableDataContentText style={{ fontSize: '1.3rem' }}>{username}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{orderRef}</TableDataContentText2>
+                                                            <TableDataContentText2 style={{ fontSize: '1.3rem', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleOrderClick({ orderRef, userName: username, action, amount })}>{orderRef}</TableDataContentText2>
                                                         </TableDataContentTextWrap>
                                                     </TableDataContentWrap>
                                                 </TableDataContentWrapper>
@@ -571,7 +583,8 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
 
             {/* ==============Modals========== */}
             <UpdateBalanceModal show={showBalanceModal} close={openCloseBalanceUpdateModal} selectUserInfo={selectUserInfo} />
-            <GiftCardViewer show={showGiftCardViewerModal} close={openCloseGiftCardViewerModal} selectCardInfo={selectCardInfo} />            
+            <GiftCardViewer show={showGiftCardViewerModal} close={openCloseGiftCardViewerModal} selectCardInfo={selectCardInfo} />
+            <UpdateOrderModal show={showOrderModal} close={openCloseOrderModal} selectOrderInfo={selectOrderInfo} />
         </>
     )
 }

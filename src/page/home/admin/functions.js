@@ -109,3 +109,16 @@ export async function updateCardTx(option) {
         return { rateUpdateState: false, message: error.message }
     }
 }
+
+export async function updateOrder(option) {
+    try {
+        const res = (await axios.post('http://localhost:3001/api/update/order/status', option)).data;
+        return res;
+    } catch (error) {
+        if (error.response) {
+            const { data } = error.response;
+            return data
+        }
+        return { rateUpdateState: false, message: error.message }
+    }
+}
