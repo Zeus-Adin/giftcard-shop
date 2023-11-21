@@ -58,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-export default function AdminHeader({ redirect }) {
+export default function AdminHeader({ redirect, handleSearching }) {
     const [anchorMenue, setAnchorMenue] = useState(null);
     function handleMenueOpen(e) { setAnchorMenue(e.currentTarget); }
     function handleMenueClose(e) { setAnchorMenue(null); }
@@ -80,11 +80,6 @@ export default function AdminHeader({ redirect }) {
     const isMenue = Boolean(anchorMenue);
     const isMobileMenue = Boolean(mobileMoreAnchorEl);
     const isDesktopMenue = Boolean(desktopMoreAnchorEl);
-
-    function handleSearchTextChange(e) {
-        const { value } = e.target;
-        console.log(value);
-    }
 
     const menue = [{ label: 'Message', icon: <MailIcon />, action: '' }, { label: 'Notification', icon: <NotificationsIcon />, action: '' }, { label: 'Rate', icon: <AttachMoneyIcon />, action: () => openCloseRateUpdateModal() }];
     const accounts = [{ label: 'Amin', icon: <AdminPanelSettingsIcon />, action: () => redirect('/admin') }, { label: 'User', icon: <AccountCircle />, action: () => redirect('/dashboard') }];
@@ -115,7 +110,7 @@ export default function AdminHeader({ redirect }) {
                             <SearchIconWrapper>
                                 <SearchIcon />
                             </SearchIconWrapper>
-                            <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} onChange={handleSearchTextChange} />
+                            <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} onChange={handleSearching} />
                         </Search>
 
                         <Box sx={{ flexGrow: 1 }} />

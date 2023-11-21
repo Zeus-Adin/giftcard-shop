@@ -18,7 +18,7 @@ import {
 import { getAllBank, getAllCardsTx, getAllOrder, getAllUsers } from './functions';
 import { DataGridContainer, DataTable, TableData, TableDataContentImag, TableDataContentText, TableDataContentText2, TableDataContentTextWrap, TableDataContentWrap, TableDataContentWrapper } from '../wallet/components';
 import { Declined, Pending, Success } from '../activities/components';
-import { curreniesSymbols, currencies } from '../../../lib/currency';
+import { curreniesSymbols } from '../../../lib/currency';
 import UpdateBalanceModal from './modal/UpdateBalanceModal';
 import GiftCardViewer from './modal/GiftCardViewer';
 import UpdateOrderModal from './modal/UpdateOrderModal';
@@ -54,15 +54,6 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
     const [banks, setBanks] = useState([]);
     const [search, setSearch] = useState('');
 
-    // let session = Cookies.get(appOrigin);
-    // if (session) {
-    //     const { admin, activation } = JSON.parse(session)
-    //     if (!(admin && activation)) {
-    //         redirect('/dashboard')
-    //         return
-    //     };
-    // }
-
     const [selectUserInfo, setselectUserInfo] = useState({ userId: '', username: '' });
     const [showBalanceModal, setShowBalanceModal] = useState(false);
     function openCloseBalanceUpdateModal() {
@@ -75,12 +66,18 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
         setShowOrderModal(!showOrderModal)
     }
 
-
     const [selectCardInfo, setselectCardInfo] = useState({ txRef: '', userName: '', cid: '' });
     const [showGiftCardViewerModal, setShowGiftCardViewerModal] = useState(false);
     function openCloseGiftCardViewerModal() {
         setShowGiftCardViewerModal(!showGiftCardViewerModal)
     }
+
+    function handleSearching(e) {
+        const { value } = e.target;
+        setSearch(value);
+    }
+
+    let session = Cookies.get(appOrigin);
 
     function handleUserBalanceClick(options) {
         setselectUserInfo(options);
@@ -119,13 +116,23 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
     }
 
     useEffect(() => {
-        init();
+        if (session) {
+            const { admin, activation } = JSON.parse(session)
+            if (!(admin && activation)) {
+                redirect('/login')
+                return
+            };
+            init();
+        } else {
+            redirect('/login')
+            return
+        }
     }, [])
 
     return (
         <>
             {/* Header */}
-            <AdminHeader redirect={redirect} />
+            <AdminHeader redirect={redirect} handleSearching={handleSearching} />
 
             {/* Desktop */}
             <DesktopView container>
@@ -144,59 +151,60 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {users ? users.map(({ _id: usersId, username, email, balance, activation, avatarIcon, admin }, i) => (
-                                        <tr key={i} >
-                                            <TableData >
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentImag style={{ width: '5rem', height: '5rem' }} src={`${avatarIcon}`} />
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.5rem' }}>{username}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.5rem' }}>{usersId}</TableDataContentText2>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.5rem' }}>{email}</TableDataContentText>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '2rem' }} onClick={() => handleUserBalanceClick({ usersId, username, balance })}>{curreniesSymbols['NGN'].symbol} {parseFloat(balance)}</TableDataContentText>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            {activation === false && <Declined>{activation.toString()}</Declined>}
-                                                            {activation === true && <Success>{activation.toString()}</Success>}
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap style={{ cursor: 'pointer' }}>
-                                                        <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
-                                                            </path>
-                                                        </svg>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                        </tr>
-                                    )) : <div>No data found yet</div>
+                                    {users ? users.filter(({ username }) => String(username).includes(search))
+                                        .map(({ _id: usersId, username, email, balance, activation, avatarIcon, admin }, i) => (
+                                            <tr key={i} >
+                                                <TableData >
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentImag style={{ width: '5rem', height: '5rem' }} src={`${avatarIcon}`} />
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.5rem' }}>{username}</TableDataContentText>
+                                                                <TableDataContentText2 style={{ fontSize: '1.5rem' }}>{usersId}</TableDataContentText2>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.5rem' }}>{email}</TableDataContentText>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '2rem' }} onClick={() => handleUserBalanceClick({ usersId, username, balance })}>{curreniesSymbols['NGN'].symbol} {parseFloat(balance)}</TableDataContentText>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                {activation === false && <Declined>{activation.toString()}</Declined>}
+                                                                {activation === true && <Success>{activation.toString()}</Success>}
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap style={{ cursor: 'pointer' }}>
+                                                            <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                                                                </path>
+                                                            </svg>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                            </tr>
+                                        )) : <div>No data found yet</div>
                                     }
                                 </tbody>
                             </DataTable>
@@ -221,66 +229,67 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                     </tr>
                                 </thead>
                                 <tbody >
-                                    {cards ? cards.map(({ _id: txRef, userId, userName, currency, amount, rate, files, fileCount, ecode, cardType, action, status, timeStamp }, i) => (
-                                        <tr key={i}>
-                                            <TableData >
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{userName}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleCardTxClick({ txRef, userName, cid: files })}>{txRef}</TableDataContentText2>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency].symbol} {amount}.00</TableDataContentText>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency].symbol} {rate}</TableDataContentText>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{fileCount}</TableDataContentText>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            {status === 'pending' && <Pending>{status}</Pending>}
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap style={{ cursor: 'pointer' }}>
-                                                        <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
-                                                            </path>
-                                                        </svg>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                        </tr>
-                                    )) : <div>No data found yet</div>
+                                    {cards ? cards.filter(({ userName }) => String(userName).includes(search))
+                                        .map(({ _id: txRef, userId, userName, currency, amount, rate, files, fileCount, ecode, cardType, action, status, timeStamp }, i) => (
+                                            <tr key={i}>
+                                                <TableData >
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{userName}</TableDataContentText>
+                                                                <TableDataContentText2 style={{ fontSize: '1.3rem', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleCardTxClick({ txRef, userName, cid: files })}>{txRef}</TableDataContentText2>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency].symbol} {amount}.00</TableDataContentText>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency].symbol} {rate}</TableDataContentText>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{fileCount}</TableDataContentText>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                {status === 'pending' && <Pending>{status}</Pending>}
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap style={{ cursor: 'pointer' }}>
+                                                            <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                                                                </path>
+                                                            </svg>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                            </tr>
+                                        )) : <div>No data found yet</div>
                                     }
                                 </tbody>
                             </DataTable>
@@ -303,58 +312,59 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                     </tr>
                                 </thead>
                                 <tbody >
-                                    {orders ? orders.map(({ _id: orderRef, username, amount, action, timeStammp, status }, i) => (
-                                        <tr key={i}>
-                                            <TableData >
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{username}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleOrderClick({ orderRef, userName: username, action, amount })}>{orderRef}</TableDataContentText2>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{timeStammp}</TableDataContentText>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols["NGN"].symbol} {parseFloat(amount)}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{action}</TableDataContentText2>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            {status === 'pending' && <Pending>{status}</Pending>}
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap style={{ cursor: 'pointer' }} onClick={() => moreInfo(i)}>
-                                                        <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
-                                                            </path>
-                                                        </svg>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                        </tr>
-                                    )) : <div>No data found yet</div>
+                                    {orders ? orders.filter(({ username }) => String(username).includes(search))
+                                        .map(({ _id: orderRef, username, amount, action, timeStammp, status }, i) => (
+                                            <tr key={i}>
+                                                <TableData >
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{username}</TableDataContentText>
+                                                                <TableDataContentText2 style={{ fontSize: '1.3rem', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleOrderClick({ orderRef, userName: username, action, amount })}>{orderRef}</TableDataContentText2>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{timeStammp}</TableDataContentText>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols["NGN"].symbol} {parseFloat(amount)}</TableDataContentText>
+                                                                <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{action}</TableDataContentText2>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                {status === 'pending' && <Pending>{status}</Pending>}
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap style={{ cursor: 'pointer' }} onClick={() => moreInfo(i)}>
+                                                            <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                                                                </path>
+                                                            </svg>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                            </tr>
+                                        )) : <div>No data found yet</div>
                                     }
                                 </tbody>
                             </DataTable>
@@ -377,30 +387,31 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {users ? users.map(({ _id: usersId, username, email, balance, activation, avatarIcon, admin }, i) => (
-                                        <tr key={i}>
-                                            <TableData >
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentImag style={{ width: '4.5rem', height: '4.5rem' }} src={`${avatarIcon}`} />
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText>{username}</TableDataContentText>
-                                                            <TableDataContentText2>{email}</TableDataContentText2>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }} onClick={() => handleUserBalanceClick({ usersId, username, balance })}>{curreniesSymbols["NGN"].symbol} {balance}.00</TableDataContentText>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                        </tr>
-                                    )) : <div>No data found</div>
+                                    {users ? users.filter(({ username }) => String(username).includes(search))
+                                        .map(({ _id: usersId, username, email, balance, activation, avatarIcon, admin }, i) => (
+                                            <tr key={i}>
+                                                <TableData >
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentImag style={{ width: '4.5rem', height: '4.5rem' }} src={`${avatarIcon}`} />
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText>{username}</TableDataContentText>
+                                                                <TableDataContentText2>{email}</TableDataContentText2>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }} onClick={() => handleUserBalanceClick({ usersId, username, balance })}>{curreniesSymbols["NGN"].symbol} {balance}.00</TableDataContentText>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                            </tr>
+                                        )) : <div>No data found</div>
                                     }
                                 </tbody>
                             </DataTable>
@@ -422,38 +433,39 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                     </tr>
                                 </thead>
                                 <tbody >
-                                    {cards ? cards.map(({ _id: txRef, userId, userName, currency, amount, rate, files, fileCount, ecode, cardType, action, status, timeStamp }, i) => (
-                                        <tr key={i}>
-                                            <TableData >
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{userName}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleCardTxClick({ txRef, userName, cid: files })}>{txRef}</TableDataContentText2>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency].symbol} {amount}.00</TableDataContentText>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency].symbol} {rate}</TableDataContentText>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                        </tr>
-                                    )) : <div>No data found yet</div>
+                                    {cards ? cards.filter(({ userName }) => String(userName).includes(search))
+                                        .map(({ _id: txRef, userId, userName, currency, amount, rate, files, fileCount, ecode, cardType, action, status, timeStamp }, i) => (
+                                            <tr key={i}>
+                                                <TableData >
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{userName}</TableDataContentText>
+                                                                <TableDataContentText2 style={{ fontSize: '1.3rem', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleCardTxClick({ txRef, userName, cid: files })}>{txRef}</TableDataContentText2>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency].symbol} {amount}.00</TableDataContentText>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols[currency].symbol} {rate}</TableDataContentText>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                            </tr>
+                                        )) : <div>No data found yet</div>
                                     }
                                 </tbody>
                             </DataTable>
@@ -473,40 +485,41 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                     </tr>
                                 </thead>
                                 <tbody >
-                                    {orders ? orders.map(({ _id: orderRef, username, amount, action, timeStammp, status }, i) => (
-                                        <tr key={i}>
-                                            <TableData >
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{username}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleOrderClick({ orderRef, userName: username, action, amount })}>{orderRef}</TableDataContentText2>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols["NGN"].symbol} {amount}.00</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{action}</TableDataContentText2>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap style={{ cursor: 'pointer' }} onClick={() => moreInfo(i)}>
-                                                        <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
-                                                            </path>
-                                                        </svg>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                        </tr>
-                                    )) : <div>No data found yet</div>
+                                    {orders ? orders.filter(({ username }) => String(username).includes(search))
+                                        .map(({ _id: orderRef, username, amount, action, timeStammp, status }, i) => (
+                                            <tr key={i}>
+                                                <TableData >
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{username}</TableDataContentText>
+                                                                <TableDataContentText2 style={{ fontSize: '1.3rem', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleOrderClick({ orderRef, userName: username, action, amount })}>{orderRef}</TableDataContentText2>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{curreniesSymbols["NGN"].symbol} {amount}.00</TableDataContentText>
+                                                                <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{action}</TableDataContentText2>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap style={{ cursor: 'pointer' }} onClick={() => moreInfo(i)}>
+                                                            <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
+                                                                </path>
+                                                            </svg>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                            </tr>
+                                        )) : <div>No data found yet</div>
                                     }
                                 </tbody>
                             </DataTable>
@@ -530,49 +543,50 @@ const AdminPage = ({ redirect, setMoreInfoValues, openWalletMoreInfoModal }) => 
                                     </tr>
                                 </thead>
                                 <tbody >
-                                    {banks ? banks.map(({ _id: bankRef, id, username, name, code, account_number, account_name, active }, i) => (
-                                        <tr key={i}>
-                                            <TableData >
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{username}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{id}</TableDataContentText2>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{name}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{code}</TableDataContentText2>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{account_name}</TableDataContentText>
-                                                            <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{account_number}</TableDataContentText2>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                            <TableData>
-                                                <TableDataContentWrapper>
-                                                    <TableDataContentWrap>
-                                                        <TableDataContentTextWrap>
-                                                            <TableDataContentText style={{ fontSize: '1.3rem' }}>{active.toString()}</TableDataContentText>
-                                                        </TableDataContentTextWrap>
-                                                    </TableDataContentWrap>
-                                                </TableDataContentWrapper>
-                                            </TableData>
-                                        </tr>
-                                    )) : <div>No data found yet</div>
+                                    {banks ? banks.filter(({ username }) => String(username).includes(search))
+                                        .map(({ _id: bankRef, id, username, name, code, account_number, account_name, active }, i) => (
+                                            <tr key={i}>
+                                                <TableData >
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{username}</TableDataContentText>
+                                                                <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{id}</TableDataContentText2>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{name}</TableDataContentText>
+                                                                <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{code}</TableDataContentText2>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{account_name}</TableDataContentText>
+                                                                <TableDataContentText2 style={{ fontSize: '1.3rem' }}>{account_number}</TableDataContentText2>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                                <TableData>
+                                                    <TableDataContentWrapper>
+                                                        <TableDataContentWrap>
+                                                            <TableDataContentTextWrap>
+                                                                <TableDataContentText style={{ fontSize: '1.3rem' }}>{active.toString()}</TableDataContentText>
+                                                            </TableDataContentTextWrap>
+                                                        </TableDataContentWrap>
+                                                    </TableDataContentWrapper>
+                                                </TableData>
+                                            </tr>
+                                        )) : <div>No data found yet</div>
                                     }
                                 </tbody>
                             </DataTable>
