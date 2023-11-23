@@ -28,9 +28,16 @@ import Cookies from 'js-cookie'
 import { curreniesSymbols } from "../../../lib/currency"
 
 const appOrigin = window.location.origin;
-const Activities = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, handleOpenAlertBox, setAlertText }) => {
+const Activities = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, handleOpenAlertBox, setAlertText, setMoreInfoValues, openActivitiesMoreInfoModal }) => {
     const [active, setActive] = useState(false);
     const [cards, setCards] = useState([]);
+
+    console.log(cards)
+
+    function moreCardInfo(i) {
+        setMoreInfoValues(cards[i]);
+        openActivitiesMoreInfoModal();
+    }
 
     let session = Cookies.get(appOrigin);
     if (session) {
@@ -121,7 +128,7 @@ const Activities = ({ redirect, openWithdrawModal, userData, setWithdrawToAccoun
                                                 </TableData>
                                                 <TableData>
                                                     <TableDataContentWrapper>
-                                                        <TableDataContentWrap style={{ cursor: 'pointer' }}>
+                                                        <TableDataContentWrap style={{ cursor: 'pointer' }} onClick={() => moreCardInfo(i)}>
                                                             <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
                                                                 </path>
@@ -228,7 +235,7 @@ const Activities = ({ redirect, openWithdrawModal, userData, setWithdrawToAccoun
                                                     </TableData>
                                                     <TableData>
                                                         <TableDataContentWrapper>
-                                                            <TableDataContentWrap style={{ cursor: 'pointer' }}>
+                                                            <TableDataContentWrap style={{ cursor: 'pointer' }} onClick={() => moreCardInfo(i)}>
                                                                 <svg stroke="currentColor" fill="none" strokeWidth="0" viewBox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z">
                                                                     </path>

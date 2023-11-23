@@ -375,3 +375,24 @@ export const OrderSubContentDeclinedText = styled.p(() => (`
     letter-spacing: 0.2px;
     text-decoration: none;
 `))
+
+export const ScrollableWrapper = styled('div')(()=>(`
+    height: 25rem;
+    overflow-y: scroll;
+    gap: 1.6rem;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    display: flex;
+`))
+
+export const AmountWrapper = styled('div')(()=>(`
+    gap: 3.2rem;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+`))

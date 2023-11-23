@@ -20,6 +20,7 @@ import SelectCard from "./page/home/cards/selectcard";
 
 import ManageBanks from "./page/home/manage_banks";
 import AdminPage from './page/home/admin/index'
+import ActivitiesMoreInfoModal from "./component/modal/ActivitiesMoreInfoModal";
 
 
 const allowedPath = [
@@ -53,6 +54,10 @@ const Routes = ({ path, redirect, authed }) => {
     const [showWalletMoreInfoModal, setShowWalletMoreInfoModal] = useState(false);
     function openWalletMoreInfoModal() { setShowWalletMoreInfoModal(true); }
     function closeWalletMoreInfoModal() { setShowWalletMoreInfoModal(false); }
+
+    const [showActivitiesMoreInfoModal, setShowActivitiesMoreInfoModal] = useState(false);
+    function openActivitiesMoreInfoModal() { setShowActivitiesMoreInfoModal(true); }
+    function closeActivitiesMoreInfoModal() { setShowActivitiesMoreInfoModal(false); }
 
     const [withdrawToAccount, setWithdrawToAccount] = useState('');
 
@@ -112,7 +117,8 @@ const Routes = ({ path, redirect, authed }) => {
             {path === "/forgot-password" && <ForgotPassword redirect={redirect} />}
             {path === "/email-verification" && <Email_Verification redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
 
-            {path === "/dashboard" && <Home redirect={redirect} authed={authed} openWithdrawModal={openWithdrawModal} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} selectedNav={selectedNav} setSelectedNav={setSelectedNav} setMoreInfoValues={setMoreInfoValues} openWalletMoreInfoModal={openWalletMoreInfoModal} />}
+            {path === "/dashboard" && <Home redirect={redirect} authed={authed} openWithdrawModal={openWithdrawModal} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox}
+                setAlertText={setAlertText} selectedNav={selectedNav} setSelectedNav={setSelectedNav} setMoreInfoValues={setMoreInfoValues} openWalletMoreInfoModal={openWalletMoreInfoModal} openActivitiesMoreInfoModal={openActivitiesMoreInfoModal} />}
             {path === '/cards' && <SelectCard redirect={redirect} authed={authed} />}
             {path === '/trade-cards' && <TradeCard redirect={redirect} authed={authed} />}
             {path === "/sell" && <Sell redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
@@ -124,6 +130,7 @@ const Routes = ({ path, redirect, authed }) => {
             <DepositModal show={showDepositModal} close={closeDepositModal} redirect={redirect} />
             <WithdrawModal show={showWithdrawModal} close={closeWithdrawModal} redirect={redirect} withdrawToAccount={withdrawToAccount} setWithdrawToAccount={setWithdrawToAccount} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />
             <WalletMoreInfoModal show={showWalletMoreInfoModal} close={closeWalletMoreInfoModal} values={moreInfoValues} />
+            {moreInfoValues && showActivitiesMoreInfoModal && <ActivitiesMoreInfoModal show={showActivitiesMoreInfoModal} close={closeActivitiesMoreInfoModal} values={moreInfoValues} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
         </>
 
     )
