@@ -29,7 +29,7 @@ const ContentWrapper = styled(Box)(() => (`
 
 export default function BaseModal({ show, close, title, subtitle, submitBtn, btnText, submit, children }) {
   return (
-    <Modal open={show} onClose={close} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
+    <Modal open={show} onClose={close} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description" style={{ zIndex: '9999999999999999999' }}>
       <>
         <ContentWrapper sx={{ width: 400, flexDirection: 'column', alignItems: 'center' }}>
           <CloseBtn onClick={close} />

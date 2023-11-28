@@ -376,7 +376,7 @@ export const OrderSubContentDeclinedText = styled.p(() => (`
     text-decoration: none;
 `))
 
-export const ScrollableWrapper = styled('div')(()=>(`
+export const ScrollableWrapper = styled('div')(() => (`
     height: 25rem;
     overflow-y: scroll;
     gap: 1.6rem;
@@ -388,11 +388,118 @@ export const ScrollableWrapper = styled('div')(()=>(`
     display: flex;
 `))
 
-export const AmountWrapper = styled('div')(()=>(`
+export const AmountWrapper = styled('div')(() => (`
     gap: 3.2rem;
     justify-content: flex-start;
     flex-wrap: nowrap;
     align-items: center;
     flex-direction: row;
     display: flex;
+`))
+
+export const PasswordContentWrapper = styled.div(() => (`
+    margin-top: 2rem;
+    gap: 2rem;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    display: flex;
+`))
+
+export const PasswordContentHeaderText = styled.div(() => (`
+    margin-bottom: 2rem;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    text-align: left;
+    line-height: 1.6rem;
+    color: #7165E3;
+    font-size: 2.4rem;
+    letter-spacing: 0.2px;
+    text-decoration: none;
+`))
+
+export const PasswordContentHeaderInputBox = styled.input(() => (`
+    font-size: 20px;
+    height: 70px;
+    width: 70px;
+    margin-right: 10px;
+    padding: 8px;
+    text-align: center;
+    color: #7165E3;
+    font-family:CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 5px solid #F3F2FD;
+    outline: none;
+    transition: all 0.3s ease 0s;
+`))
+
+export const ForgotPasswordContentWrapper = styled.div(() => (`
+    padding: 0 1.6rem;
+    gap: 2.4rem;
+    justify-content: flex-start;
+    width: 25rem;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    display: flex;
+`))
+
+export const ForgotPasswordContent = styled.div(() => (`
+    justify-content: flex-start;
+    gap: .8rem;
+    align-items: stretch;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    display: flex;
+`))
+
+export const ForgotPasswordInputsWrapper = styled.div(() => (`
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    display: flex;
+`))
+
+export const ForgotPasswordInputsWrap = styled.div(() => (`
+    background-color: #F2F2F2;
+    width: 100%;
+    border-radius: 5rem;
+    padding: 1.5rem 2rem;
+    display: flex;
+    margin-bottom: 1rem;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid transparent;
+    transition: all 0.2s ease-in-out 0s;
+`))
+
+export const ForgotPasswordInputsContents = styled.div(() => (`
+    width: 100%;
+`))
+
+export const ForgotPasswordInputsLabel = styled.label(() => (`
+    display: block;
+    color: #4F4F4F;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    font-size: 1.2rem;
+    letter-spacing: .6px;
+    will-change: color;
+    transition: color 0.2s ease-in-out 0s;
+`))
+
+export const ForgotPasswordInputBox = styled.input(() => (`
+    font-size: 16px;
+    transition: all 0.3s ease-in 0s;
+    font-family: CeraPro-Medium, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    color: #4F4F4F;
+    background-color: transparent;
+    letter-spacing: .8rem;
+    width: 100%;
+    margin-top: .4rem;
+`))
+
+export const ForgotPasswordShowBtnWrapper = styled.button(() => (`
+    cursor: pointer;
 `))

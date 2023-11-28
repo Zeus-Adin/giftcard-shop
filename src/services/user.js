@@ -21,8 +21,30 @@ export const user = {
         return { txStat: txStat, message, userData }
 
     },
-    updateTxPin: async () => {
-
+    updateTxPin: async (userId, username, old_txpin, new_txpin) => {
+        const txUpdatePinOptons = { userId, username, old_txpin, new_txpin }
+        try {
+            const data = (await axios.post('http://localhost:3001/api/update/txpin', txUpdatePinOptons)).data;
+            return data;
+        } catch (err) {
+            if (err.response) {
+                const { data } = err.response;
+                return data;
+            }
+            return { txUpdateStat: false, message: err.message }
+        }
+    },
+    getUsersPin: async (userId, username) => {
+        try {
+            const res = (await axios.post('http://localhost:3001/api/get/txpin', { userId, username })).data;
+            return res
+        } catch (err) {
+            if (err.response) {
+                const { data } = err.response;
+                return data
+            }
+            return { success: false, pin: '', message: err.message }
+        }
     },
     balanceWithdraw: async (userId, username, amount, txpin) => {
         let withdrawStat = false; let message; let userData; let code;

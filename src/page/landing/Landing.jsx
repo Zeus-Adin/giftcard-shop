@@ -4,6 +4,7 @@ import { Fab } from '@mui/material';
 
 import "./Landing.css"
 import styled from 'styled-components';
+import { useRef } from 'react';
 const CustomFab = styled(Fab)(({ }) => ({
     backgroundColor: '#7464e3',
     color: '#f4d434',
@@ -18,7 +19,7 @@ const CustomAdbIcon = styled(AdbIcon)(({ }) => ({
 const CustomAppleIcon = styled(AppleIcon)(({ }) => ({
 
 }))
-const Landing = () => {
+const Landing = ({ scrollToRef }) => {
 
     function redirect(to) {
         window.location.replace(`/${to}`);
@@ -30,7 +31,7 @@ const Landing = () => {
             <section className="hero">
                 <h3>Convert your Giftcards to <span> instant cash.</span>
                 </h3>
-                <p>Ridima gives you the power to sell your gift cards for instant naira. Enjoy high rates, get airtime, pay
+                <p>MaximusHub gives you the power to sell your gift cards for instant naira. Enjoy high rates, get airtime, pay
                     bills, all in one place.</p>
                 <div className="app-logos">
                     {/* <h2 className="text-center text-rBlue font-bold text-4xl mb-[2.375rem] headerflexed">Coming soon on</h2> */}
@@ -135,7 +136,7 @@ const Landing = () => {
                     <div className="buy-wrap">
                         <h2>Buy airtime and pay bills</h2>
                         <p>Buy, pay and top up your subscriptions smoothly, you can save up to 2% with every bill payment made
-                            using Ridima. </p>
+                            using MaximusHub. </p>
                         <div
                             className="flex items-center gap-1 border border-white h-[5.125rem] rounded-[3.125rem] pl-9 pr-[1.25rem] w-[19.5rem]">
                             <span className="whitespace-nowrap">Coming soon on</span>
@@ -165,7 +166,7 @@ const Landing = () => {
                     <div className="card">
                         <div className="buy-wrap">
                             <h2>Sell your Giftcards for Cash Instantly</h2>
-                            <p>Ridima is simply the best app to sell gift cards at high rates. We provide you with quick trade
+                            <p>MaximusHub is simply the best app to sell gift cards at high rates. We provide you with quick trade
                                 confirmations and payouts. </p>
                             <div className="flex items-center gap-1 border border-white h-[5.125rem] rounded-[3.125rem] pl-9 pr-[1.25rem] w-[19.5rem]">
                                 <span className="whitespace-nowrap">Coming soon on</span>
@@ -189,7 +190,7 @@ const Landing = () => {
                     <div className="card mt-12">
                         <div className="buy-wrap">
                             <h2>Get access to Virtual Dollar Cards</h2>
-                            <p>Your Ridima account gives you a virtual account and debit card to carry out external transactions
+                            <p>Your MaximusHub account gives you a virtual account and debit card to carry out external transactions
                                 seamlessly </p>
                             <div
                                 className="flex items-center gap-1 border border-white h-[5.125rem] rounded-[3.125rem] pl-9 pr-[1.25rem] w-[19.5rem]">
@@ -223,9 +224,9 @@ const Landing = () => {
                 </section>
             </section>
 
-            <section className="why" id="whyRidima">
-                <h1>Why Ridima?</h1>
-                <p>Here’s why people choose Ridima over other apps.</p>
+            <section className="why" id="whyRidima" ref={scrollToRef}>
+                <h1>Why MaximusHub?</h1>
+                <p>Here’s why people choose MaximusHub over other apps.</p>
                 <div className="features">
                     <div className="order-2 lg:order-1">
                         <div className="feature">
@@ -234,7 +235,7 @@ const Landing = () => {
                         </div>
                         <div className="feature">
                             <h3>Safe &amp; Secure</h3>
-                            <h6>Ridima is backed by the highest level of internet security.</h6>
+                            <h6>MaximusHub is backed by the highest level of internet security.</h6>
                         </div>
                         <div className="feature">
                             <h3>High Rates</h3>
@@ -291,16 +292,16 @@ const Landing = () => {
                             <a className="flex justify-center md:justify-start" href="index.htm">
                                 <span className="span1">
                                     <span className="span2">
-                                        <img className="img1" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27134%27%20height=%2731%27/%3e" />
+                                        <img style={{ height: '10rem', width: '15rem' }} className="img1" alt="" aria-hidden="true" src="/logo.png" />
                                     </span>
-                                    <img alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" decoding="async" data-nimg="intrinsic" className="img2" />
+                                    <img alt="" src="/logo.png" decoding="async" data-nimg="intrinsic" className="img2" />
                                     <noscript>
-                                        <img alt="" srcSet="vectors/logo.svg 1x, vectors/logo.svg 2x" src="vectors/logo.svg" decoding="async" data-nimg="intrinsic" className="img2" loading="lazy" />
+                                        <img alt="" srcSet="vectors/logo.svg 1x, vectors/logo.svg 2x" src="/logo.png" decoding="async" data-nimg="intrinsic" className="img2" loading="lazy" />
                                     </noscript>
                                 </span>
                             </a>
                             <p className="mt-[2.9375rem] text-deepPurple text-lg text-center md:text-left max-w-xs mx-auto md:mx-0">
-                                Ridima is a giftcard trading platform available on Android, IOS, &amp; Web.</p>
+                                MaximusHub is a giftcard trading platform available on Android, IOS, &amp; Web.</p>
                             <div className="logos"><a className="" target="_blank" href="https://instagram.com/myridima">
                                 <span className="span1">
                                     <span className="span2">
@@ -329,7 +330,7 @@ const Landing = () => {
                             <h1>Company</h1><a href="about">About</a><a href="blogs">Blog</a>
                         </div>
                         <div className="bottom-navs">
-                            <h1>Product</h1><a href="index.htm#whyRidima">Why Ridima</a><a href="download">Download</a><a
+                            <h1>Product</h1><a href="index.htm#whyRidima">Why MaximusHub</a><a href="download">Download</a><a
                                 href="faq">FAQs</a>
                         </div>
                         <div className="bottom-navs">
@@ -346,7 +347,7 @@ const Landing = () => {
                     </div>
                     <div className="footer2">
                         <div className="copy">
-                            <p></p><span>© 2022 Ridima. All Rights Reserved</span>
+                            <p></p><span>© 2022 MaximusHub. All Rights Reserved</span>
                         </div>
                     </div>
                 </div>

@@ -1804,7 +1804,7 @@
 }
 
 .Rates__details .header .button .active {
-    background: #7165e3;
+    background: #282457;
     color: #fff;
     z-index: 1;
     position: relative
@@ -1950,7 +1950,7 @@
 
 .Rates__details .content__left label span small {
     height: .4rem;
-    background-color: #7165e3;
+    background-color: #282457;
     display: block;
     position: absolute;
     top: 44%;
@@ -1976,7 +1976,7 @@
 }
 
 .Rates__details .content__left label input[type=range]::-webkit-slider-thumb {
-    border: 1px solid #7165e3;
+    border: 1px solid #282457;
     height: 18px;
     width: 18px;
     border-radius: 2rem;
@@ -1991,7 +1991,7 @@
 
 .Rates__details .content__right {
     width: 50%;
-    background: #7165e3;
+    background: #282457;
     display: flex;
     flex-direction: column;
     justify-content: space-between
@@ -3638,7 +3638,7 @@ textarea:focus {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #7165e3
+    background-color: #282457
 }
 
 .sr-only {

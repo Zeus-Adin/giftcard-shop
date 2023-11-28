@@ -6,10 +6,33 @@ import {
     DesktopHeaderSubTitleText, DesktopHeaderLiner, DesktopHeaderLine, DesktopHeaderSubTitleTexts,
     DSecurityBtnWrapper
 } from './components'
-const Security = () => {
+import Cookies from 'js-cookie';
+import ChangePinModal from '../../../component/modal/ChangePinModal';
+import { useState } from 'react';
+import ChangePasswordModal from '../../../component/modal/ChangePasswordModal';
+
+const appOrigin = window.location.origin;
+const Security = ({ redirect, openAlert, setAlertText }) => {
+    const [showChangePasswordModal, setShowChangePasswordModal] = useState();
+    function openCloseChangePasswordModal() {
+        setShowChangePasswordModal(!showChangePasswordModal);
+    }
+
+    const [showChangePinModal, setShowChangePinModal] = useState();
+    function openCloseChangePinModal() {
+        setShowChangePinModal(!showChangePinModal);
+    }
+
+
+
+    let session = Cookies.get(appOrigin);
+    if (session) { session = JSON.parse(session); }
 
     return (
         <>
+            {/* Modals */}
+            <ChangePinModal show={showChangePinModal} close={openCloseChangePinModal} session={session} openAlert={openAlert} setAlertText={setAlertText} />
+            <ChangePasswordModal show={showChangePasswordModal} close={openCloseChangePasswordModal} session={session} openAlert={openAlert} setAlertText={setAlertText} />
             {/* Mobile Nav Bar */}
             <MobileAppBar container sx={{ display: { xs: 'flex', md: 'none' } }}>
                 {/* Logo Box */}
@@ -28,7 +51,7 @@ const Security = () => {
                 <SecurityBtnBody>
                     <SecurityBtnWrapper>
                         <MobileInputArea>
-                            <MobileInputBoxOne>
+                            <MobileInputBoxOne onClick={openCloseChangePinModal}>
                                 <MobileImage src="/svg/pin.svg" />
                                 <MobileClickTextArea>
                                     <MobileClickText>
@@ -37,7 +60,7 @@ const Security = () => {
                                     <MobileImage src="/svg/chevron-right.svg" />
                                 </MobileClickTextArea>
                             </MobileInputBoxOne>
-                            <MobileInputBoxOne>
+                            <MobileInputBoxOne onClick={openCloseChangePasswordModal}>
                                 <MobileImage src="/svg/password.svg" />
                                 <MobileClickTextArea>
                                     <MobileClickText>
@@ -68,7 +91,7 @@ const Security = () => {
                     </DesktopHeaderLiner>
                     <DSecurityBtnWrapper>
                         <MobileInputArea>
-                            <MobileInputBoxOne>
+                            <MobileInputBoxOne onClick={openCloseChangePinModal}>
                                 <MobileImage src="/svg/pin.svg" />
                                 <MobileClickTextArea>
                                     <MobileClickText>
@@ -77,7 +100,7 @@ const Security = () => {
                                     <MobileImage src="/svg/chevron-right.svg" />
                                 </MobileClickTextArea>
                             </MobileInputBoxOne>
-                            <MobileInputBoxOne>
+                            <MobileInputBoxOne onClick={openCloseChangePasswordModal}>
                                 <MobileImage src="/svg/password.svg" />
                                 <MobileClickTextArea>
                                     <MobileClickText>

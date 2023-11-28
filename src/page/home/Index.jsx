@@ -50,7 +50,7 @@ const Home = ({ redirect, openWithdrawModal, setWithdrawToAccount, handleOpenAle
                 {selectedNav === 2 && <Wallet redirect={redirect} openWithdrawModal={openWithdrawModal} userData={userData} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setMoreInfoValues={setMoreInfoValues} openWalletMoreInfoModal={openWalletMoreInfoModal} />}
                 {/* {selectedNav === 3 && <Support redirect={redirect} />} */}
                 {selectedNav === 4 && <Profile redirect={redirect} setSelectedNav={setSelectedNav} />}
-                {selectedNav === 5 && <Security redirect={redirect} />}
+                {selectedNav === 5 && <Security redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
                 <MobileNavBar selectedNav={selectedNav} setSelectedNav={setSelectedNav} />
             </MobileAppBar >
 
@@ -62,7 +62,7 @@ const Home = ({ redirect, openWithdrawModal, setWithdrawToAccount, handleOpenAle
                 {selectedNav === 2 && <Wallet redirect={redirect} openWithdrawModal={openWithdrawModal} userData={userData} setWithdrawToAccount={setWithdrawToAccount} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} setMoreInfoValues={setMoreInfoValues} openWalletMoreInfoModal={openWalletMoreInfoModal} />}
                 {/* {selectedNav === 3 && <Support redirect={redirect} />} */}
                 {selectedNav === 4 && <Profile redirect={redirect} setSelectedNav={setSelectedNav} />}
-                {selectedNav === 5 && <Security redirect={redirect} />}
+                {selectedNav === 5 && <Security redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />}
             </DesktopAppBar >
         </>
     )
