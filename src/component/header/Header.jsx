@@ -29,7 +29,8 @@ function redirect(to) {
 
 const AppBarStyle = styled(AppBar)(({ theme }) => ({
     position: 'fixed',
-    backgroundColor: 'rgb(244,137,59)'
+    backgroundColor: '#E3BC8D',
+    boxShadow: 'none'
 }));
 
 const buttons = [

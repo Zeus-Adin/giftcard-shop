@@ -247,7 +247,7 @@ const Landing = ({ scrollToRef }) => {
                             <span className="span2">
                                 <img className="img1" alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27436%27%20height=%27850%27/%3e" />
                             </span>
-                            <img alt="" srcSet="_next/why-1.jpg 1x?url=%2Fwebp%2Fwhy.webp&amp;w=640&amp;q=75 1x, _next/why.jpg 2xe?url=%2Fwebp%2Fwhy.webp&amp;w=1080&amp;q=75 2x" src="_next/why.jpg?url=%2Fwebp%2Fwhy.webp&amp;w=1080&amp;q=75" decoding="async" data-nimg="intrinsic" className="img2" />
+                            <img alt="" srcSet="/img/why.png 1x?url=%2Fwebp%2Fwhy.webp&amp;w=640&amp;q=75 1x, /img/why.png 2xe?url=%2Fwebp%2Fwhy.webp&amp;w=1080&amp;q=75 2x" src="/img/why.png?url=%2Fwebp%2Fwhy.webp&amp;w=1080&amp;q=75" decoding="async" data-nimg="intrinsic" className="img2" />
                         </span>
                     </div>
                     <div className="order-3">
@@ -338,10 +338,11 @@ const Landing = ({ scrollToRef }) => {
                                 href="aml">AML Policy</a>
                         </div>
                         <div className="bottom-navs">
-                            <h1>Help</h1><a href="contact">Contact</a><a
-                                href="cdn-cgi/l/email-protection.html#1b737e776b5b766269727f72767a35787476" target="_blank"
-                                rel="noreferrer"><span className="__cf_email__"
-                                    data-cfemail="f39b969f83b39e8a819a979a9e92dd909c9e">[email&#160;protected]</span></a>
+                            <h1>Help</h1>
+                            <a href="contact">Contact</a>
+                            <a href="cdn-cgi/l/email-protection.html#1b737e776b5b766269727f72767a35787476" target="_blank" rel="noreferrer">
+                                <span className="__cf_email__" data-cfemail="f39b969f83b39e8a819a979a9e92dd909c9e">[email&#160;protected]</span>
+                            </a>
                             <p className="mt-8"></p>
                         </div>
                     </div>

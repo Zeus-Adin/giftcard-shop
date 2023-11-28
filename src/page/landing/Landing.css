@@ -1,7 +1,6 @@
 /*
 ! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com
 */
-
 .span1 {
     box-sizing: border-box;
     display: inline-block;
@@ -361,7 +360,8 @@
 
 .Home {
     width: 100%;
-    scroll-behavior: smooth !important
+    scroll-behavior: smooth !important;
+    background-color: #E3BC8D;
 }
 
 .Home .hero {
@@ -2243,13 +2243,13 @@
 }
 
 footer {
-    padding: 8.6875rem 3.125rem 4.5625rem
+    padding: 8.6875rem 3.125rem 4.5625rem;    
 }
 
 @media (min-width:768px) {
     footer {
         --tw-bg-opacity: 1;
-        background-color: rgb(255 255 255/var(--tw-bg-opacity));
+        background-color: #E3BC8D;
         padding-left: 6.25rem;
         padding-right: 6.25rem
     }
@@ -3154,7 +3154,7 @@ h1.GetAnimation span:nth-child(16) {
     align-items: center;
     justify-content: center;
     --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255/var(--tw-bg-opacity))
+    background-color: #E3BC8D
 }
 
 @media (min-width:768px) {
