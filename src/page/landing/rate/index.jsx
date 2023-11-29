@@ -246,8 +246,8 @@ const Rates = ({ scrollToRef, handleScrollToRef }) => {
             <div class="Rates__section-about">
                 <h1>ABOUT GIFT CARD RATES</h1>
                 <p>You are probably looking for where you can sell your gift cards at the highest rates because you want to maximize profit and get the most value for your money.<br />
-                    Ridima is know to be the best app to sell your gift cards at the highest rate instantly for Naira. We offer competitive rates and a hassle-free process for selling gift
-                    cards. Additionally, Ridima has a reputation for being reliable and trustworthy, which ensures that customers                    can trust us to provide fair and transparent service.
+                    MaximusHub is know to be the best app to sell your gift cards at the highest rate instantly for Naira. We offer competitive rates and a hassle-free process for selling gift
+                    cards. Additionally, MaximusHub has a reputation for being reliable and trustworthy, which ensures that customers                    can trust us to provide fair and transparent service.
                 </p>
                 <h1>Gift Card Rate Calculator</h1>
                 <p>With the help of Ridima’s Rate Calculator, you can instantly see the price at which you can sell your gift card. You can quickly see the price you will sell your $100 Steam gift card for cash or the price you will sell your $100 or $50 Google Play gift card for cash.<br />
@@ -259,9 +259,9 @@ const Rates = ({ scrollToRef, handleScrollToRef }) => {
                     “How much is a €100 Steam card in Naira today” or “How much is a £100 Steam card in Naira today” is a question
                     you probably asked but look no further as you can see today’s rate in the Gift Card Rate table above.
                 </p>
-                <h1>Is Ridima Legit For Selling At High Rates?</h1>
-                <p>Ridima is completely trustworthy and reliable if you want to sell your Google Play, Steam, Amazon or Apple iTunes gift cards at high rates. We have a thousands of clients who trust us with their gift cards and money. To get started, simply download our mobile app HERE
-                    <a href="http://ridima.onelink.me/mFX1" target="_blank" rel="noopener noreferrer">&nbsp;link</a></p>
+                <h1>Is MaximusHub Legit For Selling At High Rates?</h1>
+                <p>MaximusHub is completely trustworthy and reliable if you want to sell your Google Play, Steam, Amazon or Apple iTunes gift cards at high rates. We have a thousands of clients who trust us with their gift cards and money. To get started, simply download our mobile app HERE
+                    <a href="#" target="_blank" rel="noopener noreferrer">&nbsp;link</a></p>
             </div>
 
             <Footer scrollToRef={scrollToRef} handleScrollToRef={handleScrollToRef} />
