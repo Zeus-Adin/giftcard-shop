@@ -36,7 +36,7 @@ const App = () => {
   return (
     <>
       {headerComponents[originPath] && <Header redirect={redirect} handleScrollToRef={handleScrollToRef} />}
-      {authed !== null && <Routes path={originPath} redirect={redirect} authed={authed} scrollToRef={scrollToRef} />}
+      {authed !== null && <Routes path={originPath} redirect={redirect} authed={authed} scrollToRef={scrollToRef} handleScrollToRef={handleScrollToRef}/>}
     </>
   );
 }

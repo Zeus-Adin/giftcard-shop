@@ -11,13 +11,10 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import Fab from '@mui/material/Fab';
-import NavigationIcon from '@mui/icons-material/Navigation';
 import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import { alpha, styled } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 
 const pages = ['Why MaximusHub?', 'Rates', 'About', 'FAQs', 'Contact'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -27,7 +24,7 @@ function redirect(to) {
 }
 
 
-const AppBarStyle = styled(AppBar)(({ theme }) => ({
+const AppBarStyle = styled(AppBar)(({ }) => ({
     position: 'fixed',
     backgroundColor: '#E3BC8D',
     boxShadow: 'none'
@@ -79,7 +76,7 @@ function Header({ redirect, handleScrollToRef }) {
         <AppBarStyle>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <Avatar alt="logo" src="/logo.png" sx={{ mr: 1 }} style={{ marginRight: '2rem' }} />
+                    <Avatar alt="logo" src="/logo.png" sx={{ mr: 1 }} style={{ marginRight: '2rem', cursor: 'pointer' }} onClick={() => redirect('/')} />
                     <Typography variant="h5" noWrap component="a" href="/" sx={{ mr: 2, display: { xs: 'flex', md: 'none' }, flexGrow: 1, fontFamily: 'monospace', fontWeight: 700, letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none', }}>
                         MaximusHub
                     </Typography>

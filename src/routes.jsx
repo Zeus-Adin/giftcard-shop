@@ -27,8 +27,10 @@ const allowedPath = [
     '/', '/login', '/register', '/forgot-password', '/email-verification', '/rates', '/about', '/faqs', '/contact',
     '/dashboard', '/trade-cards', '/cards', '/sell', '/manage-banks', '/admin'
 ]
+const LandingPaths = ['/', '/rates', '/about', '/faqs', '/contact',]
+
 const appOrigin = window.location.origin;
-const Routes = ({ path, redirect, authed, scrollToRef }) => {
+const Routes = ({ path, redirect, authed, scrollToRef, handleScrollToRef }) => {
     const [selectedNav, setSelectedNav] = useState(0);
 
     const [activationKey, setActivationKey] = useState('');
@@ -107,7 +109,7 @@ const Routes = ({ path, redirect, authed, scrollToRef }) => {
 
     return (
         <>
-            {path === "/" && <Landing redirect={redirect} scrollToRef={scrollToRef} />}
+            {LandingPaths.includes(path) && <Landing redirect={redirect} scrollToRef={scrollToRef} handleScrollToRef={handleScrollToRef} />}
             {path === "/admin" && <AdminPage redirect={redirect} setMoreInfoValues={setMoreInfoValues} openWalletMoreInfoModal={openWalletMoreInfoModal} />}
 
             {path === "/login" && <Login redirect={redirect} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
