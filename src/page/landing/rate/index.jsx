@@ -1,6 +1,6 @@
+import Footer from '../footer';
 
-
-const Rates = () => {
+const Rates = ({ scrollToRef, handleScrollToRef }) => {
 
     return (
         <main>
@@ -100,6 +100,7 @@ const Rates = () => {
                     </div>
                 </div>
             </div>
+            <Footer scrollToRef={scrollToRef} handleScrollToRef={handleScrollToRef} />
         </main>
     )
 }
