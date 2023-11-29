@@ -9,6 +9,7 @@ const Rates = ({ scrollToRef, handleScrollToRef }) => {
                 <p class="subtitle">Our gift card rate calculator helps you easily find the best deals on gift cards. Get cool
                     returns and save time with this handy tool.</p>
             </section>
+
             <div class="Rates__details">
                 <div class="minimize"><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></div>
                 <div class="header">
@@ -100,6 +101,169 @@ const Rates = ({ scrollToRef, handleScrollToRef }) => {
                     </div>
                 </div>
             </div>
+
+            <div class="Rates__display">
+                <h1>Gift Cards With High Rates</h1>
+                <p>These are some of the top gift cards to sell at the highest rates in Nigeria today</p>
+                <div class="content">
+                    <header>
+                        <h4>Gift Card Category</h4>
+                        <h4>Country</h4>
+                        <h4>Sub-Category</h4>
+                        <h4>Naira Rate</h4>
+                    </header>
+                    <div class="body">
+                        <div class="row">
+                            <h5>Steam</h5>
+                            <h5>United Kingdom (GBP)</h5>
+                            <h5>(£10 - £500)</h5>
+                            <h5>₦ 930</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Macy's</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($100 - $400)</h5>
+                            <h5>₦ 890</h5>
+                        </div>
+                        <div class="row">
+                            <h5>American Express</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($400 - $500)</h5>
+                            <h5>₦ 880</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Footlocker</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($100 - $500)</h5>
+                            <h5>₦ 870</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Razer Gold</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($10 - $500)</h5>
+                            <h5>₦ 870</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Nike</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($100 - $500)</h5>
+                            <h5>₦ 860</h5>
+                        </div>
+                        <div class="row">
+                            <h5>American Express</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($100 - $299)</h5>
+                            <h5>₦ 860</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Apple iTunes</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($250, $300, $350, $400, $450)</h5>
+                            <h5>₦ 850</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Apple iTunes</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($50, $100, $150, $200)</h5>
+                            <h5>₦ 840</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Nordstrom</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($100 - $500)</h5>
+                            <h5>₦ 840</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Google Play</h5>
+                            <h5>Europe (EUR)</h5>
+                            <h5>(€15 - €500)</h5>
+                            <h5>₦ 810</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Steam</h5>
+                            <h5>Europe (EUR)</h5>
+                            <h5>(€10 - €500)</h5>
+                            <h5>₦ 800</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Google Play</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($15 - $500)</h5>
+                            <h5>₦ 780</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Sephora</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($100 - $500)</h5>
+                            <h5>₦ 770</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Ebay</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($100 - $500)</h5>
+                            <h5>₦ 750</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Steam</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($10 - $500)</h5>
+                            <h5>₦ 740</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Amazon</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($50 - $100)</h5>
+                            <h5>₦ 710</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Visa</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($300 - $500)</h5>
+                            <h5>₦ 710</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Visa</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($100 - $299)</h5>
+                            <h5>₦ 620</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Walmart Visa</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($100 - $299)</h5>
+                            <h5>₦ 500</h5>
+                        </div>
+                        <div class="row">
+                            <h5>Roblox</h5>
+                            <h5>United States(USD)</h5>
+                            <h5>($25 - $100)</h5>
+                            <h5>₦ 180</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="Rates__section-about">
+                <h1>ABOUT GIFT CARD RATES</h1>
+                <p>You are probably looking for where you can sell your gift cards at the highest rates because you want to maximize profit and get the most value for your money.<br />
+                    Ridima is know to be the best app to sell your gift cards at the highest rate instantly for Naira. We offer competitive rates and a hassle-free process for selling gift
+                    cards. Additionally, Ridima has a reputation for being reliable and trustworthy, which ensures that customers                    can trust us to provide fair and transparent service.
+                </p>
+                <h1>Gift Card Rate Calculator</h1>
+                <p>With the help of Ridima’s Rate Calculator, you can instantly see the price at which you can sell your gift card. You can quickly see the price you will sell your $100 Steam gift card for cash or the price you will sell your $100 or $50 Google Play gift card for cash.<br />
+                    Historically, the card with the highest rates has always been Razer Gold gift cards.<br />
+                    To check the best rates with our calculator, simply select the gift card brand, choose the country, select the type and the range of your card and then type the value of your gift card and the total value you’ll get will appear.
+                </p>
+                <h1>Other Country Cards</h1>
+                <p>
+                    “How much is a €100 Steam card in Naira today” or “How much is a £100 Steam card in Naira today” is a question
+                    you probably asked but look no further as you can see today’s rate in the Gift Card Rate table above.
+                </p>
+                <h1>Is Ridima Legit For Selling At High Rates?</h1>
+                <p>Ridima is completely trustworthy and reliable if you want to sell your Google Play, Steam, Amazon or Apple iTunes gift cards at high rates. We have a thousands of clients who trust us with their gift cards and money. To get started, simply download our mobile app HERE
+                    <a href="http://ridima.onelink.me/mFX1" target="_blank" rel="noopener noreferrer">&nbsp;link</a></p>
+            </div>
+
             <Footer scrollToRef={scrollToRef} handleScrollToRef={handleScrollToRef} />
         </main>
     )
