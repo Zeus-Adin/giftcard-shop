@@ -1,6 +1,6 @@
 import Footer from '../footer';
 
-const About = () => {
+const About = ({ scrollToRef, handleScrollToRef }) => {
 
     return (
         <div>
@@ -83,9 +83,9 @@ const About = () => {
                         </div>
                     </section>
                     <section class="because">
-                        <h2 class="mb-[1.375rem] text-[2rem] md:text-[4rem] font-bold text-deepPurple">We’re Ridima and we’re here
+                        <h2 class="mb-[1.375rem] text-[2rem] md:text-[4rem] font-bold text-deepPurple">We’re MaximusHub and we’re here
                             because of you.</h2>
-                        <h3 class="text-sm md:text-2xl">Ridima was built for a generation that’s curious about more freedom and
+                        <h3 class="text-sm md:text-2xl">MaximusHub was built for a generation that’s curious about more freedom and
                             flexibility when it comes to finance.</h3>
                     </section>
                     <div class="gap-8 mb-[10.875rem] cards">
@@ -106,7 +106,7 @@ const About = () => {
                         <div class="card ">
                             <h1>We Embrace Differences</h1>
                             <p>Our unwavering commitment to inclusion and diversity sparks innovation and fosters a culture in which
-                                everyone feels equal. Ridima provides robust programming to help our people thrive, including
+                                everyone feels equal. MaximusHub provides robust programming to help our people thrive, including
                                 specialized training, networking support, flexible work arrangements, mentoring, and mental health
                                 resources.</p>
                         </div>
