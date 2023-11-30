@@ -249,7 +249,7 @@ const Rates = ({ scrollToRef, handleScrollToRef }) => {
                     cards. Additionally, MaximusHub has a reputation for being reliable and trustworthy, which ensures that customers                    can trust us to provide fair and transparent service.
                 </p>
                 <h1>Gift Card Rate Calculator</h1>
-                <p>With the help of Ridima’s Rate Calculator, you can instantly see the price at which you can sell your gift card. You can quickly see the price you will sell your $100 Steam gift card for cash or the price you will sell your $100 or $50 Google Play gift card for cash.<br />
+                <p>With the help of MaximusHub's Rate Calculator, you can instantly see the price at which you can sell your gift card. You can quickly see the price you will sell your $100 Steam gift card for cash or the price you will sell your $100 or $50 Google Play gift card for cash.<br />
                     Historically, the card with the highest rates has always been Razer Gold gift cards.<br />
                     To check the best rates with our calculator, simply select the gift card brand, choose the country, select the type and the range of your card and then type the value of your gift card and the total value you’ll get will appear.
                 </p>
