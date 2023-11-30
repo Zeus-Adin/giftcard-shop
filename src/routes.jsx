@@ -128,7 +128,7 @@ const Routes = ({ path, redirect, authed, scrollToRef, handleScrollToRef }) => {
             <BankModal show={showBankModal} close={closeBankModal} redirect={redirect} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />
             <DepositModal show={showDepositModal} close={closeDepositModal} redirect={redirect} />
             <WithdrawModal show={showWithdrawModal} close={closeWithdrawModal} redirect={redirect} withdrawToAccount={withdrawToAccount} setWithdrawToAccount={setWithdrawToAccount} openAlert={handleOpenAlertBox} setAlertText={setAlertText} />
-            <WalletMoreInfoModal show={showWalletMoreInfoModal} close={closeWalletMoreInfoModal} values={moreInfoValues} />
+            <WalletMoreInfoModal show={showWalletMoreInfoModal} close={closeWalletMoreInfoModal} values={moreInfoValues} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />
             {moreInfoValues && showActivitiesMoreInfoModal && <ActivitiesMoreInfoModal show={showActivitiesMoreInfoModal} close={closeActivitiesMoreInfoModal} values={moreInfoValues} handleOpenAlertBox={handleOpenAlertBox} setAlertText={setAlertText} />}
         </>
 

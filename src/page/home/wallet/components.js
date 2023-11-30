@@ -2,12 +2,12 @@
 
 import styled from "@emotion/styled"
 import { Grid, Typography, Button } from "@mui/material"
-import { DataGrid } from "@mui/x-data-grid";
 
 // Mobile Header Components
 export const MobileAppBar = styled(Grid)(({ }) => ({
     position: 'relative',
     height: '100vh',
+    backgroundColor: '#E3BC8D'
 }))
 export const MobileGridBar = styled(Grid)(({ }) => ({
     width: '100%',
@@ -315,7 +315,7 @@ export const MobileHistoryHeaderTextDateFilterButtonWrap = styled(Button)(({ }) 
 export const DesktopViewWrapper = styled(Grid)(({ }) => (`
     width: calc(100vw - 250px);
     overflow-y: scroll;
-    background-color: #FFFFFF;
+    background-color: '#E3BC8D;
     overflow: auto;
     height: 100vh;
     transition: width 0.3s ease-in-out 0s;

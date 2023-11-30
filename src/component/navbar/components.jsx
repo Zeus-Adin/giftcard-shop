@@ -5,7 +5,7 @@ export const NavWrapper = styled('div')(() => (`
     width: 250px;
     overflow: auto;
     height: 100vh;
-    background-color: rgb(248, 247, 254);
+    background-color: '#E3BC8D';
     transition: width 0.3s ease-in-out 0s;
 `))
 export const NavWrap = styled('div')(() => (`
@@ -94,7 +94,8 @@ export const MobileNavWrapper = styled('div')(() => (`
     left: 0px;
     bottom: 0px;
     padding: 2.4rem;
-    background-color: white;
+    opacity: 1;
+    background-color: #E3BC8D;
     border-top: 1px solid rgba(64, 0, 255, 0.2); 
 `))
 export const MobileNavWrap = styled('div')(() => (`

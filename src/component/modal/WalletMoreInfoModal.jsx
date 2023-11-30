@@ -13,7 +13,13 @@ import { curreniesSymbols } from "../../lib/currency";
 
 
 
-const WalletMoreInfoModal = ({ show, close, values: { action, amount, status, timeStammp, _id: txRef } }) => {
+const WalletMoreInfoModal = ({ show, close, setAlertText, handleOpenAlertBox, values: { action, amount, status, timeStammp, _id: txRef } }) => {
+
+    function copy() {
+        navigator.clipboard.writeText(txRef);
+        setAlertText({ title: '', paragraph: 'Text copied successfully', reason: 'success', sender: 'amim' });
+        handleOpenAlertBox();
+    }
 
     async function reportWalletTransaction() {
 
@@ -41,8 +47,8 @@ const WalletMoreInfoModal = ({ show, close, values: { action, amount, status, ti
                 <OrderSubContentWrapper>
                     <OrderSubContentText>Transaction reference:</OrderSubContentText>
                     <OrderSubContentSubTextWrapper>
-                        <OrderSubContentSubText>{txRef}</OrderSubContentSubText>
-                        <OrderSubContentCopyImageWrapper>
+                        <OrderSubContentSubText>{String(txRef).substring(0, 4) + '...' + String(txRef).substring(String(txRef).length - 5, String(txRef).length)}</OrderSubContentSubText>
+                        <OrderSubContentCopyImageWrapper onClick={copy}>
                             <OrderSubContentCopyImage src="svg/copy.svg" />
                         </OrderSubContentCopyImageWrapper>
                     </OrderSubContentSubTextWrapper>

@@ -5,7 +5,7 @@ export const MobileActivitiesWrapper = styled(Grid)(() => (`
     width: 100%;
     height: 100vh;
     padding: .8rem;
-    display: grid;
+    display: grid;    
     grid-template-columns: 1fr repeat(2, minmax(min-content, 20rem)) 1fr;
     position: relative;
 `))
@@ -130,7 +130,7 @@ export const ContentHeaderText = styled('p')(() => (`
 export const DesktopActivitiesWrapper = styled(Grid)(() => (`
     width: calc(100vw - 250px);
     overflow-y: scroll;
-    background-color: #FFFFFF;
+    background-color: #E3BC8D;
     overflow: auto;
     height: 100vh;
     transition: width 0.3s ease-in-out 0s;

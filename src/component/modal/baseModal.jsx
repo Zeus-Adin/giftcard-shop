@@ -8,7 +8,7 @@ import styled from 'styled-components';
 const ContentWrapper = styled(Box)(() => (`
     pointer-events: auto;
     animation: 150ms cubic-bezier(0.16, 1, 0.3, 1) 0s 1 normal none running k-dUePBQ;
-    background-color: #FFFFFF;
+    background-color: #E3BC8D;
     width: 465px;
     min-height: 400px;
     position: fixed;
@@ -29,7 +29,7 @@ const ContentWrapper = styled(Box)(() => (`
 
 export default function BaseModal({ show, close, title, subtitle, submitBtn, btnText, submit, children }) {
   return (
-    <Modal open={show} onClose={close} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description" style={{ zIndex: '9999999999999999999' }}>
+    <Modal open={show} onClose={close} aria-labelledby="parent-modal-title" aria-describedby="parent-modal-description">
       <>
         <ContentWrapper sx={{ width: 400, flexDirection: 'column', alignItems: 'center' }}>
           <CloseBtn onClick={close} />

@@ -5,6 +5,7 @@ import styled from "styled-components";
 export const MobileContentWrapper = styled(Grid)(({ }) => (`
     position: relative;
     height: 100vh;
+    background-color: #E3BC8D;
 `))
 export const MobileContentWrap = styled('div')(() => (`
     width: 100%;
@@ -24,10 +25,9 @@ export const MobileContent = styled('div')(() => (`
 export const DesktopContentWrapper = styled(Grid)(({ }) => (`
     width: calc(100vw - 250px);
     overflow-y: scroll;
-    background-color: #FFFFFF;
+    background-color: #E3BC8D;
     overflow: auto;
     height: 100vh;
-    background-color: rgb(248, 247, 254);
     transition: width 0.3s ease-in-out 0s;
 `))
 export const DesktopContentWrap = styled('div')(() => (`

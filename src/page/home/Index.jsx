@@ -25,7 +25,7 @@ const DesktopAppBar = styled(Grid)(() => (`
     flex-direction: row;
     width: 100%;
     height: 100vh;
-    display: flex;
+    display: flex;    
 `))
 
 const appOrigin = window.location.origin;

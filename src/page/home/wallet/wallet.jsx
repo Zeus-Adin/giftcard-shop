@@ -11,8 +11,8 @@ import {
     TableDataContentText2,
 
     DesktopViewWrapper, DesktopViewWrap, DesktopView, DesktopHeaderWrapper, DesktopHeaderText, DesktopBannerWrapper, DesktopBannerImage, DesktopBannerContentWrapper,
-    DesktopBannerContentTextWrapper, DesktopBannerContentNairaTextWrapper, DesktopBannerContentNairaText, DesktopBannerContentNairaTextImageWrapper, DesktopBannerContentNairaTextImage, DesktopBannerContentBalanceText, DesktopBannerContentCurrency, DesktopBannerButtonContentWrapper, DesktopBannerButtonContent1Wrapper, DesktopBannerOrderContentWrapper,
-    DesktopBannerOrderContentWrap, DesktopBannerOrderContentHeaderText
+    DesktopBannerContentTextWrapper, DesktopBannerContentNairaTextWrapper, DesktopBannerContentNairaText, DesktopBannerContentNairaTextImageWrapper, DesktopBannerContentNairaTextImage,
+    DesktopBannerContentBalanceText, DesktopBannerContentCurrency, DesktopBannerButtonContentWrapper, DesktopBannerButtonContent1Wrapper, DesktopBannerOrderContentWrapper,
 } from './components'
 import { useEffect, useState } from 'react';
 import { user } from '../../../services/user';
