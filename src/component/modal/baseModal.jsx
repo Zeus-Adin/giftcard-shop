@@ -8,7 +8,7 @@ import styled from 'styled-components';
 const ContentWrapper = styled(Box)(() => (`
     pointer-events: auto;
     animation: 150ms cubic-bezier(0.16, 1, 0.3, 1) 0s 1 normal none running k-dUePBQ;
-    background-color: #E3BC8D;
+    background-color: #ffff;
     width: 465px;
     min-height: 400px;
     position: fixed;
