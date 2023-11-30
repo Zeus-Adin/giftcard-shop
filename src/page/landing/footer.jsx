@@ -1,4 +1,4 @@
-const Footer = ({scrollToRef, handleScrollToRef}) => {
+const Footer = ({ scrollToRef, handleScrollToRef }) => {
 
     return (
         <footer>
@@ -43,22 +43,27 @@ const Footer = ({scrollToRef, handleScrollToRef}) => {
                         </div>
                     </div>
                     <div className="bottom-navs">
-                        <h1>Company</h1><a href="about">About</a><a href="blogs">Blog</a>
+                        <h1>Company</h1>
+                        <a href="/about">About</a>
                     </div>
                     <div className="bottom-navs">
-                        <h1>Product</h1><a href="#" onClick={handleScrollToRef}>Why MaximusHub</a><a href="download">Download</a><a
-                            href="faq">FAQs</a>
+                        <h1>Product</h1>
+                        <a href="#" onClick={handleScrollToRef}>Why MaximusHub</a>
+                        <a href="download">Download</a>
+                        <a href="/faq">FAQs</a>
                     </div>
                     <div className="bottom-navs">
-                        <h1>Legal</h1><a href="terms">Terms &amp; Conditions</a><a href="privacy">Privacy Policy</a><a
-                            href="aml">AML Policy</a>
+                        <h1>Legal</h1>
+                        <a href="#">Terms &amp; Conditions</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">AML Policy</a>
                     </div>
                     <div className="bottom-navs">
                         <h1>Help</h1>
-                        <a href="contact">Contact</a>
-                        <a href="cdn-cgi/l/email-protection.html#1b737e776b5b766269727f72767a35787476" target="_blank" rel="noreferrer">
+                        <a href="/contact">Contact</a>
+                        {/* <a href="cdn-cgi/l/email-protection.html#1b737e776b5b766269727f72767a35787476" target="_blank" rel="noreferrer">
                             <span className="__cf_email__" data-cfemail="f39b969f83b39e8a819a979a9e92dd909c9e">[email&#160;protected]</span>
-                        </a>
+                        </a> */}
                         <p className="mt-8"></p>
                     </div>
                 </div>
