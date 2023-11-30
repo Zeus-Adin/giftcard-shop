@@ -125,7 +125,7 @@ const Register = ({ redirect, handleOpenAlertBox, setAlertText, setActivationKey
                             </svg>
                         </BackButton>
                     </BackButtonWrapper>
-                    <Logo src="/svg/ridima-logo.svg" />
+                    <Logo src="/svg/ridima-logo.png" />
                 </MobileHeaderWrapper>
 
                 {/* Content */}

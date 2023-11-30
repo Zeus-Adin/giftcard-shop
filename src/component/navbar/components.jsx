@@ -36,7 +36,7 @@ export const NavLogoWrapper = styled('div')(() => (`
     display: flex;
 `))
 export const NavLogoImage = styled('img')(() => (`
-    height: 1.8rem;
+    height: 5rem;
 `))
 export const NavLogo = styled('img')(() => (`
     cursor: pointer;

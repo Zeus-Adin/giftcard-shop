@@ -77,7 +77,7 @@ const ActivitiesMoreInfoModal = ({ show, close, handleOpenAlertBox, setAlertText
                 <OrderSubContentWrapper>
                     <OrderSubContentText>You would get:</OrderSubContentText>
                     <OrderSubContentSubTextWrapper>
-                        <OrderSubContentSubText>{curreniesSymbols["NGN"].symbol} {parseFloat(parseFloat(amount) * parseFloat(fileCount) * parseFloat(rate)).toLocaleString() + '.00' || "0.00"}</OrderSubContentSubText>
+                        <OrderSubContentSubText>{curreniesSymbols["NGN"].symbol} {parseFloat(parseInt(amount) * parseInt(fileCount) * parseInt(rate)).toLocaleString() + '.00' || "0.00"}</OrderSubContentSubText>
                     </OrderSubContentSubTextWrapper>
                 </OrderSubContentWrapper>
 

@@ -56,6 +56,7 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
     sessionData = JSON.parse(sessionData);
 
     async function submitRequest() {
+        if (files.length < howMany) return
         setSubmitBtn(true);
         const { _id: id, username } = sessionData;
         const { regTx, message } = await submitCardTxRequest(id, username, selectedCurrency.code, amount, rate, files, ecode, files.length, card);

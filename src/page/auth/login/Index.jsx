@@ -127,7 +127,7 @@ const Login = ({ redirect, handleOpenAlertBox, setAlertText }) => {
                         </MobileHeaderBackButtonContent>
                     </MobileHeaderBackButtonWrapper>
                     {/* Logo */}
-                    <MobileHeaderLogo src="svg/ridima-logo.svg" />
+                    <MobileHeaderLogo src="svg/ridima-logo.png" />
                 </MobileHeaderWrapper>
 
                 {/* Content */}

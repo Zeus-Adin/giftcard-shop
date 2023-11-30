@@ -11,7 +11,7 @@ export const MobileHeaderWrapper = styled('div')(() => ({
     width: '100%',
     top: '0px',
     zIndex: '1',
-    backgroundColor: 'white',
+    backgroundColor: '#E3BC8D',
 }))
 export const BackButtonWrapper = styled('div')(() => ({
     justifyContent: 'flex-start',
@@ -32,7 +32,9 @@ export const BackButton = styled('div')(() => ({
 }))
 
 export const Logo = styled('img')(() => ({
-    justifySelf: 'center'
+    justifySelf: 'center',
+    width: '5rem',
+    height: '5rem'
 }))
 export const ContentWrapper = styled('div')(() => ({
     width: '100%',
@@ -185,7 +187,7 @@ export const FormLoginSubTextButton = styled('button')(() => ({
     textDecoration: 'none',
 }))
 
-export const DesktopHeaderText = styled('p')(()=>({    
+export const DesktopHeaderText = styled('p')(() => ({
     marginBottom: '2rem',
     textAlign: 'center',
     color: '#7165E3',
@@ -230,8 +232,8 @@ export const DesktopContent = styled('div')(() => ({
     height: '100%',
 }))
 export const DesktopContentInputArea = styled('div')(() => ({
-   width:'60%',
-   padding:'3.2rem'
+    width: '60%',
+    padding: '3.2rem'
 }))
 
 export const DesktopSlideImage = styled('img')(({ }) => ({

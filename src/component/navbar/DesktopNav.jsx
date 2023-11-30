@@ -29,7 +29,7 @@ const DesktopNavBar = ({ selectedNav, setSelectedNav }) => {
                     <NavContent>
 
                         <NavLogoWrapper>
-                            <NavLogoImage src="/svg/ridima-logo.svg" />
+                            <NavLogoImage src="/svg/ridima-logo.png" />
                             <NavLogo src="/svg/collapse.svg" />
                         </NavLogoWrapper>
 

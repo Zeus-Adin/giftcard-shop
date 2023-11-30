@@ -11,7 +11,7 @@ export const MobileHeaderWrapper = styled('div')(() => ({
     width: '100%',
     top: '0px',
     zIndex: '1',
-    backgroundColor: 'white',
+    backgroundColor: '#E3BC8D',
 }))
 export const MobileHeaderBackButtonWrapper = styled('div')(() => ({
     justifyContent: 'flex-start',
@@ -31,7 +31,9 @@ export const MobileHeaderBackButtonContent = styled('div')(() => ({
     cursor: 'pointer',
 }))
 export const MobileHeaderLogo = styled('img')(() => ({
-    justifySelf: 'center'
+    justifySelf: 'center',
+    height: '5rem',
+    width: '5rem'
 }))
 
 // Content Components
