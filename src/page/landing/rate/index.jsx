@@ -1,5 +1,4 @@
 import Footer from '../footer';
-
 const Rates = ({ scrollToRef, handleScrollToRef }) => {
 
     return (
