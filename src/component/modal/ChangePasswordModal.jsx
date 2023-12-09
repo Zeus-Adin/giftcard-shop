@@ -23,20 +23,19 @@ const ChangePasswordModal = ({ show, close, session, openAlert, setAlertText }) 
     }
 
     async function updatePassword() {
+        if (newPassword !== confirmnewPassword) {
+            setErrorMsg({ label: 'Password missmatched!', severity: 'error' });
+            return
+        }
         setSubmitBtn(true);
         const { _id: userId, username } = session;
-        const { updatePAsswordState, message } = await user.updateTxPin(userId, username, oldPassword, newPassword);
-
-        if (updatePAsswordState) {
-            setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'updatePin' })
-            openAlert();
-            handleClose();
+        const { update_pwd, message } = await user.updateUserPassword(userId, username, oldPassword, newPassword);
+        if (update_pwd) {
+            setErrorMsg({ label: message, severity: 'success' });
         } else {
-            setAlertText({ title: 'Error', paragraph: message, reason: 'error', sender: 'updatePin' })
-            openAlert();
+            setErrorMsg({ label: message, severity: 'error' });
             setSubmitBtn(false);
         }
-
     }
 
     function handleTextChange(e) {

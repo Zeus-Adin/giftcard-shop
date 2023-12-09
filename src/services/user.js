@@ -34,6 +34,18 @@ export const user = {
             return { txUpdateStat: false, message: err.message }
         }
     },
+    updateUserPassword: async (userId, username, oldPassword, newPassword) => {
+        try {
+            const res = (await axios.post('http://localhost:3001/api/update/password', { userId, username,oldPassword, newPassword })).data;
+            return res
+        } catch (err) {
+            if (err.response) {
+                const { data } = err.response;
+                return data
+            }
+            return { success: false, pin: '', message: err.message }
+        }
+    },
     getUsersPin: async (userId, username) => {
         try {
             const res = (await axios.post('http://localhost:3001/api/get/txpin', { userId, username })).data;
