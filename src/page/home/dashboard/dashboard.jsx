@@ -46,6 +46,8 @@ const DashBoard = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount
             } else {
                 redirect('/manage-banks');
             }
+        }else{
+            redirect('/login');
         }
     }
 

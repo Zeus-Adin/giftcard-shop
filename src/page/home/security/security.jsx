@@ -26,7 +26,11 @@ const Security = ({ redirect, openAlert, setAlertText }) => {
 
 
     let session = Cookies.get(appOrigin);
-    if (session) { session = JSON.parse(session); }
+    if (session) {         
+        session = JSON.parse(session); 
+    }else{
+        redirect('/login');
+    }
 
     return (
         <>

@@ -42,6 +42,8 @@ const Activities = ({ redirect, openWithdrawModal, userData, setWithdrawToAccoun
     let session = Cookies.get(appOrigin);
     if (session) {
         session = JSON.parse(session);
+    } else {
+        redirect('/login');
     }
 
     async function init() {
