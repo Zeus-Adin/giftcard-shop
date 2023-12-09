@@ -37,6 +37,7 @@ const Home = ({ redirect, openWithdrawModal, setWithdrawToAccount, handleOpenAle
             setUserData(JSON.parse(session));
         } else {
             redirect('/login');
+            return
         }
     }, [])
 

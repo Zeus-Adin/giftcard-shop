@@ -38,6 +38,7 @@ const Wallet = ({ redirect, openWithdrawModal, userData, setWithdrawToAccount, h
         session = JSON.parse(session);
     } else {
         redirect('/login');
+        return
     }
 
     async function init() {

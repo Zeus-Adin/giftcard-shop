@@ -30,6 +30,7 @@ const Security = ({ redirect, openAlert, setAlertText }) => {
         session = JSON.parse(session); 
     }else{
         redirect('/login');
+        return
     }
 
     return (
