@@ -32,20 +32,17 @@ const Activities = ({ redirect, openWithdrawModal, userData, setWithdrawToAccoun
     const [active, setActive] = useState(false);
     const [cards, setCards] = useState([]);
 
-    console.log(cards)
-
     function moreCardInfo(i) {
         setMoreInfoValues(cards[i]);
         openActivitiesMoreInfoModal();
     }
 
     let session = Cookies.get(appOrigin);
-    if (session) {
-        session = JSON.parse(session);
-    } else {
+    if (!session) {
         redirect('/login');
         return
     }
+    session = JSON.parse(session);
 
     async function init() {
         const { username, _id: id } = session;

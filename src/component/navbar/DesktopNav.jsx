@@ -34,9 +34,9 @@ const DesktopNavBar = ({ selectedNav, setSelectedNav }) => {
                         </NavLogoWrapper>
 
                         {navImages.map(({ label, action, active, nonactive }, i) => (
-                            <NavContentWrapper key={i}>
+                            <NavContentWrapper key={i} onClick={() => action(i)}>
                                 <NavContentWrap active={selectedNav === i ? '#7165E3' : 'rgb(248, 247, 254)'}>
-                                    <NavWrapContent onClick={() => action(i)}>
+                                    <NavWrapContent>
                                         <NavImage src={selectedNav === i ? active : nonactive} />
                                         <NavImageText active={selectedNav === i ? '#FFFFFF' : '#7165E3'}>{label}</NavImageText>
                                     </NavWrapContent>
