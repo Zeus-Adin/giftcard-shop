@@ -23,6 +23,10 @@ const ChangePasswordModal = ({ show, close, session, openAlert, setAlertText }) 
     }
 
     async function updatePassword() {
+        if (newPassword.length < 8) {
+            setErrorMsg({ label: 'Password must be 8 character long!', severity: 'error' });
+            return
+        }
         if (newPassword !== confirmnewPassword) {
             setErrorMsg({ label: 'Password missmatched!', severity: 'error' });
             return
@@ -76,7 +80,7 @@ const ChangePasswordModal = ({ show, close, session, openAlert, setAlertText }) 
                             <ForgotPasswordInputsWrap key={i}>
                                 <ForgotPasswordInputsContents>
                                     <ForgotPasswordInputsLabel>{label}</ForgotPasswordInputsLabel>
-                                    <ForgotPasswordInputBox onClick={() => handleTextBoxClick(i)} onChange={handleTextChange} ref={inputsRef[i]} name={name} type="password" placeholder="********" />
+                                    <ForgotPasswordInputBox onClick={() => handleTextBoxClick(i)} onChange={handleTextChange} ref={inputsRef[i]} name={name} minLength={8} type="password" placeholder="********" />
                                 </ForgotPasswordInputsContents>
                                 <ForgotPasswordShowBtnWrapper onClick={(e) => handleShowPassword(i)}>
                                     <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" color="#7165E3" height="22" width="22" xmlns="http://www.w3.org/2000/svg" style={{ color: 'rgb(113, 101, 227)' }}>

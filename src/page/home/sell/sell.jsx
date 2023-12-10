@@ -51,8 +51,7 @@ const Sell = ({ redirect, openAlert, setAlertText }) => {
 
     let sessionData = Cookies.get(appOrigin);
     if (!sessionData) {
-        redirect('/login')
-        return
+        redirect('/login');
     }
     sessionData = JSON.parse(sessionData);
 

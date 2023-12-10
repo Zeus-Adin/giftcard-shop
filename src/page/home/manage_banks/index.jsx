@@ -40,7 +40,6 @@ const ManageBanks = ({ redirect, openBankModal }) => {
         session = JSON.parse(session)
     } else {
         redirect('/login');
-        return
     }
 
     async function init() {
