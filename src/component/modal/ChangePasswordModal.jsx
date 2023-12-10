@@ -35,7 +35,9 @@ const ChangePasswordModal = ({ show, close, session, openAlert, setAlertText }) 
         const { _id: userId, username } = session;
         const { update_pwd, message } = await user.updateUserPassword(userId, username, oldPassword, newPassword);
         if (update_pwd) {
-            setErrorMsg({ label: message, severity: 'success' });
+            setAlertText({ title: 'Success', paragraph: message, reason: 'success', sender: 'changepassword' });
+            openAlert();
+            handleClose();
         } else {
             setErrorMsg({ label: message, severity: 'error' });
             setSubmitBtn(false);
